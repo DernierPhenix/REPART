@@ -6,24 +6,31 @@
 <style>
 </style>
 {% endblock %}
+{% block navbarTop %}
+ <div class="logOut">  
+    {% if app.user %}
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+    {% endif %}
+   </div>
+ {% endblock %}
+ 
 {% block bouton %}
 <div class="liste">
 
-        <a class="btn btn-primary" id="btnT" href="" role="button">Clients</a>
+        <a class="btn btn-primary" id="btnT" href="{{ path('app_client') }}" role="button">CLIENTS</a>
 
-		<a class="btn btn-primary" id="btnT" href="" role="button">Clients</a>
+		<a class="btn btn-primary" id="btnT" href="{{ path('app_client') }}" role="button">EMPLOYÉS</a>
 
-		<a class="btn btn-primary" id="btnT" href="" role="button">Clients</a>
+		<a class="btn btn-primary" id="btnT" href="{{ path('app_categories') }}" role="button">CATEGORIES</a>
 
-		<a class="btn btn-primary" id="btnT" href="{" role="button">Clients</a>
+		<a class="btn btn-primary" id="btnT" href="{{ path('app_sous_categorie') }}" role="button">SOUS-CATEGORIES</a>
 
-		<a class="btn btn-primary" id="btnT" href="" role="button">Clients</a>
-
+		<a class="btn btn-primary" id="btnT" href="" role="button">TICKETS</a>
 </div>
 {% endblock %}
 
 {# mettre le contenu dans le bloc #}
 {% block contenu %}
-
+<H1>CATEGORIES</H1>
 {% endblock %}
 
