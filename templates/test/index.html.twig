@@ -1,21 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TestController!{% endblock %}
+{% block title %}Hello TestController!
+{% endblock %}
+ {% block navbarTop %}
+  
+ <div class="logOut">  
+   
+ 
+    {% if app.user %}
+        
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+       
+    {% endif %}
+   </div>
+ {% endblock %}
+{% block bouton %}
+	<div class="liste">
 
-{% block bouton %}<div class="liste">
+		<a class="btn btn-primary" id="btnT" href="" role="button">Clients</a>
 
-<a class="btn btn-primary" href="" role="button">Clients</a>
+		<a class="btn btn-primary" id="btnT" href="" role="button">Clients</a>
 
-<a class="btn btn-primary" href="" role="button">Clients</a>
+		<a class="btn btn-primary" id="btnT" href="" role="button">Clients</a>
 
-<a class="btn btn-primary" href="" role="button">Clients</a>
+		<a class="btn btn-primary" id="btnT" href="{" role="button">Clients</a>
 
-<a class="btn btn-primary" href="{" role="button">Clients</a>
+		<a class="btn btn-primary" id="btnT" href="" role="button">Clients</a>
 
-<a class="btn btn-primary" href="" role="button">Clients</a>
-
-{# <a class="btn btn-primary" href="{{ path('app_client') }}" role="button">Clients</a> #}
+		{# <a class="btn btn-primary" href="{{ path('app_client') }}" role="button">Clients</a> #}
 
 
-    </div>{% endblock %}
-
+	</div>
+{% endblock %}

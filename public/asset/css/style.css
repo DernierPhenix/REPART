@@ -44,12 +44,12 @@ body {
 .liste {
   padding-top: 30%;
 }
-.btn a {
+#btnT a {
   text-decoration: none;
   color: white;
 }
 
-.btn {
+#btnT {
   border-radius: 4px;
 
   text-align: center;
@@ -64,9 +64,17 @@ body {
   position: relative;
   transition: 0.5s;
 }
-.btn:hover {
+#btnT:hover {
   padding-right: 24px;
   padding-left: 8px;
 }
 
 /* FIN */
+ /* CLasse LOGOUT */
+.logOut{
+
+   
+    margin-left: 57%;
+    margin-top: -3%;
+    margin-right: 0%;
+}
