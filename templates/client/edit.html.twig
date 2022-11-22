@@ -16,8 +16,12 @@
  
 
 
-{# mettre le contenu dans le bloc #}
 {% block contenu %}
-<H1>CATEGORIES</H1>
-{% endblock %}
+    <h1>Edit Client</h1>
 
+    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_client_index') }}">back to list</a>
+
+    {{ include('client/_delete_form.html.twig') }}
+{% endblock %}

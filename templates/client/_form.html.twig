@@ -1,0 +1,164 @@
+{% block style %}
+	<style>
+		.client {
+			text-align: center;
+			color: #007bff;
+		}
+		.pseudo-container {
+			width: 50%;
+			min-width: 40%;
+			max-width: 80%;
+			background: #F5F5F5;
+			display: grid;
+			grid-template-rows: repeat(4, 104px);
+			padding: 60px 45px 206px;
+			border-radius: 16px;
+			box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+			position: relative;
+			left: 24%;
+
+		}
+
+		div {
+			transition: 0.2s;
+		}
+		label {
+			letter-spacing: 1px;
+		}
+		input[type="text"],
+		input[type="password"] {
+			margin: 7px 0;
+			border: 1px solid transparent;
+			background: white;
+			height: 36px;
+			width: 100%;
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+			border-radius: 9px;
+			font-size: 1.1rem;
+			padding-left: 10px;
+			transition: 0.2s;
+		}
+		.submit {
+			border: none;
+			background: linear-gradient(#007bff, white);
+			width: 50%;
+			margin: 5px 25% 0;
+			padding: 20px;
+			border-radius: 150px;
+			font-size: 1.2rem;
+			cursor: pointer;
+			transition: 0.3s ease;
+		}
+		.submit:hover {
+			filter: brightness(90%);
+
+		}
+		ul {
+			list-style-type: none;
+		}
+	</style>
+{% endblock %}
+
+<h1 class="client">Nouveau Client</h1>
+<a href="{{ path('app_client_index') }}">
+	<h1>Retour à liste</h1>
+</a>
+
+<div class="pseudo-container">
+	{{ form_start(form) }}
+
+	{{ form_row(form.raisonSociale) }}
+
+	{{ form_row(form.nom) }}
+
+	{{ form_row(form.prenom) }}
+
+	{{ form_row(form.cp) }}
+
+	{{ form_row(form.ville) }}
+
+	{{ form_row(form.adresse) }}
+
+	{{ form_row(form.telephone) }}
+
+	{{ form_row(form.email) }}
+
+	<button class="btn btn-primary">{{ button_label|default('Sauvegarder') }}</button>
+	{{ form_end(form) }}
+
+  </div>
+
+<script>
+	$("#client_cp").autocomplete({
+source: function (request, response) {
+$.ajax({
+url: "https://api-adresse.data.gouv.fr/search/?postcode=" + $("input[name='cp']").val(),
+data: {
+q: request.term
+},
+dataType: "json",
+success: function (data) {
+var postcodes = [];
+response($.map(data.features, function (item) { // Ici on est obligé d'ajouter les CP dans un array pour ne pas avoir plusieurs fois le même
+if ($.inArray(item.properties.postcode, postcodes) == -1) {
+postcodes.push(item.properties.postcode);
+return {
+label: item.properties.postcode + " - " + item.properties.city,
+city: item.properties.city,
+value: item.properties.postcode
+};
+}
+}));
+}
+});
+},
+// On remplit aussi la ville
+select: function (event, ui) {
+$('#client_ville').val(ui.item.city);
+}
+});
+$("#client_ville").autocomplete({
+source: function (request, response) {
+$.ajax({
+url: "https://api-adresse.data.gouv.fr/search/?city=" + $("input[name='ville']").val(),
+data: {
+q: request.term
+},
+dataType: "json",
+success: function (data) {
+var cities = [];
+response($.map(data.features, function (item) { // Ici on est obligé d'ajouter les villes dans un array pour ne pas avoir plusieurs fois la même
+if ($.inArray(item.properties.postcode, cities) == -1) {
+cities.push(item.properties.postcode);
+return {
+label: item.properties.postcode + " - " + item.properties.city,
+postcode: item.properties.postcode,
+value: item.properties.city
+};
+}
+}));
+}
+});
+},
+// On remplit aussi le CP
+select: function (event, ui) {
+$('#client_cp').val(ui.item.postcode);
+}
+});
+$("#client_adresse").autocomplete({
+source: function (request, response) {
+$.ajax({
+url: "https://api-adresse.data.gouv.fr/search/?postcode=" + $("input[name='cp']").val(),
+data: {
+q: request.term
+},
+dataType: "json",
+success: function (data) {
+response($.map(data.features, function (item) {
+return {label: item.properties.name, value: item.properties.name};
+}));
+}
+});
+}
+});
+</script>
