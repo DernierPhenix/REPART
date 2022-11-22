@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories
+{% endblock %}
+
+{% block style %}
+	<style></style>
+{% endblock %}
+{% block navbarTop %}
+	<div class="logOut">
+		{% if app.user %}
+			You are logged in as
+			{{ app.user.userIdentifier }},
+			<a href="{{ path('app_logout') }}">Logout</a>
+		{% endif %}
+	</div>
+{% endblock %}
+
+{% block bouton %}
+	<div class="liste">
+
+		<a class="btn btn-primary" href="" role="button">CLIENTS</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{ path('app_client') }}" role="button">EMPLOYÉS</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{ path('app_categories') }}" role="button">CATEGORIES</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{ path('app_sous_categorie') }}" role="button">SOUS-CATEGORIES</a>
+
+		<a class="btn btn-primary" id="btnT" href="" role="button">TICKETS</a>
+	</div>
+{% endblock %}
+
+{# mettre le contenu dans le bloc #}
+{% block contenu %}
+	<<<<<<<HEAD<H1>CATEGORIES</H1>=======<h1>PAGECATÉGORIES</h1>>>>>>>> feature/CRUDCategorie
+{% endblock %}
