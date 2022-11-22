@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!
+{% endblock %}
+ {% block navbarTop %}
+  
+ <div class="logOut">  
+   
+ 
+    {% if app.user %}
+        
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+       
+    {% endif %}
+   </div>
+ {% endblock %}
+{% block bouton %}
+	<div class="liste">
+
+		<a class="btn btn-primary" id="btnT" href="{{path ('app_client')}}" role="button">CLIENTS</a>
+
+		<a class="btn btn-primary" id="btnT" href="" role="button">EMPLOYÉS</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{path ('app_categories')}}" role="button">CATÉGORIES</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{path ('app_sous_categorie_index')}}" role="button">SOUS-CATÉGORIES</a>
+
+		<a class="btn btn-primary" id="btnT" href="" role="button">Clients</a>
+
+		{# <a class="btn btn-primary" href="{{ path('app_client') }}" role="button">Clients</a> #}
+
+
+	</div>
+{% endblock %}
+
+	{# <div class="liste">
+
+		<a class="btn btn-primary" id="btnT" href="{{path ('app_client')}}" role="button">CLIENTS</a>
+
+		<a class="btn btn-primary" id="btnT" href="" role="button">EMPLOYÉS</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{path ('app_categories_index')}}" role="button">CATÉGORIES</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{path ('app_sous_categorie')}}" role="button">SOUS-CATÉGORIES</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{path ('app_produit')}}" role="button">PRODUITS</a>
+
+		<a class="btn btn-primary" id="btnT" href="" role="button">TICKETS</a>
+
+		<a class="btn btn-primary" href="{{ path('app_client') }}" role="button">Clients</a>
+
+
+	</div> #}

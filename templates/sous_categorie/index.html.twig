@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Sous-Categories{% endblock %}
+{% block style %}
+<style>
+</style>
+{% endblock %}
+{% block navbarTop %}
+ <div class="logOut">  
+    {% if app.user %}
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+    {% endif %}
+   </div>
+ {% endblock %}
+
+{% block bouton %}
+	<div class="liste">
+
+		<a class="btn btn-primary" id="btnT" href="{{path ('app_client')}}" role="button">CLIENTS</a>
+
+		<a class="btn btn-primary" id="btnT" href="" role="button">EMPLOYÉS</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{path ('app_categories')}}" role="button">CATÉGORIES</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{path ('app_sous_categorie_index')}}" role="button">SOUS-CATÉGORIES</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{path ('app_produit')}}" role="button">PRODUITS</a>
+
+		<a class="btn btn-primary" id="btnT" href="" role="button">TICKETS</a>
+
+		{# <a class="btn btn-primary" href="{{ path('app_client') }}" role="button">Clients</a> #}
+
+
+	</div>
+{% endblock %}
+
+{% block contenu %}
+    <h1>SousCategorie index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sous_categorie in sous_categories %}
+            <tr>
+                <td>{{ sous_categorie.id }}</td>
+                <td>{{ sous_categorie.nom }}</td>
+                <td>
+                    <a href="{{ path('app_sous_categorie_show', {'id': sous_categorie.id}) }}">show</a>
+                    <a href="{{ path('app_sous_categorie_edit', {'id': sous_categorie.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_sous_categorie_new') }}">Create new</a>
+{% endblock %}
