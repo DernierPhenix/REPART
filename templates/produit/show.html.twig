@@ -3,13 +3,15 @@
 {% block title %}Produit
 {% endblock %}
 
+
 {% block contenu %}
 	<div class="container">
 		<h1>Produit</h1>
 
-		<table>
+		<table class="d-flex justify-content-center ">
 			<a href="{{ path('app_produit_index') }}" class="btn btn-primary ">back to list</a>
-            <br/>
+			<br/>
+			<br/>
 			<tbody class="card mb-2" style="width: 18rem;">
 
 				<tr class="d-flex justify-content-center mb-2">
@@ -17,7 +19,7 @@
 				</tr>
 				<br/>
 				<tr class="d-flex justify-content-center mb-2">
-					<th>{{ produit.modele }}</th><tr/>
+					<td>{{ produit.modele }}</td><tr/>
 				</tr>
 				<tr class="d-flex justify-content-center mb-2">
 					<td>

@@ -5,15 +5,12 @@
 
 {% block navbarTop %}
 
-	<div class="logOut">
-
-
+	<div class="logOut d-flex justify-content-around">
 		{% if app.user %}
-
-			You are logged in as
-			{{ app.user.userIdentifier }},
-			<a href="{{ path('app_logout') }}">Logout</a>
-
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
 		{% endif %}
 	</div>
 {% endblock %}
@@ -21,8 +18,8 @@
 	<h1>Register</h1>
 
 	{{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.nom) }}
-    {{ form_row(registrationForm.prenom) }}
+	{{ form_row(registrationForm.nom) }}
+	{{ form_row(registrationForm.prenom) }}
 	{{ form_row(registrationForm.login) }}
 	{{ form_row(registrationForm.plainPassword, {
             label: 'Password'

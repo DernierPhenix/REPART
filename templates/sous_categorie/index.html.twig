@@ -1,17 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Sous-Categories{% endblock %}
+{% block title %}Liste des Sous-Categories
+{% endblock %}
 {% block style %}
-<style>
-</style>
+	<style></style>
 {% endblock %}
 {% block navbarTop %}
- <div class="logOut">  
-    {% if app.user %}
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-    {% endif %}
-   </div>
- {% endblock %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
+		{% endif %}
+	</div>
+{% endblock %}
 
 {% block bouton %}
 	<div class="liste">
@@ -35,33 +38,33 @@
 {% endblock %}
 
 {% block contenu %}
-    <h1>SousCategorie index</h1>
+	<h1>SousCategorie index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for sous_categorie in sous_categories %}
-            <tr>
-                <td>{{ sous_categorie.id }}</td>
-                <td>{{ sous_categorie.nom }}</td>
-                <td>
-                    <a href="{{ path('app_sous_categorie_show', {'id': sous_categorie.id}) }}">show</a>
-                    <a href="{{ path('app_sous_categorie_edit', {'id': sous_categorie.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for sous_categorie in sous_categories %}
+				<tr>
+					<td>{{ sous_categorie.id }}</td>
+					<td>{{ sous_categorie.nom }}</td>
+					<td>
+						<a href="{{ path('app_sous_categorie_show', {'id': sous_categorie.id}) }}">show</a>
+						<a href="{{ path('app_sous_categorie_edit', {'id': sous_categorie.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_sous_categorie_new') }}">Create new</a>
+	<a href="{{ path('app_sous_categorie_new') }}">Create new</a>
 {% endblock %}

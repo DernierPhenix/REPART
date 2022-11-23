@@ -7,10 +7,9 @@
 	<style></style>
 {% endblock %}
 {% block navbarTop %}
-	<div class="logOut">
+	<div class="logOut d-flex justify-content-around">
 		{% if app.user %}
-			You are logged in as
-			{{ app.user.userIdentifier }},
+			bienvenue sur votre espace {{ app.user.userIdentifier }} !
 			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
 		{% endif %}
 	</div>
@@ -20,29 +19,30 @@
 	<div class="container">
 		<h1>Liste des produits</h1>
 
-		<table>
+		<table class="d-flex justify-content-center row ">
 
 			<a href="{{ path('app_produit_new') }}" class="btn btn-primary ">+</a>
 
 			{% for produit in produits %}
 				<br/>
-
 				<tbody class="card mb-2" style="width: 18rem;">
 
 					<tr class="d-flex justify-content-center mb-2">
-
-
-						<td>{{ produit.marque }}</td>
+						<th>
+							{{ produit.marque }}
+							
+						</th>
 
 						<td>{{ produit.modele }}</td>
 					</tr>
 					<tr class="d-flex justify-content-center mb-2">
 						<td>
-							<a href="{{ path('app_produit_show', {'id': produit.id}) }}" class="btn btn-primary ">show</a>
+							<a href="{{ path('app_produit_show', {'id': produit.id}) }}" class="btn btn-primary ">voir</a>
 						</td>
 						<td>
-							<a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-primary ">edit</a>
+							<a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-primary ">modifier</a>
 						</td>
+
 					</tr>
 
 				</tbody>

@@ -8,11 +8,12 @@
 {% endblock %}
 
 {% block navbarTop %}
-	<div class="logOut">
+	<div class="logOut d-flex justify-content-around">
 		{% if app.user %}
-			You are logged in as
-			{{ app.user.userIdentifier }},
-			<a href="{{ path('app_logout') }}">Logout</a>
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
 		{% endif %}
 	</div>
 {% endblock %}
