@@ -1,20 +1,77 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProduitController!{% endblock %}
+{% block title %}Catégories
+{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block style %}
+	<style></style>
+{% endblock %}
+{% block navbarTop %}
+	<div class="logOut">
+		{% if app.user %}
+			You are logged in as
+			{{ app.user.userIdentifier }},
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
+		{% endif %}
+	</div>
+{% endblock %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% block bouton %}
+	<div class="liste">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'F:/DWWM/GitHub/REPART/src/Controller/ProduitController.php'|file_link(0) }}">src/Controller/ProduitController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'F:/DWWM/GitHub/REPART/templates/produit/index.html.twig'|file_link(0) }}">templates/produit/index.html.twig</a></code></li>
-    </ul>
-</div>
+		<a class="btn btn-primary" id="btnT" href="{{ path('app_client') }}" role="button">CLIENTS</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{ path('app_client') }}" role="button">EMPLOYÉS</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{ path('app_categories') }}" role="button">CATEGORIES</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{ path('app_sous_categorie') }}" role="button">SOUS-CATEGORIES</a>
+
+		<a class="btn btn-primary" id="btnT" href="" role="button">TICKETS</a>
+
+		<a class="btn btn-primary" id="btnT" href="{{ path('app_produit_index') }}" role="button">PRODUITS</a>
+	</div>
+{% endblock %}
+
+{% block contenu %}
+	<div class="container">
+		<h1>Liste des produits</h1>
+
+		<table>
+
+			<a href="{{ path('app_produit_new') }}" class="btn btn-primary ">+</a>
+
+			{% for produit in produits %}
+				<br/>
+
+				<tbody class="card mb-2" style="width: 18rem;">
+
+					<tr class="d-flex justify-content-center mb-2">
+
+
+						<td>{{ produit.marque }}</td>
+
+						<td>{{ produit.modele }}</td>
+					</tr>
+					<tr class="d-flex justify-content-center mb-2">
+						<td>
+							<a href="{{ path('app_produit_show', {'id': produit.id}) }}" class="btn btn-primary ">show</a>
+						</td>
+						<td>
+							<a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-primary ">edit</a>
+						</td>
+					</tr>
+
+				</tbody>
+
+
+			{% else %}
+				<tr>
+					<td colspan="4">no records found</td>
+				</tr>
+			{% endfor %}
+
+		</table>
+
+	</div>
 {% endblock %}

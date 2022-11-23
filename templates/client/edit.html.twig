@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block style %}
+<style>
+</style>
+{% endblock %}
+{% block navbarTop %}
+ <div class="logOut">  
+    {% if app.user %}
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+    {% endif %}
+   </div>
+ {% endblock %}
+ 
+
+
+{% block contenu %}
+    <h1>Edit Client</h1>
+
+    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_client_index') }}">back to list</a>
+
+    {{ include('client/_delete_form.html.twig') }}
+{% endblock %}
