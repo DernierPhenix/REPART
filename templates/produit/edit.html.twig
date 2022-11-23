@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Produit
+{% endblock %}
+
+{% block contenu %}
+	<div class="container">
+		<h1>Edit Produit</h1>
+		<table>
+			<a href="{{ path('app_produit_index') }}" class="btn btn-primary ">back to list</a>
+			<br/>
+			<br/>
+			<tbody class="card mb-2" style="width: 18rem;">
+				<tr class="d-flex justify-content-center mb-2">
+
+					<td>
+						{{ include('produit/_form.html.twig') }}
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
