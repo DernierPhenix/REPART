@@ -1,11 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New SousCategorie{% endblock %}
+{% block title %}Nouvelle Sous-Catégories{% endblock %}
 
 {% block contenu %}
-    <h1>Create new SousCategorie</h1>
+    {# <h1>Créer une nouvelle Sous-Catégorie</h1> #}
 
     {{ include('sous_categorie/_form.html.twig') }}
 
-    <a href="{{ path('app_sous_categorie_index') }}">back to list</a>
+    <a href="{{ path('app_sous_categorie_index') }}">Retour à la liste des sous-catégories</a>
+{% endblock %}
+
+{% block style %}
+	<style></style>
+{% endblock %}
+{% block navbarTop %}
+	<div class="logOut">
+		{% if app.user %}
+			You are logged in as
+			{{ app.user.userIdentifier }},
+			<a href="{{ path('app_logout') }}">Logout</a>
+		{% endif %}
+	</div>
 {% endblock %}

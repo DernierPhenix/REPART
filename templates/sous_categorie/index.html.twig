@@ -13,29 +13,9 @@
    </div>
  {% endblock %}
 
-{% block bouton %}
-	<div class="liste">
-
-		<a class="btn btn-primary" id="btnT" href="{{path ('app_client_index')}}" role="button">CLIENTS</a>
-
-		<a class="btn btn-primary" id="btnT" href="" role="button">EMPLOYÉS</a>
-
-		<a class="btn btn-primary" id="btnT" href="{{path ('app_categories')}}" role="button">CATÉGORIES</a>
-
-		<a class="btn btn-primary" id="btnT" href="{{path ('app_sous_categorie_index')}}" role="button">SOUS-CATÉGORIES</a>
-
-		<a class="btn btn-primary" id="btnT" href="{{path ('app_produit')}}" role="button">PRODUITS</a>
-
-		<a class="btn btn-primary" id="btnT" href="" role="button">TICKETS</a>
-
-		{# <a class="btn btn-primary" href="{{ path('app_client') }}" role="button">Clients</a> #}
-
-
-	</div>
-{% endblock %}
 
 {% block contenu %}
-    <h1>SousCategorie index</h1>
+    <h1>Liste des sous-catégories</h1>
 
     <table class="table">
         <thead>
