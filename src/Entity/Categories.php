@@ -17,9 +17,6 @@ class Categories
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $prenom = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $image = null;
 
     public function getId(): ?int
@@ -35,18 +32,6 @@ class Categories
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrenom(): ?string
-    {
-        return $this->prenom;
-    }
-
-    public function setPrenom(string $prenom): self
-    {
-        $this->prenom = $prenom;
 
         return $this;
     }

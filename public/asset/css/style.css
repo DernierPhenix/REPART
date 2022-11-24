@@ -56,14 +56,12 @@ body {
 
 #btnT {
   border-radius: 4px;
-
   text-align: center;
   width: 100%;
   margin-left: 36px;
   margin-bottom: 60px;
   -webkit-box-shadow: 5px 5px 36px 5px #000000;
   box-shadow: 5px 5px 36px 5px #000000;
-
   cursor: pointer;
   display: inline-block;
   position: relative;
