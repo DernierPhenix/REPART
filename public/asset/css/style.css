@@ -1,10 +1,12 @@
 /* CSS DE LA BASE */
 body {
   position: absolute;
+  bottom: 0%;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
+ 
 }
 .navbarTop {
   background-color: #007bff;
@@ -21,6 +23,7 @@ body {
 .navbarGauche {
   float: left;
   width: 20%;
+ 
   background-color: #007bff;
 }
 .menuCentre {
