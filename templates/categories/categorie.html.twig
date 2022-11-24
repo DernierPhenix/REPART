@@ -12,6 +12,17 @@
 			bienvenue sur votre espace
 			{{ app.user.userIdentifier }}
 			!
+			<div class="dropdown show">
+				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Catégories
+				</a>
+
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<a class="dropdown-item" href="#">...</a>
+					<a class="dropdown-item" href="#">...</a>
+					<a class="dropdown-item" href="#">...</a>
+				</div>
+			</div>
 			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
 		{% endif %}
 	</div>
@@ -28,4 +39,15 @@
 
 <a class="btn btn-primary" id="btnT" href="" role="button">TICKETS</a>
 
-<a class="btn btn-primary" id="btnT" href="{{ path('app_produit_index') }}" role="button">PRODUITS</a></div>{% endblock %}{# mettre le contenu dans le bloc #}{% block contenu %}{% endblock %}
+<a class="btn btn-primary" id="btnT" href="{{ path('app_produit_index') }}" role="button">PRODUITS</a></div>
+{% endblock %}
+{# mettre le contenu dans le bloc #}
+{% block contenu %}
+{% endblock %}
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
