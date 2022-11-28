@@ -16,6 +16,8 @@
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 		<link rel="stylesheet" href="https://code.jquery.com/ui/1.7.3/themes/base/jquery-ui.css">
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 	</head>
 	<body>
@@ -35,23 +37,25 @@
 
 								<a class="btn btn-primary" id="btnT" href="{{ path('app_client_index') }}" role="button">CLIENTS</a>
 
-								<a class="btn btn-primary" id="btnT" href="{{ path('app_client_index') }}" role="button">EMPLOYÉS</a>
+								<a class="btn btn-primary" id="btnT" href="{{ path('app_user_index') }}" role="button">EMPLOYÉS</a>
 
-								<a class="btn btn-primary" id="btnT" href="{{ path('app_categories') }}" role="button">CATEGORIES</a>
+								<a class="btn btn-primary" id="btnT" href="{{ path('app_categories_index') }}" role="button">CATEGORIES</a>
 
 								<a class="btn btn-primary" id="btnT" href="{{ path('app_sous_categorie_index') }}" role="button">SOUS-CATEGORIES</a>
 
-								<a class="btn btn-primary" id="btnT" href="" role="button">TICKETS</a>
+								<a class="btn btn-primary" id="btnT" href="{{ path('app_produit_index') }}" role="button">PRODUIT</a>
+
+								<a class="btn btn-primary" id="btnT" href="{{ path('app_tickets_index') }}" role="button">TICKETS</a>
 							</div>
 						{% endif %}
 					{% endblock %}
 				</div>
 
 				<div class="menuCentre"> {% block contenu %}{% endblock %}
+					</div>
+
 				</div>
 
-			</div>
+			</body>
 
-	</body>
-
-			</html>
+		</html>

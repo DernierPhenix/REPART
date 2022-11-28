@@ -21,6 +21,7 @@
 	<h1>Client index</h1>
 
 	<table class="table table-secondary table-striped">
+		<input id='searchBar' type="text" placeholder="Recherche par id ou client" class="searchBar form-control">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -35,8 +36,9 @@
 				<th>actions</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody class='tableauxR'>
 			{% for client in clients %}
+			
 				<tr>
 					<td>{{ client.id }}</td>
 					<td>{{ client.nom }}</td>
@@ -56,9 +58,51 @@
 				<tr>
 					<td colspan="10">no records found</td>
 				</tr>
+				</tbody>
 			{% endfor %}
-		</tbody>
+		
 	</table>
 
 	<a href="{{ path('app_client_new') }}">Create new</a>
+<tbody class="resultat row"></tbody>
+	<script>
+
+		$(document).ready(function () {
+$("#searchBar").keyup(function (e) {
+e.preventDefault();
+e.stopPropagation();
+
+let input = $("#searchBar").val();
+
+
+$.ajax({
+url: "https://127.0.0.1:8000/ajax/listeClient",
+type: 'GET',
+
+success: function (response) {
+console.log(response);
+let liste = "";
+
+$.each(response, function (index, value) { // J'ajoute chaque élément dans une liste
+if (input == value.nom.substr(-20, 3) || input == value.telephone.substr(-20, 3)) {
+liste +=
+
+'<tr>'+
+'<td>'+ value.id +'</td>'+'<td>'+ value.nom+'</td>'+'<td>'+ value.prenom +'</td>'+'<td>'+ value.adresse +'</td>'+
+'<td>'+ value.cp +'</td>'+'<td>'+value.ville +'</td>'+'<td>'+value.telephone +'</td>'+'<td>'+ value.email +'</td>'+
+'<tr/>'
+
+}
+});
+$('.tableauxR').html(liste);
+
+},
+
+error: function (response) {
+console.log(error)
+}
+});
+});
+});
+	</script>
 {% endblock %}
