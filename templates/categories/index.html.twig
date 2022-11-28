@@ -5,30 +5,24 @@
 
 {% block style %}
 	<style>
-		.image {
-			height: 100%;
-			width: 100%;
-		}
-		.option {
-			height: 100%;
-			width: 100%;
-		}
-
-		.btn {
-			margin: 2%;
-		}
-
-		#btn-cat {
-			display: inline-block;
-			text-align: center;
-			vertical-align: middle;
-			padding: 6px 15px;
-			border: 0 solid #3c14ca;
-			border-radius: 30px;
-			background: #007bff;
-
-		}
-	</style>
+    .image{
+        height:100%;
+        width:100%;
+    }
+    .option{
+        height:100%;
+        width:100%;
+    }
+    #btn-cat{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 6px 15px;
+    border: 0px solid #3c14ca;
+    border-radius: 30px;
+    background: #007bff;
+    }
+    </style>
 {% endblock %}
 
 {% block contenu %}
@@ -54,10 +48,7 @@
 				</div>
 			</div>
 
-		{% endfor %}
-	</div>
 
+			<a class='btn btn-primary' id='btn-cat' href="{{ path('app_categories_new') }}">NOUVEL CATÉGORIES</a>
 
-	<a class='btn btn-primary' id='btn-cat' href="{{ path('app_categories_new') }}">NOUVEL CATÉGORIES</a>
-
-{% endblock %}
+		{% endblock %}
