@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CallAjaxController extends AbstractController
 {
 
-    #[Route('/ajax/listeClient', name: 'app_call_ajax')]
+    #[Route('/ajax/listeClients', name: 'app_call_ajax')]
     public function index(ClientRepository $repository, NormalizerInterface $normalizer): JsonResponse
     {
         $client = $repository->findAll();

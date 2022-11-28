@@ -1,9 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des clients{% endblock %}
+{% block title %}Liste des clients
+{% endblock %}
 
 {% block style %}
-	<style></style>
+	<style>
+		.trr {
+
+			transition: all .2s ease-in-out;
+			cursor: pointer;
+
+		}
+		.trr:hover {
+
+			transform: scale(1.02);
+		}
+	</style>
 {% endblock %}
 
 {% block navbarTop %}
@@ -34,41 +46,53 @@
 				<th>Telephone</th>
 				<th>Email</th>
 				<th>RaisonSociale</th>
-				<th>actions</th>
+				
 			</tr>
 		</thead>
 		<tbody class='tableauxR'>
 			{% for client in clients %}
-			
-				<tr>
-					<td>{{ client.id }}</td>
-					<td>{{ client.nom }}</td>
-					<td>{{ client.prenom }}</td>
-					<td>{{ client.adresse }}</td>
-					<td>{{ client.cp }}</td>
-					<td>{{ client.ville }}</td>
-					<td>{{ client.telephone }}</td>
-					<td>{{ client.email }}</td>
-					<td>{{ client.raisonSociale }}</td>
-					<td>
-						<a href="{{ path('app_client_show', {'id': client.id}) }}" class="btn btn-primary">show</a>
-						<a href="{{ path('app_client_edit', {'id': client.id}) }}"class="btn btn-primary">edit</a>
-					</td>
-				</tr>
+				<div>
+
+					<tr class="trr" href="{{ path('app_client_show', {'id': client.id}) }}">
+
+
+						<td>{{ client.id }}</td>
+						<td>{{ client.nom }}</td>
+						<td>{{ client.prenom }}</td>
+						<td>{{ client.adresse }}</td>
+						<td>{{ client.cp }}</td>
+						<td>{{ client.ville }}</td>
+						<td>{{ client.telephone }}</td>
+						<td>{{ client.email }}</td>
+						<td>{{ client.raisonSociale }}</td>
+						
+
+					</tr>
+
+				</div>
 			{% else %}
 				<tr>
 					<td colspan="10">no records found</td>
 				</tr>
-				</tbody>
-			{% endfor %}
-		
+			</tbody>
+		{% endfor %}
+
 	</table>
 
 	<a href="{{ path('app_client_new') }}">Create new</a>
-<tbody class="resultat row"></tbody>
+	<tbody class="resultat row"></tbody>
 	<script>
 
+
 		$(document).ready(function () {
+$('table tr').click(function () {
+window.location = $(this).attr('href');
+return false;
+});
+});
+
+
+$(document).ready(function () {
 $("#searchBar").keyup(function (e) {
 e.preventDefault();
 e.stopPropagation();
@@ -77,7 +101,7 @@ let input = $("#searchBar").val();
 
 
 $.ajax({
-url: "https://127.0.0.1:8000/ajax/listeClient",
+url: "https://127.0.0.1:8000/ajax/listeClients",
 type: 'GET',
 
 success: function (response) {
@@ -86,12 +110,7 @@ let liste = "";
 
 $.each(response, function (index, value) { // J'ajoute chaque élément dans une liste
 if (input == value.nom.substr(-20, 3) || input == value.telephone.substr(-20, 3)) {
-liste +=
-
-'<tr>'+
-'<td>'+ value.id +'</td>'+'<td>'+ value.nom+'</td>'+'<td>'+ value.prenom +'</td>'+'<td>'+ value.adresse +'</td>'+
-'<td>'+ value.cp +'</td>'+'<td>'+value.ville +'</td>'+'<td>'+value.telephone +'</td>'+'<td>'+ value.email +'</td>'+
-'<tr/>'
+liste += '<tr class="trr" >' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' + "<a href=https://localhost:8000/client/" + value.id + "'>" + " VOIR " + '</a>' + '</td>' + '<tr/>'
 
 }
 });
