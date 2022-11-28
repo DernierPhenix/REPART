@@ -5,6 +5,10 @@
 
 {% block style %}
 	<style>
+    h1{
+        color:#007bff;
+        text-align:center;
+    }
     .image{
         height:100%;
         width:100%;
@@ -26,9 +30,21 @@
     </style>
 {% endblock %}
 
-{% block contenu %}
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
+		{% endif %}
+	</div>
+{% endblock %}
 
-	<h1>CATÉGORIES</h1>
+
+{% block contenu %}
+<br>
+	<h1>CATÉGORIES</h1><br>
 
 <div class='row'>
 {% for category in categories %}

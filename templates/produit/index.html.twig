@@ -14,7 +14,7 @@
 			bienvenue sur votre espace
 			{{ app.user.userIdentifier }}
 			!
-			<div class="dropdown show">
+			{# <div class="dropdown show">
 				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Marques
 				</a>
@@ -24,7 +24,7 @@
 					<a class="dropdown-item" href="#">...</a>
 					<a class="dropdown-item" href="#">...</a>
 				</div>
-			</div>
+			</div> #}
 			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
 		{% endif %}
 	</div>
