@@ -1,24 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Produit
-{% endblock %}
+{% block title %}Edit Produit{% endblock %}
 
 {% block contenu %}
-	<div class="container">
-		<h1>Edit Produit</h1>
-		<table class="d-flex justify-content-center ">
-			<a href="{{ path('app_produit_index') }}" class="btn btn-primary ">back to list</a>
-			<br/>
-			<br/>
-			<td>
-				<div class="text-center">
-					Entrez les modifications a apporter 
-					<br/>
-					pour ce produit:
-					<br/>
-					{{ include('produit/_form.html.twig', {'button_label': 'modifier'}) }}
-				</div>
-			</td>
-		</table>
-	</div>
+    <h1>Edit Produit</h1>
+
+    {{ include('produit/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_produit_index') }}">back to list</a>
+
+    {{ include('produit/_delete_form.html.twig') }}
 {% endblock %}

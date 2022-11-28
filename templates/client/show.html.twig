@@ -22,49 +22,49 @@
 
 
 {% block contenu %}
-	<h1 class="d-flex justify-content-center">Fiche Client :
-		{{client.nom}}</h1>
-	<br>
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ client.id }}</td>
-			</tr>
-			<tr>
-				<th>Nom</th>
-				<td>{{ client.nom }}</td>
-			</tr>
-			<tr>
-				<th>Prenom</th>
-				<td>{{ client.prenom }}</td>
-			</tr>
-			<tr>
-				<th>Adresse</th>
-				<td>{{ client.adresse }}</td>
-			</tr>
-			<tr>
-				<th>Cp</th>
-				<td>{{ client.cp }}</td>
-			</tr>
-			<tr>
-				<th>Ville</th>
-				<td>{{ client.ville }}</td>
-			</tr>
-			<tr>
-				<th>Telephone</th>
-				<td>{{ client.telephone }}</td>
-			</tr>
-			<tr>
-				<th>Email</th>
-				<td>{{ client.email }}</td>
-			</tr>
-			<tr>
-				<th>RaisonSociale</th>
-				<td>{{ client.raisonSociale }}</td>
-			</tr>
-		</tbody>
-	</table>
+    <h1 class="d-flex justify-content-center">Fiche Client : {{client.nom}}</h1> 
+<br>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ client.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ client.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ client.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ client.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Cp</th>
+                <td>{{ client.cp }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ client.ville }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ client.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ client.email }}</td>
+            </tr>
+            <tr>
+                <th>RaisonSociale</th>
+                <td>{{ client.raisonSociale }}</td>
+            </tr>
+        </tbody>
+    </table>
 
 	<a href="{{ path('app_client_index') }}" class="btn btn-primary">back to list</a>
 

@@ -1,80 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catégories
-{% endblock %}
-
-{% block style %}
-	<style></style>
-{% endblock %}
-{% block navbarTop %}
-	<div class="logOut d-flex justify-content-around">
-		{% if app.user %}
-
-
-			bienvenue sur votre espace
-			{{ app.user.userIdentifier }}
-			!
-			<div class="dropdown show">
-				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Marques
-				</a>
-
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-					<a class="dropdown-item" href="#">...</a>
-					<a class="dropdown-item" href="#">...</a>
-					<a class="dropdown-item" href="#">...</a>
-				</div>
-			</div>
-			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
-		{% endif %}
-	</div>
-{% endblock %}
+{% block title %}Produit index{% endblock %}
 
 {% block contenu %}
-	<div class="container">
-		<h1>Liste des produits</h1>
+    <h1>Produit index</h1>
 
+    <table class="table table-secondary table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Marque</th>
+                
+                <th>Categories</th>
+                <th>Sous-Categories</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.marque }}</td>
+                
+                <td>{{ produit.sousCategories.categories.nom }}</td>
+                <td>{{ produit.sousCategories.nom }}</td>
+                <td>
+                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
+                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-		<table class="d-flex justify-content-center row ">
-
-			<a href="{{ path('app_produit_new') }}" class="btn btn-primary ">+</a>
-
-			{% for produit in produits %}
-				<br/>
-				<tbody class="card mb-2" style="width: 18rem;">
-
-					<tr class="d-flex justify-content-center mb-2">
-						<th>
-							{{ produit.marque }}
-
-						</th>
-
-						<td>{{ produit.modele }}</td>
-					</tr>
-					<tr class="d-flex justify-content-center mb-2">
-						<td>
-							<a href="{{ path('app_produit_show', {'id': produit.id}) }}" class="btn btn-primary ">voir</a>
-						</td>
-						<td>
-							<a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-primary ">modifier</a>
-						</td>
-
-					</tr>
-
-				</tbody>
-
-
-			{% else %}
-				<tr>
-					<td colspan="4">no records found</td>
-				</tr>
-			{% endfor %}
-
-		</table>
-
-	</div>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-
+    <a href="{{ path('app_produit_new') }}">Create new</a>
 {% endblock %}

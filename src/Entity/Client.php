@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ClientRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ClientRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 class Client
@@ -11,31 +14,48 @@ class Client
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['show_product'])]
     private ?int $id = null;
-
+    
+    #[Groups(['show_product'])]
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
+    #[Groups(['show_product'])]
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
+    #[Groups(['show_product'])]
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
 
+    #[Groups(['show_product'])]
     #[ORM\Column]
     private ?int $cp = null;
 
+    #[Groups(['show_product'])]
     #[ORM\Column(length: 255)]
     private ?string $ville = null;
 
+    #[Groups(['show_product'])]
     #[ORM\Column(length: 255)]
     private ?string $telephone = null;
 
+    #[Groups(['show_product'])]
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+    #[Groups(['show_product'])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $raisonSociale = null;
+
+    #[ORM\OneToMany(mappedBy: 'clients', targetEntity: Tickets::class)]
+    private Collection $tickets;
+
+    public function __construct()
+    {
+        $this->tickets = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -134,6 +154,36 @@ class Client
     public function setRaisonSociale(?string $raisonSociale): self
     {
         $this->raisonSociale = $raisonSociale;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tickets>
+     */
+    public function getTickets(): Collection
+    {
+        return $this->tickets;
+    }
+
+    public function addTicket(Tickets $ticket): self
+    {
+        if (!$this->tickets->contains($ticket)) {
+            $this->tickets->add($ticket);
+            $ticket->setClients($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTicket(Tickets $ticket): self
+    {
+        if ($this->tickets->removeElement($ticket)) {
+            // set the owning side to null (unless already changed)
+            if ($ticket->getClients() === $this) {
+                $ticket->setClients(null);
+            }
+        }
 
         return $this;
     }
