@@ -2,12 +2,8 @@
 
 {% block title %}SousCategorie index{% endblock %}
 
-
-	</div>
-{% endblock %}
-
 {% block contenu %}
-    <h1>Liste des sous-catégories</h1>
+    <h1>SousCategorie index</h1>
 
     <table class="table table-secondary table-striped">
         <thead>
@@ -37,5 +33,6 @@
         </tbody>
     </table>
 
-	<a href="{{ path('app_sous_categorie_new') }}"class="btn btn-primary">+</a>
+    <a href="{{ path('app_sous_categorie_new') }}">Create new</a>
 {% endblock %}
+
