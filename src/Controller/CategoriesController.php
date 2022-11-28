@@ -102,9 +102,8 @@ class CategoriesController extends AbstractController
             $request->request->get('_token')
         )) {
             $categoriesRepository->remove($category, true);
-            
         }
-        
+
         return $this->redirectToRoute('app_categories_index', [], Response::HTTP_SEE_OTHER);
     }
 }
