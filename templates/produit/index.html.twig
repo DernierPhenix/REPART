@@ -6,29 +6,7 @@
 {% block style %}
 	<style></style>
 {% endblock %}
-{% block navbarTop %}
-	<div class="logOut d-flex justify-content-around">
-		{% if app.user %}
-
-
-			bienvenue sur votre espace
-			{{ app.user.userIdentifier }}
-			!
-			{# <div class="dropdown show">
-				<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Marques
-				</a>
-
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-					<a class="dropdown-item" href="#">...</a>
-					<a class="dropdown-item" href="#">...</a>
-					<a class="dropdown-item" href="#">...</a>
-				</div>
-			</div> #}
-			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
-		{% endif %}
-	</div>
-{% endblock %}
+	
 
 {% block contenu %}
     <h1>Produit index</h1>

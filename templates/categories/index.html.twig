@@ -5,13 +5,17 @@
 
 {% block style %}
 	<style>
+    h5{
+        
+        text-align:center;
+    }
     h1{
         color:#007bff;
         text-align:center;
     }
     .image{
-        height:100%;
-        width:100%;
+        height:50%;
+        width:50%;
     }
     .option{
         height:100%;
@@ -29,17 +33,6 @@
     </style>
 {% endblock %}
 
-{% block navbarTop %}
-	<div class="logOut d-flex justify-content-around">
-		{% if app.user %}
-			bienvenue sur votre espace
-			{{ app.user.userIdentifier }}
-			!
-			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
-		{% endif %}
-	</div>
-{% endblock %}
-
 
 {% block contenu %}
 <br>
@@ -50,7 +43,9 @@
 
 <div class="col-12 col-md-6 col-lg-4 col-xl-3 ">
 <div class="card border-dark mb-3 mx-auto " id="options">
- 
+
+{# route pour allez sur la sous-categorie  #}
+ <a href= "{{ path('app_sous_categorie_index') }}">
     <div class='card-header text-center'>
     <img src="/uploads/images/{{category.image}}" class='image' alt="Card image cap">
     </div>
@@ -58,6 +53,8 @@
     <div class="card-body">
       <h5 class="card-title">{{category.nom}}</h5>
 </div>
+
+</a>
  <a class='btn btn-primary' href="{{ path('app_categories_show', {'id': category.id}) }}">Voir</a>
 
  
