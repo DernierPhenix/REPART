@@ -3,17 +3,7 @@
 {% block title %}Register
 {% endblock %}
 
-{% block navbarTop %}
 
-	<div class="logOut d-flex justify-content-around">
-		{% if app.user %}
-			bienvenue sur votre espace
-			{{ app.user.userIdentifier }}
-			!
-			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
-		{% endif %}
-	</div>
-{% endblock %}
 {% block contenu %}
 	<h1>Register</h1>
 

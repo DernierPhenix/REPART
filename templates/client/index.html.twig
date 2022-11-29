@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des clients
+{% block title %}Liste clients
 {% endblock %}
 
 {% block style %}
@@ -18,20 +18,11 @@
 	</style>
 {% endblock %}
 
-{% block navbarTop %}
-	<div class="logOut d-flex justify-content-around">
-		{% if app.user %}
-			bienvenue sur votre espace
-			{{ app.user.userIdentifier }}
-			!
-			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
-		{% endif %}
-	</div>
-{% endblock %}
+
 
 
 {% block contenu %}
-	<h1>Client index</h1>
+	<h1>Liste Client</h1>
 
 	<table class="table table-secondary table-striped">
 		<input id='searchBar' type="text" placeholder="Recherche par id ou client" class="searchBar form-control">
@@ -45,7 +36,7 @@
 				<th>Ville</th>
 				<th>Telephone</th>
 				<th>Email</th>
-				<th>RaisonSociale</th>
+				<th>Raison Sociale</th>
 				
 			</tr>
 		</thead>
@@ -54,6 +45,10 @@
 				<div>
 
 					<tr class="trr" href="{{ path('app_client_show', {'id': client.id}) }}">
+					{# "<a href=https://localhost:8000/client/" + value.id + "'>" + " VOIR " #}
+
+
+
 
 
 						<td>{{ client.id }}</td>
@@ -72,14 +67,14 @@
 				</div>
 			{% else %}
 				<tr>
-					<td colspan="10">no records found</td>
+					<td colspan="10">Pas de client trouvé</td>
 				</tr>
 			</tbody>
 		{% endfor %}
 
 	</table>
 
-	<a href="{{ path('app_client_new') }}">Create new</a>
+	<a href="{{ path('app_client_new') }}" class="btn btn-primary">Creer un nouveau Client</a>
 	<tbody class="resultat row"></tbody>
 	<script>
 
@@ -109,8 +104,18 @@ console.log(response);
 let liste = "";
 
 $.each(response, function (index, value) { // J'ajoute chaque élément dans une liste
-if (input == value.nom.substr(-20, 3) || input == value.telephone.substr(-20, 3)) {
-liste += '<tr class="trr" >' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' + "<a href=https://localhost:8000/client/" + value.id + "'>" + " VOIR " + '</a>' + '</td>' + '<tr/>'
+if (input == value.nom.substr(-20, 3) 
+|| input == value.nom.substr(-20, 4) 
+|| input == value.nom.substr(-20, 5)
+|| input == value.nom.substr(-20, 6)  
+|| input == value.telephone.substr(-20, 3)
+|| input == value.telephone.substr(-20, 4)
+|| input == value.telephone.substr(-20, 5)
+|| input == value.telephone.substr(-20, 6)
+|| input == value.nom
+|| input == value.telephone)  {
+liste += '<tr class="trr"> ' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' +"<a href=https://localhost:8000/client/" + value.id + ">" + " VOIR "+ '</td>'+
+ '</tr>'
 
 }
 });

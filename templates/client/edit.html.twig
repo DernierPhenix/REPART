@@ -1,27 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catégories
+{% block title %}Client
 {% endblock %}
 
 {% block style %}
 	<style></style>
 {% endblock %}
-{% block navbarTop %}
-	<div class="logOut d-flex justify-content-around">
-		{% if app.user %}
-			bienvenue sur votre espace
-			{{ app.user.userIdentifier }}
-			!
-			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
-		{% endif %}
-	</div>
-{% endblock %}
+
 
 
 {% block contenu %}
-	<h1>Edit Client</h1>
+	<h1>Creer un Client</h1>
 
-	{{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('client/_form.html.twig', {'button_label': 'Mettre a jour'}) }}
 
 	
 

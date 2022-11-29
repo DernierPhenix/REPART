@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tickets index{% endblock %}
+{% block title %}Liste Tickets{% endblock %}
 
 {% block contenu %}
-    <h1>Tickets index</h1>
+    <h1>Liste Tickets</h1>
 
     <table class="table table-secondary table-striped">
         <thead>
@@ -20,7 +20,7 @@
                 <th>Produit</th>
                 <th>Sous - categories</th>
                 <th>Employé</th>
-                <th>actions</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -37,20 +37,20 @@
                 <td>{{ ticket.clients.nom}}</td>
                 <td>{{ ticket.modele}}</td>
                 <td>{{ ticket.produits.sousCategories.nom}}</td>
-                <td>{{ ticket.user.nom}}</td>
+                {# <td>{{ ticket.user.nom}}</td> #}
                 <td>
-                    <a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">show</a>
-                    <a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}">edit</a>
+                    <a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">Voir</a>
+                    
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Pas de tickets trouvés</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_tickets_new') }}">Create new</a>
+    <a class="btn btn-primary" href="{{ path('app_tickets_new') }}">Creer un nouveau ticket</a>
 {% endblock %}
 
