@@ -1,26 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catégories
+{% block title %}Liste clients
 {% endblock %}
 
 {% block style %}
-	<style></style>
+	<style>
+		.trr {
+
+			transition: all .2s ease-in-out;
+			cursor: pointer;
+
+		}
+		.trr:hover {
+
+			transform: scale(1.02);
+		}
+	</style>
 {% endblock %}
-{% block navbarTop %}
-	<div class="logOut">
-		{% if app.user %}
-			You are logged in as
-			{{ app.user.userIdentifier }},
-			<a href="{{ path('app_logout') }}">Logout</a>
-		{% endif %}
-	</div>
-{% endblock %}
+
+
 
 
 {% block contenu %}
-	<h1>Client index</h1>
+	<h1>Liste Client</h1>
 
 	<table class="table table-secondary table-striped">
+		<input id='searchBar' type="text" placeholder="Recherche par id ou client" class="searchBar form-control">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -31,34 +36,98 @@
 				<th>Ville</th>
 				<th>Telephone</th>
 				<th>Email</th>
-				<th>RaisonSociale</th>
-				<th>actions</th>
+				<th>Raison Sociale</th>
+				
 			</tr>
 		</thead>
-		<tbody>
+		<tbody class='tableauxR'>
 			{% for client in clients %}
-				<tr>
-					<td>{{ client.id }}</td>
-					<td>{{ client.nom }}</td>
-					<td>{{ client.prenom }}</td>
-					<td>{{ client.adresse }}</td>
-					<td>{{ client.cp }}</td>
-					<td>{{ client.ville }}</td>
-					<td>{{ client.telephone }}</td>
-					<td>{{ client.email }}</td>
-					<td>{{ client.raisonSociale }}</td>
-					<td>
-						<a href="{{ path('app_client_show', {'id': client.id}) }}">show</a>
-						<a href="{{ path('app_client_edit', {'id': client.id}) }}">edit</a>
-					</td>
-				</tr>
+				<div>
+
+					<tr class="trr" href="{{ path('app_client_show', {'id': client.id}) }}">
+					{# "<a href=https://localhost:8000/client/" + value.id + "'>" + " VOIR " #}
+
+
+
+
+
+						<td>{{ client.id }}</td>
+						<td>{{ client.nom }}</td>
+						<td>{{ client.prenom }}</td>
+						<td>{{ client.adresse }}</td>
+						<td>{{ client.cp }}</td>
+						<td>{{ client.ville }}</td>
+						<td>{{ client.telephone }}</td>
+						<td>{{ client.email }}</td>
+						<td>{{ client.raisonSociale }}</td>
+						
+
+					</tr>
+
+				</div>
 			{% else %}
 				<tr>
-					<td colspan="10">no records found</td>
+					<td colspan="10">Pas de client trouvé</td>
 				</tr>
-			{% endfor %}
-		</tbody>
+			</tbody>
+		{% endfor %}
+
 	</table>
 
-	<a href="{{ path('app_client_new') }}">Create new</a>
+	<a href="{{ path('app_client_new') }}" class="btn btn-primary">Creer un nouveau Client</a>
+	<tbody class="resultat row"></tbody>
+	<script>
+
+
+		$(document).ready(function () {
+$('table tr').click(function () {
+window.location = $(this).attr('href');
+return false;
+});
+});
+
+
+$(document).ready(function () {
+$("#searchBar").keyup(function (e) {
+e.preventDefault();
+e.stopPropagation();
+
+let input = $("#searchBar").val();
+
+
+$.ajax({
+url: "https://127.0.0.1:8000/ajax/listeClients",
+type: 'GET',
+
+success: function (response) {
+console.log(response);
+let liste = "";
+
+$.each(response, function (index, value) { // J'ajoute chaque élément dans une liste
+if (input == value.nom.substr(-20, 3) 
+|| input == value.nom.substr(-20, 4) 
+|| input == value.nom.substr(-20, 5)
+|| input == value.nom.substr(-20, 6)  
+|| input == value.telephone.substr(-20, 3)
+|| input == value.telephone.substr(-20, 4)
+|| input == value.telephone.substr(-20, 5)
+|| input == value.telephone.substr(-20, 6)
+|| input == value.nom
+|| input == value.telephone)  {
+liste += '<tr class="trr"> ' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' +"<a href=https://localhost:8000/client/" + value.id + ">" + " VOIR "+ '</td>'+
+ '</tr>'
+
+}
+});
+$('.tableauxR').html(liste);
+
+},
+
+error: function (response) {
+console.log(error)
+}
+});
+});
+});
+	</script>
 {% endblock %}

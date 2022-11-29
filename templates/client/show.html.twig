@@ -1,25 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catégories{% endblock %}
+{% block title %}Client
+{% endblock %}
 
 {% block style %}
-<style>
-</style>
+	<style></style>
 {% endblock %}
-{% block navbarTop %}
- <div class="logOut">  
-    {% if app.user %}
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-    {% endif %}
-   </div>
- {% endblock %}
- 
+
+
+
 {% block bouton %}{% endblock %}
 
 
 {% block contenu %}
     <h1 class="d-flex justify-content-center">Fiche Client : {{client.nom}}</h1> 
 <br>
+
     <table class="table">
         <tbody>
             <tr>
@@ -61,9 +57,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_client_index') }}">back to list</a>
+	<a href="{{ path('app_client_index') }}" class="btn btn-primary">Retour liste</a>
 
-    <a href="{{ path('app_client_edit', {'id': client.id}) }}">edit</a>
+	<a href="{{ path('app_client_edit', {'id': client.id}) }}" class="btn btn-primary">Modifier</a><br><br>
 
-    {{ include('client/_delete_form.html.twig') }}
+	{{ include('client/_delete_form.html.twig') }}
 {% endblock %}

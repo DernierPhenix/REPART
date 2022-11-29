@@ -2,11 +2,5 @@
 
 {% block title %}Hello TestController!
 {% endblock %}
- {% block navbarTop %}
- <div class="logOut">  
-    {% if app.user %}
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-    {% endif %}
-   </div>
- {% endblock %}
+
 

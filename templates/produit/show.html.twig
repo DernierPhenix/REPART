@@ -1,40 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit
-{% endblock %}
+{% block title %}Produit{% endblock %}
 
 {% block contenu %}
-	<div class="container">
-		<h1>Produit</h1>
+    <h1>Produit</h1>
 
-		<table>
-			<a href="{{ path('app_produit_index') }}" class="btn btn-primary ">back to list</a>
-            <br/>
-			<tbody class="card mb-2" style="width: 18rem;">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ produit.id }}</td>
+            </tr>
+            <tr>
+                <th>Marque</th>
+                <td>{{ produit.marque }}</td>
+            </tr>
+            
+        </tbody>
+    </table>
 
-				<tr class="d-flex justify-content-center mb-2">
-					<th>{{ produit.marque }}</th>
-				</tr>
-				<br/>
-				<tr class="d-flex justify-content-center mb-2">
-					<th>{{ produit.modele }}</th><tr/>
-				</tr>
-				<tr class="d-flex justify-content-center mb-2">
-					<td>
-						<a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-primary ">edit</a>
-					</td>
+    <a href="{{ path('app_produit_index') }}">back to list</a>
 
-					<td>
-						{{ include('produit/_delete_form.html.twig') }}
-					</td>
-				</tr>
+    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
 
-
-			</tbody>
-
-
-		</table>
-	</div>
-
-
+    {{ include('produit/_delete_form.html.twig') }}
 {% endblock %}
