@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Categories
+{% block title %}Modification Categorie
 {% endblock %}
 {% block style %}
 	<style>
@@ -19,7 +19,7 @@
 
 
 {% block contenu %}
-	<h1>Edit Categories</h1>
+	<h1>Modification Categorie</h1>
 
 	{{ include('categories/_form.html.twig', {'button_label': 'Update'}) }}
 	<a class='btn btn-primary' href="{{ path('app_categories_index', {'id': category.id}) }}">Retour Liste</a><br>

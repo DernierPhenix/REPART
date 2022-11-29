@@ -1,9 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SousCategorie index{% endblock %}
+{% block title %}Liste des Sous Categories{% endblock %}
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
+		{% endif %}
+	</div>
+{% endblock %}
 
 {% block contenu %}
-    <h1>SousCategorie index</h1>
+    <h1>Liste des Sous Categories</h1>
 
     <table class="table table-secondary table-striped">
         <thead>
@@ -21,18 +31,18 @@
                 <td>{{ sous_categorie.nom }}</td>
                 <td>{{ sous_categorie.categories.nom }}</td>
                 <td>
-                    <a href="{{ path('app_sous_categorie_show', {'id': sous_categorie.id}) }}">show</a>
-                    <a href="{{ path('app_sous_categorie_edit', {'id': sous_categorie.id}) }}">edit</a>
+                    <a href="{{ path('app_sous_categorie_show', {'id': sous_categorie.id}) }}" class="btn btn-primary">Voir</a>
+                    <a href="{{ path('app_sous_categorie_edit', {'id': sous_categorie.id}) }}"class="btn btn-primary">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucune donnée trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_sous_categorie_new') }}">Create new</a>
+    <a href="{{ path('app_sous_categorie_new') }}"class="btn btn-primary">Créer</a>
 {% endblock %}
 

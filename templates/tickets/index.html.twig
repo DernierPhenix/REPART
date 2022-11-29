@@ -2,6 +2,16 @@
 
 {% block title %}Tickets index{% endblock %}
 
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
+		{% endif %}
+	</div>
+{% endblock %}
 {% block contenu %}
     <h1>Tickets index</h1>
 
@@ -39,18 +49,18 @@
                 <td>{{ ticket.produits.sousCategories.nom}}</td>
                 <td>{{ ticket.user.nom}}</td>
                 <td>
-                    <a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">show</a>
-                    <a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}">edit</a>
+                    <a href="{{ path('app_tickets_show', {'id': ticket.id}) }}" class="btn btn-primary">Voir</a>
+                    <a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}" class="btn btn-primary">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucune donnée trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_tickets_new') }}">Create new</a>
+    <a href="{{ path('app_tickets_new') }}" class="btn btn-primary">Créer</a>
 {% endblock %}
 

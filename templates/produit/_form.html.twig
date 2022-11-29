@@ -1,5 +1,14 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
 
+<br/>
+<table class="d-flex justify-content-center ">
+
+	<tbody  >
+		{{ form_widget(form) }}
+		<button class="btn btn-primary" >{{ button_label|default('Sauvegarder') }}</button>
+
+
+	</tbody>
+</table>
+
+{{ form_end(form) }}

@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tickets{% endblock %}
+{% block title %}Ticket{% endblock %}
 
 {% block contenu %}
-    <h1>Tickets</h1>
+    <h1>Ticket</h1>
 
     <table class="table">
         <tbody>
@@ -38,9 +38,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_tickets_index') }}">back to list</a>
+    <a href="{{ path('app_tickets_index') }}" class="btn btn-primary">Retour liste</a>
 
-    <a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}">edit</a>
+    <a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}" class="btn btn-primary">Modifier</a>
 
     {{ include('tickets/_delete_form.html.twig') }}
 {% endblock %}

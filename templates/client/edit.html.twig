@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catégories
+{% block title %}Modification Client
 {% endblock %}
 
 {% block style %}
@@ -12,14 +12,14 @@
 			bienvenue sur votre espace
 			{{ app.user.userIdentifier }}
 			!
-			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
 		{% endif %}
 	</div>
 {% endblock %}
 
 
 {% block contenu %}
-	<h1>Edit Client</h1>
+	<h1>Modification Client</h1>
 
 	{{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
 

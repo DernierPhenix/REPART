@@ -11,7 +11,7 @@
 	<div class="logOut d-flex justify-content-around">
 		{% if app.user %}
 			bienvenue sur votre espace {{ app.user.userIdentifier }} !
-			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
 		{% endif %}
 	</div>
 {% endblock %}

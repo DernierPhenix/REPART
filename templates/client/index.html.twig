@@ -12,7 +12,7 @@
 			bienvenue sur votre espace
 			{{ app.user.userIdentifier }}
 			!
-			<a href="{{ path('app_logout') }}" class="btn btn-light ">Logout</a>
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
 		{% endif %}
 	</div>
 {% endblock %}
@@ -64,7 +64,7 @@
 		
 	</table>
 
-	<a href="{{ path('app_client_new') }}">Create new</a>
+	<a href="{{ path('app_client_new') }}"class="btn btn-primary">Créer</a>
 <tbody class="resultat row"></tbody>
 	<script>
 
