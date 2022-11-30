@@ -3,19 +3,16 @@
 namespace App\Form;
 
 
-
-use DateTime;
 use App\Entity\Client;
+use App\Entity\Marque;
 use App\Entity\Produit;
 use App\Entity\Tickets;
 use App\Entity\Categories;
 use App\Entity\SousCategorie;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 
@@ -27,81 +24,66 @@ class TicketsTypeUpdate extends AbstractType
             ->add('clients', EntityType::class, [
                 'class' => Client::class,
                 'label' => 'Client',
-                'placeholder' => 'Veuillez sélectionner le client',
+                
                 'choice_label' => 'nom',
                 'attr' => [
                     'class' => 'select2'
                 ]
             ])
             
+           
+            
+
             ->add('categories', EntityType::class, [
                 'class' => Categories::class,
-                'label' => 'Catégorie',
-                // 'placeholder' => 'Veuillez sélectionner la catégorie',
+                // 
+                'choice_label' => 'nom',
+                'label' => 'Categorie',
+                'attr' => [
+                    'class' => 'select2'
+                ],
+                'mapped' => false
+            ])
+            ->add('sousCategorie', EntityType::class, [
+                'class' => SousCategorie::class,
+                
                 'choice_label' => 'nom',
                 'attr' => [
                     'class' => 'select2'
                 ],
                 'mapped' => false
             ])
-            
-            ->add('sousCategorie', EntityType::class, [
-                'class' => SousCategorie::class,
-                'label' => 'Sous-Catégorie',
-                // 'placeholder' => 'Veuillez sélectionner la sous-catégorie',
+            ->add('marque', EntityType::class, [
+                'class' => Marque::class,
+                
+                'label' => 'Marque',
+                'mapped' => false,
                 'choice_label' => 'nom',
                 'attr' => [
                     'class' => 'select2'
                 ],
-                'mapped' => false
+               
             ])
             
             ->add('produits', EntityType::class, [
                 'class' => Produit::class,
-                'label' => 'Marque',
-                // 'placeholder' => 'Veuillez sélectionner la marque',
-                'choice_label' => 'marque',
+                'placeholder' => 'Veuillez selectionner le modele',
+                'label' => 'Modele',
+                'choice_label' => 'modele',
                 'attr' => [
                     'class' => 'select2'
-                ]
+                ],
+                
             ])
-            
-            ->add('modele',TextareaType::class,[
-                'label' => 'Modèle'
-            ])
-
             ->add('etat',TextareaType::class,[
-                'label' => 'État du Produit'
+                'label' => 'Etat du produit'
             ])
-            
             ->add('description',TextareaType::class,[
-                'label' => 'Description de la Panne'
+                'label' => 'Description de la panne'
             ])
             ->add('rapport',TextareaType::class,[
-                'label' => 'Rapport'
-            ])
-            
-            ->add('statut', ChoiceType::class,[
-                'placeholder' => 'Veuillez sélectionner le statut',
-                'required' => true,
-                'multiple' => false,
-                'expanded' => false,
-                'choices'  => [
-
-                    'En_cours' => 'EN_COURS',
-                    'Resolu' => 'RESOLU',
-                    'Clos' => 'CLOS',
-                ],
-            ])
-            
-            // ->add('updatedAt', DateType::class, array(
-            //     'label' => 'Date de Modification',
-            //     'widget' => 'single_text',
-            //     'format' => 'yyyy-MM-dd',
-            //     'data' => new DateTime(),
-            //     'attr' => array('class' => 'form-control', 'style' => 'line-height: 20px;')
-            // ))
-            ;
+                'label' => 'Rapport de l\'intervention'
+            ]);
             
         
     }

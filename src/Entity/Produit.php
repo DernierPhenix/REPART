@@ -15,16 +15,18 @@ class Produit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $marque = null;
-
-
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?SousCategorie $sousCategories = null;
 
     #[ORM\OneToMany(mappedBy: 'produits', targetEntity: Tickets::class)]
     private Collection $tickets;
+
+    #[ORM\Column(length: 255)]
+    private ?string $modele = null;
+
+    #[ORM\ManyToOne(inversedBy: 'marques')]
+    private ?Marque $marque = null;
 
     public function __construct()
     {
@@ -34,18 +36,6 @@ class Produit
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getMarque(): ?string
-    {
-        return $this->marque;
-    }
-
-    public function setMarque(string $marque): self
-    {
-        $this->marque = $marque;
-
-        return $this;
     }
 
     public function getModele(): ?string
@@ -101,4 +91,17 @@ class Produit
 
         return $this;
     }
+
+    public function getMarque(): ?Marque
+    {
+        return $this->marque;
+    }
+
+    public function setMarque(?Marque $marque): self
+    {
+        $this->marque = $marque;
+
+        return $this;
+    }
+
 }
