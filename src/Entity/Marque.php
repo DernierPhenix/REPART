@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\MarqueRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use ORM\JoinColumn;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MarqueRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: MarqueRepository::class)]
 class Marque
@@ -19,6 +20,7 @@ class Marque
     private ?string $nom = null;
 
     #[ORM\OneToMany(mappedBy: 'marque', targetEntity: Produit::class)]
+    #[ORM\JoinColumn(nullable: true)]
     private Collection $marques;
 
     public function __construct()

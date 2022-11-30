@@ -1,19 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Liste Utilisateurs{% endblock %}
 
 {% block contenu %}
-    <h1>User index</h1>
+    <h1>Liste des Utilisateurs</h1>
 
     <table class="table table-secondary table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Login</th>
-                <th>Roles</th>
-                
+                <th>Rôles</th>
                 <th>Nom</th>
-                <th>Prenom</th>
+                <th>Prénom</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,17 +26,17 @@
                 <td>{{ user.nom }}</td>
                 <td>{{ user.prenom }}</td>
                 <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}" class ="btn btn-primary">Voir</a>
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}" class ="btn btn-primary">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Pas d'Utilisateur Trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_new') }}">Create new</a>
+    <a  href="{{ path('app_user_new') }}" class ="btn btn-primary">Créer un Nouvel Utilisateur</a>
 {% endblock %}

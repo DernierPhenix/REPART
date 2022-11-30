@@ -36,7 +36,7 @@ class TicketsTypeUpdate extends AbstractType
 
             ->add('categories', EntityType::class, [
                 'class' => Categories::class,
-                
+                // 
                 'choice_label' => 'nom',
                 'label' => 'Categorie',
                 'attr' => [

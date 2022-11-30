@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CATÉGORIES
+{% block title %}Liste Catégories
 {% endblock %}
 
 {% block style %}
@@ -27,7 +27,7 @@
 
 {% block contenu %}
 
-	<h1>CATÉGORIES</h1>
+	<h1>Liste des Catégories</h1>
 
 <div class='row'>
 {% for category in categories %}
@@ -52,6 +52,6 @@
     </div>
 
    
-	<a class='btn btn-primary' id='btn-cat'href="{{ path('app_categories_new') }}">NOUVEL CATÉGORIES</a>
+	<a class='btn btn-primary' id='btn-cat'href="{{ path('app_categories_new') }}">Nouvelle Catégorie</a>
 					
  {% endblock %} 

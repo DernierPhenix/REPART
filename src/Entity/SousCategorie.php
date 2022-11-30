@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\SousCategorieRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use ORM\JoinColumn;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\SousCategorieRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: SousCategorieRepository::class)]
 class SousCategorie
@@ -13,16 +15,22 @@ class SousCategorie
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['show_product'])]
     private ?int $id = null;
 
+    
     #[ORM\Column(length: 255)]
+    #[Groups(['show_product'])]
     private ?string $nom = null;
 
     #[ORM\OneToMany(mappedBy: 'sousCategories', targetEntity: Produit::class)]
     private Collection $produits;
+    
 
     #[ORM\ManyToOne(inversedBy: 'sousCategories')]
+    #[Groups(['show_product'])]
     private ?Categories $categories = null;
+    
 
     public function __construct()
     {
