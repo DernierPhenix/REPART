@@ -37,7 +37,7 @@ class TicketsTypeUpdate extends AbstractType
             ->add('categories', EntityType::class, [
                 'class' => Categories::class,
                 'label' => 'Catégorie',
-                'placeholder' => 'Veuillez sélectionner la catégorie',
+                // 'placeholder' => 'Veuillez sélectionner la catégorie',
                 'choice_label' => 'nom',
                 'attr' => [
                     'class' => 'select2'
@@ -48,7 +48,7 @@ class TicketsTypeUpdate extends AbstractType
             ->add('sousCategorie', EntityType::class, [
                 'class' => SousCategorie::class,
                 'label' => 'Sous-Catégorie',
-                'placeholder' => 'Veuillez sélectionner la sous-catégorie',
+                // 'placeholder' => 'Veuillez sélectionner la sous-catégorie',
                 'choice_label' => 'nom',
                 'attr' => [
                     'class' => 'select2'
@@ -59,7 +59,7 @@ class TicketsTypeUpdate extends AbstractType
             ->add('produits', EntityType::class, [
                 'class' => Produit::class,
                 'label' => 'Marque',
-                'placeholder' => 'Veuillez sélectionner la marque',
+                // 'placeholder' => 'Veuillez sélectionner la marque',
                 'choice_label' => 'marque',
                 'attr' => [
                     'class' => 'select2'

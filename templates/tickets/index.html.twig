@@ -20,7 +20,7 @@
                 <th>Produit</th>
                 <th>Sous-Catégories</th>
                 <th>Employé</th>
-                
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -37,8 +37,7 @@
                 <td>{{ ticket.clients.nom}}</td>
                 <td>{{ ticket.modele}}</td>
                 <td>{{ ticket.produits.sousCategories.nom}}</td>
-                <td>{{ ticket.user}}</td>
-                {# <td>{{ ticket.user.nom}}</td> #}
+                <td>{{ ticket.user.nom}}</td>
                 <td>
                     <a  href="{{ path('app_tickets_show', {'id': ticket.id}) }}" class ="btn btn-primary">Voir</a>
                     
