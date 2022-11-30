@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit User{% endblock %}
+{% block title %}Édition Employés{% endblock %}
 
 {% block contenu %}
-    <h1>Edit User</h1>
+    <h1>Éditer un Employé</h1>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('user/_form.html.twig', {'button_label': 'Mettre à Jour'}) }}
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+    <a href="{{ path('app_user_index') }}" class ="btn btn-primary">Retour Listet</a>
 
     {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

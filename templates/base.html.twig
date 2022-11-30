@@ -28,7 +28,7 @@
 				{% if app.user %}
 					Bienvenue sur votre espace
 					{{ app.user.userIdentifier }}
-					!
+					
 					<a href="{{ path('app_logout') }}" class="btn btn-light ">Déconnexion</a>
 				{% endif %}
 			</div>
@@ -45,14 +45,13 @@
 
 							<a class="btn btn-primary" id="btnT" href="{{ path('app_client_index') }}" role="button">CLIENTS</a>
 
-							<a class="btn btn-primary" id="btnT" href="{{ path('app_user_index') }}" role="button">EMPLOYÉS</a>
+							<a class="btn btn-primary" id="btnT" href="{{ path('app_categories_index') }}" role="button">CATÉGORIES</a>
 
-							<a class="btn btn-primary" id="btnT" href="{{ path('app_categories_index') }}" role="button">CATEGORIES</a>
-
-							<a class="btn btn-primary" id="btnT" href="{{ path('app_sous_categorie_index') }}" role="button">SOUS-CATEGORIES</a>
+							<a class="btn btn-primary" id="btnT" href="{{ path('app_sous_categorie_index') }}" role="button">SOUS-CATÉGORIES</a>
 
 							<a class="btn btn-primary" id="btnT" href="{{ path('app_produit_index') }}" role="button">PRODUIT</a>
 
+							<a class="btn btn-primary" id="btnT" href="{{ path('app_user_index') }}" role="button">EMPLOYÉS</a>
 
 						</div>
 					{% endif %}

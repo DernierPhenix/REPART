@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit index{% endblock %}
+{% block title %}Liste Produits{% endblock %}
 
 {% block contenu %}
-    <h1>Produit index</h1>
+    <h1>Liste des Produits</h1>
 
     <table class="table table-secondary table-striped">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Marque</th>
-                
-                <th>Categories</th>
-                <th>Sous-Categories</th>
+                <th>Catégories</th>
+                <th>Sous-Catégories</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,17 +24,17 @@
                 <td>{{ produit.sousCategories.categories.nom }}</td>
                 <td>{{ produit.sousCategories.nom }}</td>
                 <td>
-                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
+                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}" class = "btn btn-primary">Voir</a>
+                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class = "btn btn-primary">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Pas de Produits Trouvés</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_produit_new') }}">Create new</a>
+    <a href="{{ path('app_produit_new') }}">Créer un Nouveau Produit</a>
 {% endblock %}

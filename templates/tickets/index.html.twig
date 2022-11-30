@@ -12,13 +12,13 @@
                 
                 <th>Statut</th>
                 <th>Description</th>
-                <th>L'etat</th>
-                <th>Date de creation</th>
-                <th>Date Modif</th>
+                <th>État du Produit</th>
+                <th>Date de Création</th>
+                <th>Date de Modification</th>
                 <th>Rapport</th>
                 <th>Nom du client</th>
                 <th>Produit</th>
-                <th>Sous - categories</th>
+                <th>Sous-Catégories</th>
                 <th>Employé</th>
                 
             </tr>
@@ -37,20 +37,21 @@
                 <td>{{ ticket.clients.nom}}</td>
                 <td>{{ ticket.modele}}</td>
                 <td>{{ ticket.produits.sousCategories.nom}}</td>
+                <td>{{ ticket.user}}</td>
                 {# <td>{{ ticket.user.nom}}</td> #}
                 <td>
-                    <a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">Voir</a>
+                    <a  href="{{ path('app_tickets_show', {'id': ticket.id}) }}" class ="btn btn-primary">Voir</a>
                     
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">Pas de tickets trouvés</td>
+                <td colspan="8">Pas de ticket trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a class="btn btn-primary" href="{{ path('app_tickets_new') }}">Creer un nouveau ticket</a>
+    <a class="btn btn-primary" href="{{ path('app_tickets_new') }}">Créer un Nouveau Ticket</a>
 {% endblock %}
 

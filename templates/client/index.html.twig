@@ -22,7 +22,7 @@
 
 
 {% block contenu %}
-	<h1>Liste Client</h1>
+	<h1>Liste des Clients</h1>
 
 	<table class="table table-secondary table-striped">
 		<input id='searchBar' type="text" placeholder="Recherche par id ou client" class="searchBar form-control">
@@ -30,11 +30,11 @@
 			<tr>
 				<th>Id</th>
 				<th>Nom</th>
-				<th>Prenom</th>
+				<th>Prénom</th>
 				<th>Adresse</th>
-				<th>Cp</th>
+				<th>Code Postal</th>
 				<th>Ville</th>
-				<th>Telephone</th>
+				<th>Téléphone</th>
 				<th>Email</th>
 				<th>Raison Sociale</th>
 				
@@ -46,10 +46,6 @@
 
 					<tr class="trr" href="{{ path('app_client_show', {'id': client.id}) }}">
 					{# "<a href=https://localhost:8000/client/" + value.id + "'>" + " VOIR " #}
-
-
-
-
 
 						<td>{{ client.id }}</td>
 						<td>{{ client.nom }}</td>
@@ -74,7 +70,7 @@
 
 	</table>
 
-	<a href="{{ path('app_client_new') }}" class="btn btn-primary">Creer un nouveau Client</a>
+	<a href="{{ path('app_client_new') }}" class="btn btn-primary">Créer un nouveau Client</a>
 	<tbody class="resultat row"></tbody>
 	<script>
 
