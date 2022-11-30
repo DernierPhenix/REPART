@@ -41,8 +41,7 @@ class Tickets
     #[ORM\ManyToOne(inversedBy: 'tickets')]
     private ?User $user = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $modele = null;
+    
 
     public function getId(): ?int
     {
@@ -157,17 +156,9 @@ class Tickets
         return $this;
     }
 
-    public function getModele(): ?string
-    {
-        return $this->modele;
-    }
-
-    public function setModele(string $modele): self
-    {
-        $this->modele = $modele;
-
-        return $this;
-    }
-    
-    
 }
+
+
+
+    
+    
