@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Édition Sous-Catégories{% endblock %}
+{% block title %}Modification de Sous Categorie
+{% endblock %}
 
 {% block contenu %}
-    <h1>Éditer la Sous-Catégorie</h1>
+	<div class="container">
+		<h1>Modification de Sous Categorie</h1>
 
-    {{ include('sous_categorie/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-
-    <a href="{{ path('app_sous_categorie_index') }}"class="btn btn-primary">Retour Liste</a>
-
-    {{ include('sous_categorie/_delete_form.html.twig') }}
+		<a href="{{ path('app_sous_categorie_index') }}" class="btn btn-primary">Retour liste</a>
+		<tbody class="d-flex justify-content-center ">
+			{{ include('sous_categorie/_form.html.twig', {'button_label': 'Modifier'}) }}
+			<br>
+			{{ include('sous_categorie/_delete_form.html.twig') }}
+		</tbody>
+	</div>
 {% endblock %}

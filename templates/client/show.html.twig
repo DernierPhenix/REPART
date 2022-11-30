@@ -6,60 +6,77 @@
 {% block style %}
 	<style></style>
 {% endblock %}
-
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
+{% endblock %}
 
 
 {% block bouton %}{% endblock %}
 
 
 {% block contenu %}
-    <h1 class="d-flex justify-content-center">Fiche Client : {{client.nom}}</h1> 
-<br>
+	<div class="container">
+		<br/>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ client.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ client.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prénom</th>
-                <td>{{ client.prenom }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ client.adresse }}</td>
-            </tr>
-            <tr>
-                <th>Code Postal</th>
-                <td>{{ client.cp }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ client.ville }}</td>
-            </tr>
-            <tr>
-                <th>Téléphone</th>
-                <td>{{ client.telephone }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ client.email }}</td>
-            </tr>
-            <tr>
-                <th>Raison Sociale</th>
-                <td>{{ client.raisonSociale }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-	<a href="{{ path('app_client_index') }}" class="btn btn-primary" class = "btn btn-primary">Retour liste</a>
+		<table class=" d-flex justify-content-center">
+			<a href="{{ path('app_client_index') }}" class="btn btn-primary">Retour liste</a>
+			<br/>
+			<br/>
+			<div class=" d-flex justify-content-center">
+				<div class="card " style="width: 25rem;">
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
 
-	<a href="{{ path('app_client_edit', {'id': client.id}) }}" class="btn btn-primary" class = "btn btn-primary">Modifier</a><br><br>
+							<h1>
+								
+								{{client.nom}}
+							</h1>
+						</center>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<small class="text-muted">Id</small>
+						<h6>{{ client.id }}</h6>
+						<small class="text-muted">Nom</small>
+						<h6>{{ client.nom }}</h6>
+						<small class="text-muted">Prenom</small>
+						<h6>{{ client.prenom }}</h6>
+						<small class="text-muted">Adresse</small>
+						<h6>{{ client.adresse }}</h6>
+						<small class="text-muted p-t-30 db">Code postal</small>
+						<h6>{{ client.cp }}</h6>
+						<small class="text-muted p-t-30 db">Ville</small>
+						<h6>{{ client.ville }}</h6>
 
-	{{ include('client/_delete_form.html.twig') }}
+						<small class="text-muted p-t-30 db">Telephone</small>
+						<h6>{{ client.telephone }}</h6>
+						<small class="text-muted p-t-30 db">Mail</small>
+						<h6>{{ client.email }}</h6>
+						<small class="text-muted p-t-30 db">Raison Sociale</small>
+						<h6>{{ client.raisonSociale }}</h6>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
+							<a href="{{ path('app_client_edit', {'id': client.id}) }}" class="btn btn-primary">Modifier</a>
+							&nbsp
+							{{ include('client/_delete_form.html.twig') }}
+
+						</center>
+					</div>
+
+				</div>
+			</div>
+		</table>
+	</div>
+
+
 {% endblock %}

@@ -1,20 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Création Client
+{% block title %}Modification Client
 {% endblock %}
 
 {% block style %}
 	<style></style>
 {% endblock %}
-
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
+{% endblock %}
 
 
 {% block contenu %}
-	<h1>Créer un Client</h1>
+	<div class="container">
+		<h1>Modification Client</h1>
+		<a href="{{ path('app_client_index') }}" class="btn btn-primary">Retour liste</a>
+		<tbody class="d-flex justify-content-center ">
 
-	{{ include('client/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-
-	
-
-	{{ include('client/_delete_form.html.twig') }}
+			{{ include('client/_form.html.twig', {'button_label': 'Modifier'}) }}
+			<br>
+			{{ include('client/_delete_form.html.twig') }}
+		</tbody>
+	</div>
 {% endblock %}

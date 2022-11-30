@@ -19,12 +19,13 @@
 
 
 {% block contenu %}
-	<h1>Éditer les Catégories</h1>
-
-	{{ include('categories/_form.html.twig', {'button_label': 'Update'}) }}
-	<a class='btn btn-primary' href="{{ path('app_categories_index', {'id': category.id}) }}">Retour Liste</a><br>
-    <br>
-
-    
-	{{ include('categories/_delete_form.html.twig') }}
+	<div class="container">
+		<h1>Modification Categorie</h1>
+		<a class='btn btn-primary' href="{{ path('app_categories_index', {'id': category.id}) }}">Retour Liste</a><br>
+		<tbody class="d-flex justify-content-center ">
+			{{ include('categories/_form.html.twig', {'button_label': 'Modifier'}) }}
+			<br>
+			{{ include('categories/_delete_form.html.twig') }}
+		</tbody>
+	</div>
 {% endblock %}

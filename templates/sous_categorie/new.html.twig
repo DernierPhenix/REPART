@@ -1,22 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouvelle Sous-Catégories{% endblock %}
-
-{% block style %}
-	<style>
-    .btn{
-        margin:0.1%;
-    }
-    </style>
+{% block title %}Nouvelle Sous-Catégories
+{% endblock %}
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
 {% endblock %}
 
 {% block contenu %}
-    <h1>Créer une nouvelle Sous-Catégorie</h1>
+	<div class="container">
+		<h1>Créer une nouvelle Sous-Catégorie</h1>
+		<a href="{{ path('app_sous_categorie_index') }}" class="btn btn-primary">Retour liste</a>
+		<tbody class="d-flex justify-content-center ">
+			{{ include('sous_categorie/_form.html.twig') }}
+		</tbody>
+	</div>
 
-    {{ include('sous_categorie/_form.html.twig') }}
-
-    <a href="{{ path('app_sous_categorie_index') }}" class="btn btn-primary">Retour à la liste des Sous-Catégories</a>
 {% endblock %}
-
-
-

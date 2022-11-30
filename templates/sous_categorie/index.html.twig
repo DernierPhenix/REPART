@@ -1,38 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Sous-Catégories{% endblock %}
+{% block title %}Liste des Sous Categories
+{% endblock %}
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
+{% endblock %}
 
 {% block contenu %}
-    <h1>Liste des Sous-Catégories</h1>
+	<div class="container">
+		<br/>
+		<h1>Liste des sous categorie</h1>
+		<br/>
+		<div class="table">
 
-    <table class="table table-secondary table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Catégories</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for sous_categorie in sous_categories %}
-            <tr>
-                <td>{{ sous_categorie.id }}</td>
-                <td>{{ sous_categorie.nom }}</td>
-                <td>{{ sous_categorie.categories.nom }}</td>
-                <td>
-                    <a href="{{ path('app_sous_categorie_show', {'id': sous_categorie.id}) }}"class ="btn btn-primary" >Voir</a>
-                    <a href="{{ path('app_sous_categorie_edit', {'id': sous_categorie.id}) }}" class ="btn btn-primary">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">Pas de Sous-Catégories Trouvées</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+			<div class="table-wrapper">
 
-    <a href="{{ path('app_sous_categorie_new') }}" class ="btn btn-primary">Créer une Nouvelle Sous-Catégorie</a>
+
+				<table class="table table-hover">
+					<a href="{{ path('app_sous_categorie_new') }}" class="btn btn-primary">Créer</a>
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nom</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody class='tableauxR'>
+						{% for sous_categorie in sous_categories %}
+
+							<tr>
+								<td>{{ sous_categorie.id }}</td>
+								<td>{{ sous_categorie.nom }}</td>
+								<td>
+									<a href="{{ path('app_sous_categorie_show', {'id': sous_categorie.id}) }}" class="btn btn-primary">Voir</a>
+									<a href="{{ path('app_sous_categorie_edit', {'id': sous_categorie.id}) }}" class="btn btn-primary">Modifier</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="10">no records found</td>
+							</tr>
+						</tbody>
+					{% endfor %}
+				</table>
+
+			</div>
+		</div>
+	</div>
 {% endblock %}
 

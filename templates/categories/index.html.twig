@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Catégories
+{% block title %}Liste des catégories
 {% endblock %}
 
 {% block style %}
@@ -24,34 +24,75 @@
     }
     </style>
 {% endblock %}
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
+{% endblock %}
 
 {% block contenu %}
 
-	<h1>Liste des Catégories</h1>
+	<div class="container">
+		<br/>
+		<h1>Liste des catégories</h1>
+		<br/>
+		<div class="table">
 
-<div class='row'>
-{% for category in categories %}
+			<div class="table-wrapper">
 
-<div class="col-12 col-md-6 col-lg-4 col-xl-3 ">
-<div class="card border-dark mb-3 mx-auto " id="options">
- 
-    <div class='card-header text-center'>
-    <img src="/uploads/images/{{category.image}}" class='image' alt="Card image cap">
-    </div>
 
-    <div class="card-body">
-      <h5 class="card-title">{{category.nom}}</h5>
-</div>
- <a class='btn btn-primary' href="{{ path('app_categories_show', {'id': category.id}) }}">Voir</a>
+				<table class="table table-hover">
+					<a href="{{ path('app_categories_new') }}" class="btn btn-primary">Créer</a>
+					<div class="d-flex justify-content-end">
+						<input id='searchBar' type="text" placeholder="Recherche par id ou client" class="searchBar form-control w-25">
+					</div>
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th></th>
+							<th>Nom</th>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody class='tableauxR'>
+						{% for category in categories %}
 
- 
-     </div>  
-    </div>
+							<tr>
+								<td>
+									<div class="card-body">
+										<h5 class="card-title">{{category.id}}</h5>
+									</div>
+								</td>
+								<td>
+									<div class='card-header text-center'>
+										<img src="/uploads/images/{{category.image}}" class='image' style="width:20px;" alt="Card image cap">
+									</div>
+								</td>
+								<td>
+									<div class="card-body">
+										<h5 class="card-title">{{category.nom}}</h5>
+									</div>
+								</td>
+								<td>
+									<a class='btn btn-primary' href="{{ path('app_categories_show', {'id': category.id}) }}">Voir</a>
+									<a href="{{ path('app_categories_edit', {'id': category.id}) }}" class="btn btn-primary">Modifier</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="10">no records found</td>
+							</tr>
+						</tbody>
+					{% endfor %}
+				</table>
 
-  {% endfor %}
-    </div>
+			</div>
+		</div>
+	</div>
 
-   
-	<a class='btn btn-primary' id='btn-cat'href="{{ path('app_categories_new') }}">Nouvelle Catégorie</a>
-					
- {% endblock %} 
+{% endblock %}
