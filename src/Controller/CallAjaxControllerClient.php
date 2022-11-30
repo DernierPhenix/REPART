@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+
 use App\Repository\ClientRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -10,7 +11,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
-class CallAjaxController extends AbstractController
+class CallAjaxControllerClient extends AbstractController
 {
 
     #[Route('/ajax/listeClients', name: 'app_call_ajax')]
@@ -24,6 +25,7 @@ class CallAjaxController extends AbstractController
             $result
         );
     }
+
 }
 
 
