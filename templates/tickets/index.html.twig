@@ -15,11 +15,12 @@
                 <th>L'etat</th>
                 <th>Date de creation</th>
                 <th>Date Modif</th>
-                <th>Rapport</th>
+               
                 <th>Nom du client</th>
                 <th>Produit</th>
                 <th>Sous - categories</th>
                 <th>Employé</th>
+                <th>Voir</th>
                 
             </tr>
         </thead>
@@ -33,11 +34,11 @@
                 <td>{{ ticket.etat }}</td>
                 <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d') : '' }}</td>
                 <td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td>
-                <td>{{ ticket.rapport }}</td>
+                
                 <td>{{ ticket.clients.nom}}</td>
-                <td>{{ ticket.modele}}</td>
-                <td>{{ ticket.produits.sousCategories.nom}}</td>
-                {# <td>{{ ticket.user.nom}}</td> #}
+                <td>{{ ticket.produits.marque.nom|default("")}}</td>
+                <td>{{ ticket.produits.sousCategories.nom|default("")}}</td>
+                <td>{{ ticket.user.nom}}</td>
                 <td>
                     <a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">Voir</a>
                     

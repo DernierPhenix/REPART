@@ -3,3 +3,16 @@
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
 
+{% block javascripts %}
+
+<script>
+// In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('.select2').select2();
+});
+
+
+</script>
+
+
+{% endblock %}

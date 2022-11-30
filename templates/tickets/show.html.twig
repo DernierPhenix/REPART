@@ -24,6 +24,10 @@
                 <td>{{ ticket.description }}</td>
             </tr>
             <tr>
+                <th>Categorie</th>
+                <td>{{ ticket.produits.sousCategories.categories.nom }}</td>
+            </tr>
+            <tr>
                 <th>Date de création</th>
                 <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
