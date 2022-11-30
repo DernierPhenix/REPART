@@ -13,40 +13,46 @@
 	</div>
 {% endblock %}
 {% block contenu %}
-	<div clas="container">
+
+	<div class="container">
+		<br/>
 		<h1>Liste des produits</h1>
+		<br/>
+		<div class="table">
 
-		<table class="d-flex justify-content-center row ">
-
-			<a href="{{ path('app_produit_new') }}" class="btn btn-primary ">Créer</a>
+			<div class="table-wrapper">
 
 
-			{% for produit in produits %}
-				<tbody class="card mb-2" style="width: 18rem;">
-					<tr class="d-flex justify-content-center mb-2 text-center">
-						<td>{{ produit.id }}.
-							{{ produit.sousCategories.nom }}
-							{{ produit.marque }}
-							<br/>
-							{{ produit.sousCategories.categories.nom }}
-						</td>
-					</tr>
-					<tr class="d-flex justify-content-center mb-2">
-						<td>
-							<a href="{{ path('app_produit_show', {'id': produit.id}) }}" class="btn btn-primary">Voir</a>
-						</td>
-						<td>
-							<a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-primary">Modifier</a>
-						</td>
-					</tr>
+				<table class="table table-hover">
+					<a href="{{ path('app_produit_new') }}" class="btn btn-primary">Créer</a>
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>marque</th>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody class='tableauxR'>
+						{% for produit in produits %}
 
-				{% else %}
-					<tr>
-						<td colspan="4">Aucune donnée trouvée</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+							<tr>
+								<td>{{ produit.id }}</td>
+								<td>{{ produit.marque }}</td>
+								<td>
+									<a href="{{ path('app_produit_show', {'id': produit.id}) }}" class="btn btn-primary">Voir</a>
+									<a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-primary">Modifier</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="10">no records found</td>
+							</tr>
+						</tbody>
+					{% endfor %}
+				</table>
+
+			</div>
+		</div>
 	</div>
 
 {% endblock %}

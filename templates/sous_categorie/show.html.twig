@@ -1,26 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SousCategorie{% endblock %}
+{% block title %}SousCategorie
+{% endblock %}
 
 {% block contenu %}
-    <h1>SousCategorie</h1>
+	<div class="container">
+		<br/>
+		<table class=" d-flex justify-content-center">
+			<a href="{{ path('app_sous_categorie_index') }}" class="btn btn-primary">Retour liste</a>
+			<br/>
+			<br/>
+			<div class=" d-flex justify-content-center">
+				<div class="card " style="width: 25rem;">
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ sous_categorie.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ sous_categorie.nom }}</td>
-            </tr>
-        </tbody>
-    </table>
+							<h1>
 
-    <a href="{{ path('app_sous_categorie_index') }}"class="btn btn-primary">Retour liste</a>
+								{{ sous_categorie.nom }}
+							</h1>
+						</center>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<small class="text-muted">Id</small>
+						<h6>{{ sous_categorie.id }}</h6>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
+							<a href="{{ path('app_sous_categorie_edit', {'id': sous_categorie.id}) }}" class="btn btn-primary">Modifier</a>
+							&nbsp
+							{{ include('sous_categorie/_delete_form.html.twig') }}
 
-    <a href="{{ path('app_sous_categorie_edit', {'id': sous_categorie.id}) }}"class="btn btn-primary">Modifier</a>
+						</center>
+					</div>
 
-    {{ include('sous_categorie/_delete_form.html.twig') }}
+				</div>
+			</div>
+		</table>
+	</div>
 {% endblock %}

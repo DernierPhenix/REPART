@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des clients{% endblock %}
+{% block title %}Liste des clients
+{% endblock %}
 
 {% block style %}
 	<style></style>
@@ -19,53 +20,66 @@
 
 
 {% block contenu %}
-	<h1>Liste des clients</h1>
+	<div class="container">
+		<br/>
+		<h1>Liste des clients</h1>
+		<br/>
+		<div class="table">
 
-	<table class="table table-secondary table-striped">
-		<input id='searchBar' type="text" placeholder="Recherche par id ou client" class="searchBar form-control">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Nom</th>
-				<th>Prenom</th>
-				<th>Adresse</th>
-				<th>Cp</th>
-				<th>Ville</th>
-				<th>Telephone</th>
-				<th>Email</th>
-				<th>RaisonSociale</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody class='tableauxR'>
-			{% for client in clients %}
-			
-				<tr>
-					<td>{{ client.id }}</td>
-					<td>{{ client.nom }}</td>
-					<td>{{ client.prenom }}</td>
-					<td>{{ client.adresse }}</td>
-					<td>{{ client.cp }}</td>
-					<td>{{ client.ville }}</td>
-					<td>{{ client.telephone }}</td>
-					<td>{{ client.email }}</td>
-					<td>{{ client.raisonSociale }}</td>
-					<td>
-						<a href="{{ path('app_client_show', {'id': client.id}) }}" class="btn btn-primary">show</a>
-						<a href="{{ path('app_client_edit', {'id': client.id}) }}"class="btn btn-primary">edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="10">no records found</td>
-				</tr>
-				</tbody>
-			{% endfor %}
-		
-	</table>
+			<div class="table-wrapper">
 
-	<a href="{{ path('app_client_new') }}"class="btn btn-primary">Créer</a>
-<tbody class="resultat row"></tbody>
+
+				<table class="table table-hover">
+					<a href="{{ path('app_client_new') }}" class="btn btn-primary">Créer</a>
+					<div class="d-flex justify-content-end">
+						<input id='searchBar' type="text" placeholder="Recherche par id ou client" class="searchBar form-control w-25">
+					</div>
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nom</th>
+							<th>Prenom</th>
+							<th>Adresse</th>
+							<th>Cp</th>
+							<th>Ville</th>
+							<th>Telephone</th>
+							<th>Email</th>
+							<th>RaisonSociale</th>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody class='tableauxR'>
+						{% for client in clients %}
+
+							<tr>
+								<td>{{ client.id }}</td>
+								<td>{{ client.nom }}</td>
+								<td>{{ client.prenom }}</td>
+								<td>{{ client.adresse }}</td>
+								<td>{{ client.cp }}</td>
+								<td>{{ client.ville }}</td>
+								<td>{{ client.telephone }}</td>
+								<td>{{ client.email }}</td>
+								<td>{{ client.raisonSociale }}</td>
+								<td>
+									<a href="{{ path('app_client_show', {'id': client.id}) }}" class="btn btn-primary">Voir</a>
+									<a href="{{ path('app_client_edit', {'id': client.id}) }}" class="btn btn-primary">Modifier</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="10">no records found</td>
+							</tr>
+						</tbody>
+					{% endfor %}
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+
+	<tbody class="resultat row"></tbody>
 	<script>
 
 		$(document).ready(function () {
@@ -86,12 +100,7 @@ let liste = "";
 
 $.each(response, function (index, value) { // J'ajoute chaque élément dans une liste
 if (input == value.nom.substr(-20, 3) || input == value.telephone.substr(-20, 3)) {
-liste +=
-
-'<tr>'+
-'<td>'+ value.id +'</td>'+'<td>'+ value.nom+'</td>'+'<td>'+ value.prenom +'</td>'+'<td>'+ value.adresse +'</td>'+
-'<td>'+ value.cp +'</td>'+'<td>'+value.ville +'</td>'+'<td>'+value.telephone +'</td>'+'<td>'+ value.email +'</td>'+
-'<tr/>'
+liste += '<tr>' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<tr/>'
 
 }
 });

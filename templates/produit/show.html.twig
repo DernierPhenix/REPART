@@ -6,35 +6,41 @@
 
 {% block contenu %}
 	<div class="container">
-		<h1>Produit</h1>
+		<br/>
+        
 
-		<table class="d-flex justify-content-center ">
-			<a href="{{ path('app_produit_index') }}" class="btn btn-primary ">Retour liste</a>
+		<table class=" d-flex justify-content-center">
+			<a href="{{ path('app_produit_index') }}" class="btn btn-primary">Retour liste</a>
 			<br/>
 			<br/>
-			<tbody class="card mb-2" style="width: 18rem;">
+			<div class=" d-flex justify-content-center">
+				<div class="card " style="width: 25rem;">
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
 
-				<tr class="d-flex justify-content-center mb-2">
-					<th>{{ produit.id }}</th>
-				</tr>
-				<br/>
-				<tr class="d-flex justify-content-center mb-2">
-					<td>{{ produit.marque }}</td><tr/>
-				</tr>
-				<tr class="d-flex justify-content-center mb-2">
-					<td>
-						<a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-primary ">modifier</a>
-					</td>
+							<h1>
+								
+								{{produit.marque}}
+							</h1>
+						</center>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<small class="text-muted">Id</small>
+						<h6>{{ produit.id }}</h6>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
+							<a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-primary">Modifier</a>
+							&nbsp
+							{{ include('produit/_delete_form.html.twig') }}
 
-					<td>
-						{{ include('produit/_delete_form.html.twig') }}
-					</td>
-				</tr>
+						</center>
+					</div>
 
-
-			</tbody>
-
-
+				</div>
+			</div>
 		</table>
 	</div>
 

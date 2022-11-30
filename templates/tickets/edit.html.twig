@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modification du Ticket{% endblock %}
+{% block title %}Modification du Ticket
+{% endblock %}
 
 {% block contenu %}
-    <h1>Modification du Ticket</h1>
+	<div class="container">
 
-    {{ include('tickets/_form.html.twig', {'button_label': 'Update'}) }}
+		<h1>Modification du Ticket</h1>
+		<a href="{{ path('app_tickets_index') }}" class="btn btn-primary">Retour liste</a>
+		<tbody class="d-flex justify-content-center ">
 
-    <a href="{{ path('app_tickets_index') }}" class="btn btn-primary">Retour liste</a>
-
-    {{ include('tickets/_delete_form.html.twig') }}
+			{{ include('tickets/_form.html.twig', {'button_label': 'Modifier'}) }}
+            <br>
+			{{ include('tickets/_delete_form.html.twig') }}
+		</tbody>
+	</div>
 {% endblock %}
