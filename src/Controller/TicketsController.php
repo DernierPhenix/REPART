@@ -6,6 +6,7 @@ namespace App\Controller;
 use DateTime;
 use App\Entity\Tickets;
 use App\Form\TicketsTypeCreate;
+use App\Form\TicketsTypeUpdate;
 use App\Repository\TicketsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,13 +59,13 @@ class TicketsController extends AbstractController
     #[Route('/{id}/edit', name: 'app_tickets_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Tickets $ticket, TicketsRepository $ticketsRepository): Response
     {
-        
+        $date = new DateTime();
 
-        $form = $this->createForm(TicketsTypeCreate::class, $ticket);
+        $form = $this->createForm(TicketsTypeUpdate::class, $ticket);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+            $ticket->setUpdatedAt($date);
             $ticketsRepository->save($ticket, true);
 
             return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);

@@ -3,22 +3,20 @@
 namespace App\Form;
 
 
-
 use App\Entity\Client;
+use App\Entity\Marque;
 use App\Entity\Produit;
 use App\Entity\Tickets;
 use App\Entity\Categories;
-use App\Entity\Marque;
 use App\Entity\SousCategorie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 
-class TicketsTypeCreate extends AbstractType
+class TicketsTypeUpdate extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -26,7 +24,7 @@ class TicketsTypeCreate extends AbstractType
             ->add('clients', EntityType::class, [
                 'class' => Client::class,
                 'label' => 'Client',
-                'placeholder' => 'Veuillez selectionner le client',
+                
                 'choice_label' => 'nom',
                 'attr' => [
                     'class' => 'select2'
@@ -38,7 +36,7 @@ class TicketsTypeCreate extends AbstractType
 
             ->add('categories', EntityType::class, [
                 'class' => Categories::class,
-                'placeholder' => 'Veuillez selectionner la categorie',
+                
                 'choice_label' => 'nom',
                 'label' => 'Categorie',
                 'attr' => [
@@ -48,7 +46,7 @@ class TicketsTypeCreate extends AbstractType
             ])
             ->add('sousCategorie', EntityType::class, [
                 'class' => SousCategorie::class,
-                'placeholder' => 'Veuillez selectionner la sous-categorie',
+                
                 'choice_label' => 'nom',
                 'attr' => [
                     'class' => 'select2'
@@ -57,7 +55,7 @@ class TicketsTypeCreate extends AbstractType
             ])
             ->add('marque', EntityType::class, [
                 'class' => Marque::class,
-                'placeholder' => 'Veuillez selectionner la marque',
+                
                 'label' => 'Marque',
                 'mapped' => false,
                 'choice_label' => 'nom',
@@ -82,6 +80,9 @@ class TicketsTypeCreate extends AbstractType
             ])
             ->add('description',TextareaType::class,[
                 'label' => 'Description de la panne'
+            ])
+            ->add('rapport',TextareaType::class,[
+                'label' => 'Rapport de l\'intervention'
             ]);
             
         

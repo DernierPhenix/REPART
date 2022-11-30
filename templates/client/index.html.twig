@@ -37,7 +37,7 @@
 				<th>Telephone</th>
 				<th>Email</th>
 				<th>Raison Sociale</th>
-				
+				<th>Voir</th>
 			</tr>
 		</thead>
 		<tbody class='tableauxR'>
@@ -114,7 +114,7 @@ if (input == value.nom.substr(-20, 3)
 || input == value.telephone.substr(-20, 6)
 || input == value.nom
 || input == value.telephone)  {
-liste += '<tr class="trr"> ' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' +"<a href=https://localhost:8000/client/" + value.id + ">" + " VOIR "+ '</td>'+
+liste += '<tr class="trr"> ' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' + '<a class="btn btn-primary" href=https://localhost:8000/client/' + value.id + ">" + " VOIR "+ '</td>'+
  '</tr>'
 
 }
