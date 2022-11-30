@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Marque index{% endblock %}
+{% block title %}Liste Marque{% endblock %}
 
 {% block contenu %}
-    <h1>Marque index</h1>
+    <h1>Liste des Marques</h1>
 
-    <table class="table">
+    <table class="table table-secondary table-striped">
         <thead>
             <tr>
                 <th>Id</th>
@@ -19,17 +19,17 @@
                 <td>{{ marque.id }}</td>
                 <td>{{ marque.nom }}</td>
                 <td>
-                    <a href="{{ path('app_marque_show', {'id': marque.id}) }}">show</a>
-                    <a href="{{ path('app_marque_edit', {'id': marque.id}) }}">edit</a>
+                    <a href="{{ path('app_marque_show', {'id': marque.id}) }}" class=" btn btn-primary">Voir</a>
+                    <a href="{{ path('app_marque_edit', {'id': marque.id}) }}" class=" btn btn-primary">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Pas de Marque Trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_marque_new') }}">Create new</a>
+    <a href="{{ path('app_marque_new') }}">Créer une Nouvelle Marque</a>
 {% endblock %}

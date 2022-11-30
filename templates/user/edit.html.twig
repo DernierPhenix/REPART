@@ -2,12 +2,21 @@
 
 {% block title %}Édition Employés{% endblock %}
 
+{% block style %}
+    <style>
+        .btn{
+            margin: 0.1%;
+
+        }
+    </style>
+{% endblock %}
+
 {% block contenu %}
     <h1>Éditer un Employé</h1>
 
     {{ include('user/_form.html.twig', {'button_label': 'Mettre à Jour'}) }}
 
-    <a href="{{ path('app_user_index') }}" class ="btn btn-primary">Retour Listet</a>
+    <a href="{{ path('app_user_index') }}" class ="btn btn-primary">Retour Liste</a>
 
     {{ include('user/_delete_form.html.twig') }}
 {% endblock %}
