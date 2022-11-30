@@ -2,8 +2,6 @@
 
 namespace App\Form;
 
-
-
 use App\Entity\Client;
 use App\Entity\Produit;
 use App\Entity\Tickets;
@@ -13,10 +11,9 @@ use App\Entity\SousCategorie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
 
 
 class TicketsTypeCreate extends AbstractType
@@ -33,7 +30,7 @@ class TicketsTypeCreate extends AbstractType
                     'class' => 'select2'
                 ]
             ])
-            
+
             ->add('categories', EntityType::class, [
                 'class' => Categories::class,
                 'label' => 'Catégorie',
@@ -44,7 +41,7 @@ class TicketsTypeCreate extends AbstractType
                 ],
                 'mapped' => false
             ])
-            
+
             ->add('sousCategorie', EntityType::class, [
                 'class' => SousCategorie::class,
                 'label' => 'Sous-Catégorie',
@@ -64,9 +61,9 @@ class TicketsTypeCreate extends AbstractType
                 'attr' => [
                     'class' => 'select2'
                 ],
-               
+
             ])
-            
+
             ->add('produits', EntityType::class, [
                 'class' => Produit::class,
                 'placeholder' => 'Veuillez selectionner le modele',
@@ -75,18 +72,16 @@ class TicketsTypeCreate extends AbstractType
                 'attr' => [
                     'class' => 'select2'
                 ],
-                
+
             ])
-            ->add('etat',TextareaType::class,[
+            ->add('etat', TextareaType::class, [
                 'label' => 'État du Produit'
             ])
-            ->add('description',TextareaType::class,[
+            ->add('description', TextareaType::class, [
                 'label' => 'Description de la Panne'
             ]);
-            
-        
     }
-   
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {
