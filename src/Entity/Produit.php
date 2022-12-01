@@ -23,7 +23,7 @@ class Produit
     private ?SousCategorie $sousCategories = null;
     
 
-    #[ORM\OneToMany(mappedBy: 'produits', targetEntity: Tickets::class)]
+    #[ORM\OneToMany(mappedBy: 'produits', targetEntity: Tickets::class, orphanRemoval:true)]
     private Collection $tickets;
     
 

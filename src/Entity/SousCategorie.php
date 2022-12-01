@@ -23,7 +23,7 @@ class SousCategorie
     #[Groups(['show_product'])]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'sousCategories', targetEntity: Produit::class)]
+    #[ORM\OneToMany(mappedBy: 'sousCategories', targetEntity: Produit::class, orphanRemoval:true)]
     private Collection $produits;
     
 

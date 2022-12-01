@@ -37,11 +37,6 @@ $.each(response, function (index, value) { // J'ajoute chaque élément dans une
 if (value.categories.id == input) {
     liste += '<option value=""> ' + value.nom +'</option>';
 }
-
-    
-
-
-
 });
 $('#tickets_type_create_sousCategorie').html(liste);
 
@@ -53,6 +48,11 @@ console.log(error)
 });
 });
 });
+
+    
+
+
+
 
 
 </script>
