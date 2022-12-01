@@ -29,10 +29,9 @@
                 <th>État du Produit</th>
                 <th>Date de Création</th>
                 <th>Date de Modification</th>
-               
-                <th>Nom du client</th>
                 <th>Produit</th>
                 <th>Sous-Catégories</th>
+                <th>Nom du client</th>
                 <th>Employé</th>
                 {# <th>Voir</th>
                 <th>Action</th> #}
@@ -49,9 +48,9 @@
                         <td>{{ ticket.etat }}</td>
                         <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d') : '' }}</td>
                         <td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td>
-                        <td>{{ ticket.clients.nom}}</td>
                         <td>{{ ticket.produits.modele}}</td>
                         <td>{{ ticket.produits.sousCategories.nom}}</td>
+                        <td>{{ ticket.clients.nom}}</td>
                         <td>{{ ticket.user.nom}}</td>
                 </tr>
 
