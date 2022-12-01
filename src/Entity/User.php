@@ -38,7 +38,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Tickets::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Tickets::class, orphanRemoval:true)]
     private Collection $tickets;
 
     public function __construct()
