@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\SousCategorie;
 use App\Form\SousCategorieType;
 use App\Repository\SousCategorieRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/sous/categorie')]
 class SousCategorieController extends AbstractController
@@ -48,7 +49,10 @@ class SousCategorieController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_sous_categorie_edit', methods: ['GET', 'POST'])]
+    #[
+        Route('/{id}/edit', name: 'app_sous_categorie_edit', methods: ['GET', 'POST']),
+        IsGranted('ROLE_ADMIN')
+        ]
     public function edit(Request $request, SousCategorie $sousCategorie, SousCategorieRepository $sousCategorieRepository): Response
     {
         $form = $this->createForm(SousCategorieType::class, $sousCategorie);
@@ -66,7 +70,10 @@ class SousCategorieController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_sous_categorie_delete', methods: ['POST'])]
+    #[
+        Route('/{id}', name: 'app_sous_categorie_delete', methods: ['POST']),
+        IsGranted('ROLE_ADMIN')
+        ]
     public function delete(Request $request, SousCategorie $sousCategorie, SousCategorieRepository $sousCategorieRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$sousCategorie->getId(), $request->request->get('_token'))) {

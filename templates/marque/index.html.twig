@@ -20,7 +20,6 @@
                 <td>{{ marque.nom }}</td>
                 <td>
                     <a href="{{ path('app_marque_show', {'id': marque.id}) }}" class=" btn btn-primary">Voir</a>
-                    
                 </td>
             </tr>
         {% else %}
@@ -31,5 +30,5 @@
         </tbody>
     </table>
 
-    <a class=" btn btn-primary" href="{{ path('app_marque_new') }}">Créer une Nouvelle Marque</a>
+    <a href="{{ path('app_marque_new') }}" class="btn btn-primary">Créer une Nouvelle Marque</a>
 {% endblock %}

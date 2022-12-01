@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Categories;
 use App\Form\CategoriesType;
 use App\Repository\CategoriesRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -76,7 +77,10 @@ class CategoriesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_categories_edit', methods: ['GET', 'POST'])]
+    #[
+        Route('/{id}/edit', name: 'app_categories_edit', methods: ['GET', 'POST']),
+        IsGranted('ROLE_ADMIN')
+        ]
     public function edit(Request $request, Categories $category, CategoriesRepository $categoriesRepository): Response
     {
         $form = $this->createForm(CategoriesType::class, $category);
@@ -94,7 +98,10 @@ class CategoriesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_categories_delete', methods: ['POST'])]
+    #[
+        Route('/{id}', name: 'app_categories_delete', methods: ['POST']),
+        IsGranted('ROLE_ADMIN')
+    ]
     public function delete(Request $request, Categories $category, CategoriesRepository $categoriesRepository): Response
     {
         if ($this->isCsrfTokenValid(
