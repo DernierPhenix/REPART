@@ -54,7 +54,7 @@ class TicketsTypeCreate extends AbstractType
             ])
             ->add('marque', EntityType::class, [
                 'class' => Marque::class,
-                'placeholder' => 'Veuillez selectionner la marque',
+                'placeholder' => 'Veuillez sélectionner la marque',
                 'label' => 'Marque',
                 'mapped' => false,
                 'choice_label' => 'nom',
@@ -66,8 +66,8 @@ class TicketsTypeCreate extends AbstractType
 
             ->add('produits', EntityType::class, [
                 'class' => Produit::class,
-                'placeholder' => 'Veuillez selectionner le modele',
-                'label' => 'Modele',
+                'placeholder' => 'Veuillez sélectionner le modele',
+                'label' => 'Modèle',
                 'choice_label' => 'modele',
                 'attr' => [
                     'class' => 'select2'
