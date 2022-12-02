@@ -18,9 +18,7 @@
 
 	</head>
 	<body>
-		{% block style %}
-		
-		{% endblock %}
+		{% block style %}{% endblock %}
 
 
 		<div class="navbarTop">
@@ -30,7 +28,7 @@
 				{% if app.user %}
 					Bienvenue sur votre espace
 					{{ app.user.userIdentifier }}
-					
+
 					<a href="{{ path('app_logout') }}" class="btn btn-light ">Déconnexion</a>
 				{% endif %}
 			</div>
@@ -52,11 +50,11 @@
 							<a class="btn btn-primary" id="btnT" href="{{ path('app_sous_categorie_index') }}" role="button">SOUS-CATÉGORIES</a>
 
 							<a class="btn btn-primary" id="btnT" href="{{ path('app_marque_index') }}" role="button">MARQUES</a>
-							
+
 							<a class="btn btn-primary" id="btnT" href="{{ path('app_produit_index') }}" role="button">PRODUITS</a>
-
-							<a class="btn btn-primary" id="btnT" href="{{ path('app_user_index') }}" role="button">EMPLOYÉS</a>
-
+							{% if is_granted('ROLE_ADMIN') %}
+								<a class="btn btn-primary" id="btnT" href="{{ path('app_user_index') }}" role="button">EMPLOYÉS</a>
+							{% endif %}
 						</div>
 					{% endif %}
 				{% endblock %}

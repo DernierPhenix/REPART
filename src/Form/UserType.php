@@ -31,7 +31,7 @@ class UserType extends AbstractType
                 'expanded' => false,
                 'placeholder' => 'Veuillez selectionner le role',
                 'choices'  => [
-                    'Utilisateur' => 'ROLE_UTILISATEUR',
+                    'Utilisateur' => 'ROLE_USER',
                     'Administrateur' => 'ROLE_ADMIN'
                 ],
             ])

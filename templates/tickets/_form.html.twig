@@ -1,61 +1,46 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }} 
-    <button class="btn btn-primary">{{ button_label|default('Enregister') }}</button>
+{{ form_widget(form) }}
+<button class="btn btn-primary">{{ button_label|default('Enregister') }}</button>
 {{ form_end(form) }}
 
 {% block javascripts %}
 
-<script>
-
-$(document).ready(function() {
-    $('#tickets_type_create_clients').select2();
+	<script>
+		$(document).ready(function () {
+$('#tickets_type_create_clients').select2();
 });
-$(document).ready(function() {
-    $('#tickets_type_create_produits').select2();
+$(document).ready(function () {
+$('#tickets_type_create_produits').select2();
 });
-$(document).ready(function() {
-    $('#tickets_type_create_marque').select2();
+$(document).ready(function () {
+$('#tickets_type_create_marque').select2();
 });
-
 $(document).ready(function () {
 $("#tickets_type_create_categories").click(function (e) {
 e.preventDefault();
 e.stopPropagation();
-
 let input = $("#tickets_type_create_categories").val();
-
-
 $.ajax({
 url: "https://127.0.0.1:8000/ajax/SousCategorie",
 type: 'GET',
-
 success: function (response) {
-console.log(response);
-let liste = "";
 
+let liste = "";
 $.each(response, function (index, value) { // J'ajoute chaque élément dans une liste
 if (value.categories.id == input) {
-    liste += '<option value=""> ' + value.nom +'</option>';
+liste += '<option value="' + value.id +'"> '+ value.nom +'</option>';
+console.log(liste);
 }
 });
 $('#tickets_type_create_sousCategorie').html(liste);
-
 },
-
 error: function (response) {
 console.log(error)
 }
 });
 });
 });
-
-    
-
-
-
-
-
-</script>
+	</script>
 
 
 {% endblock %}

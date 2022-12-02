@@ -19,6 +19,7 @@ class TicketsController extends AbstractController
     #[Route('/', name: 'app_tickets_index', methods: ['GET'])]
     public function index(TicketsRepository $ticketsRepository): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('tickets/index.html.twig', [
             'tickets' => $ticketsRepository->findAll(),
         ]);
