@@ -3,13 +3,10 @@
 {% block title %}Nouveau Ticket{% endblock %}
 
 {% block contenu %}
-    <h1>Creer un nouveau Ticket</h1>
+    <h3>Créer un nouveau Ticket</h3>
 
     {{ include('tickets/_form.html.twig') }}
 
-
-    
-
-    <a class="btn btn-primary" href="{{ path('app_tickets_index') }}">Retour liste</a>
+    {# <a class="btn btn-primary" href="{{ path('app_tickets_index') }}">Retour liste</a> #}
 
 {% endblock %}
