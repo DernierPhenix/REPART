@@ -41,14 +41,17 @@ class Tickets
     private ?string $rapport = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
+    #[ORM\JoinColumn(onDelete:"SET NULL")]
     #[Groups(['show_product'])]
     private ?Produit $produits = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
+    #[ORM\JoinColumn(onDelete:"SET NULL")]
     #[Groups(['show_product'])]
     private ?Client $clients = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
+    #[ORM\JoinColumn(onDelete:"SET NULL")]
     #[Groups(['show_product'])]
     private ?User $user = null;
 

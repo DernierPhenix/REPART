@@ -21,11 +21,11 @@
         {% for produit in produits %}
             <tr>
                 <td>{{ produit.id }}</td>
-                <td>{{ produit.marque.nom }}</td>
+                <td>{{ produit.marque.nom|default("") }}</td>
                 <td>{{ produit.modele }}</td>
                 
-                <td>{{ produit.sousCategories.categories.nom }}</td>
-                <td>{{ produit.sousCategories.nom }}</td>
+                <td>{{ produit.sousCategories.categories.nom|default("") }}</td>
+                <td>{{ produit.sousCategories.nom|default("") }}</td>
                 <td>
                     <a href="{{ path('app_produit_show', {'id': produit.id}) }}" class="btn btn-primary">Voir</a>
                 </td>
