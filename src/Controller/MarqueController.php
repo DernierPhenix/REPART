@@ -11,12 +11,16 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/marque')]
+#[
+    Route('/marque'),
+    IsGranted('ROLE_USER')
+]
 class MarqueController extends AbstractController
 {
     #[Route('/', name: 'app_marque_index', methods: ['GET'])]
     public function index(MarqueRepository $marqueRepository): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('marque/index.html.twig', [
             'marques' => $marqueRepository->findAll(),
         ]);
@@ -55,6 +59,7 @@ class MarqueController extends AbstractController
         ]
     public function edit(Request $request, Marque $marque, MarqueRepository $marqueRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(MarqueType::class, $marque);
         $form->handleRequest($request);
 
@@ -76,6 +81,7 @@ class MarqueController extends AbstractController
     ]
     public function delete(Request $request, Marque $marque, MarqueRepository $marqueRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         if ($this->isCsrfTokenValid('delete'.$marque->getId(), $request->request->get('_token'))) {
             $marqueRepository->remove($marque, true);
         }

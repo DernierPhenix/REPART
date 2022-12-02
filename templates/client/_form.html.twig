@@ -140,12 +140,13 @@
 
 	{{ form_row(form.email) }}
 
-	<button class="btn btn-primary">{{ button_label|default('Sauvegarder') }}</button>
+	<button class="btn btn-primary">{{ button_label|default('Sauvegarder') }}</button><br>
+	<a href="{{ path('app_client_index') }}" class="btn btn-primary ">Retour liste</a>
 	{{ form_end(form) }}
 
 </div>
 
-<a href="{{ path('app_client_index') }}" class="btn btn-primary ">Retour liste</a>
+
 {# Fonction javascript pour les boutons radio #}
 <script>
 

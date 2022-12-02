@@ -11,12 +11,16 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/sous/categorie')]
+#[Route('/sous/categorie'),
+IsGranted('ROLE_USER')
+
+]
 class SousCategorieController extends AbstractController
 {
     #[Route('/', name: 'app_sous_categorie_index', methods: ['GET'])]
     public function index(SousCategorieRepository $sousCategorieRepository): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('sous_categorie/index.html.twig', [
             'sous_categories' => $sousCategorieRepository->findAll(),
         ]);
@@ -55,6 +59,7 @@ class SousCategorieController extends AbstractController
         ]
     public function edit(Request $request, SousCategorie $sousCategorie, SousCategorieRepository $sousCategorieRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(SousCategorieType::class, $sousCategorie);
         $form->handleRequest($request);
 
@@ -76,6 +81,7 @@ class SousCategorieController extends AbstractController
         ]
     public function delete(Request $request, SousCategorie $sousCategorie, SousCategorieRepository $sousCategorieRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         if ($this->isCsrfTokenValid('delete'.$sousCategorie->getId(), $request->request->get('_token'))) {
             $sousCategorieRepository->remove($sousCategorie, true);
         }

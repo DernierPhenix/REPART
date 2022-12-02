@@ -10,12 +10,16 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/produit')]
+#[Route('/produit'),
+  IsGranted('ROLE_USER'),
+  
+]
 class ProduitController extends AbstractController
 {
     #[Route('/', name: 'app_produit_index', methods: ['GET'])]
     public function index(ProduitRepository $produitRepository): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('produit/index.html.twig', [
             'produits' => $produitRepository->findAll(),
         ]);
@@ -53,6 +57,7 @@ class ProduitController extends AbstractController
         IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
 
@@ -74,6 +79,7 @@ class ProduitController extends AbstractController
         ]
     public function delete(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         if ($this->isCsrfTokenValid('delete'.$produit->getId(), $request->request->get('_token'))) {
             $produitRepository->remove($produit, true);
         }

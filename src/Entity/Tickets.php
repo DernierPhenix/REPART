@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\TicketsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TicketsRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TicketsRepository::class)]
 class Tickets
@@ -12,33 +13,43 @@ class Tickets
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['show_product'])]
     private ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['show_product'])]
     private ?string $etat = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['show_product'])]
     private ?string $statut = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['show_product'])]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
+    #[Groups(['show_product'])]
     private ?\DateTimeInterface $createdAt = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
+    #[Groups(['show_product'])]
     private ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\Column(type: Types::TEXT, nullable:true)]
+    #[Groups(['show_product'])]
     private ?string $rapport = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
+    #[Groups(['show_product'])]
     private ?Produit $produits = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
+    #[Groups(['show_product'])]
     private ?Client $clients = null;
 
     #[ORM\ManyToOne(inversedBy: 'tickets')]
+    #[Groups(['show_product'])]
     private ?User $user = null;
 
     

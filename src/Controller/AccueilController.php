@@ -15,6 +15,7 @@ class AccueilController extends AbstractController
         IsGranted('ROLE_USER')]
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
         ]);

@@ -28,12 +28,9 @@
 	<br>
 	<br>
 
-	{% if is_granted('ROLE_ADMIN')%}
-		
-        <a class='btn btn-primary' href="{{ path('app_categories_edit', {'id': category.id}) }}">Modifier</a><br>
+	{% if is_granted('ROLE_ADMIN') %}
+		<a class='btn btn-primary' href="{{ path('app_categories_edit', {'id': category.id}) }}">Modifier</a><br>
 		<br>
-
 		{{ include('categories/_delete_form.html.twig') }}
 	{% endif %}
-
 {% endblock %}
