@@ -23,11 +23,12 @@ class SousCategorie
     #[Groups(['show_product'])]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'sousCategories', targetEntity: Produit::class, orphanRemoval:true)]
+    #[ORM\OneToMany(mappedBy: 'sousCategories', targetEntity: Produit::class)]
     private Collection $produits;
     
 
     #[ORM\ManyToOne(inversedBy: 'sousCategories')]
+    #[ORM\JoinColumn(onDelete:"SET NULL")]
     #[Groups(['show_product'])]
     private ?Categories $categories = null;
     

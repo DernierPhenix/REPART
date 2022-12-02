@@ -20,10 +20,11 @@ class Produit
 
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
+    #[ORM\JoinColumn(onDelete:"SET NULL")]
     private ?SousCategorie $sousCategories = null;
     
 
-    #[ORM\OneToMany(mappedBy: 'produits', targetEntity: Tickets::class, orphanRemoval:true)]
+    #[ORM\OneToMany(mappedBy: 'produits', targetEntity: Tickets::class)]
     private Collection $tickets;
     
 
@@ -32,6 +33,7 @@ class Produit
     private ?string $modele = null;
 
     #[ORM\ManyToOne(inversedBy: 'marques')]
+    #[ORM\JoinColumn(onDelete:"SET NULL")]
     private ?Marque $marque = null;
     
 
