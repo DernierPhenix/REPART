@@ -1,13 +1,12 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-succes">{{ button_label|default('Enregistrer') }}</button>
+
 
 <br/>
 <table class="d-flex justify-content-center ">
 
-	<tbody  >
+	<tbody>
 		{{ form_widget(form) }}
-		<button class="btn btn-primary" >{{ button_label|default('Sauvegarder') }}</button>
+		<button class="btn btn-primary">{{ button_label|default('Sauvegarder') }}</button>
 
 
 	</tbody>
@@ -17,14 +16,12 @@
 
 {% block javascripts %}
 
-<script>
-// In your Javascript (external .js resource or <script> tag)
-$(document).ready(function() {
-    $('.select2').select2();
+	<script>
+		// In your Javascript (external .js resource or <script> tag)
+$(document).ready(function () {
+$('.select2').select2();
 });
-
-
-</script>
+	</script>
 
 
 {% endblock %}

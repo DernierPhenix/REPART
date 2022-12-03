@@ -2,6 +2,20 @@
 
 {% block title %}Liste des Sous Categories
 {% endblock %}
+{% block style %}
+	<style>
+		.trr {
+
+			transition: all 0.2s ease-in-out;
+			cursor: pointer;
+
+		}
+		.trr:hover {
+
+			transform: scale(1.02);
+		}
+	</style>
+{% endblock %}
 {% block navbarTop %}
 	<div class="logOut d-flex justify-content-around">
 		{% if app.user %}
@@ -29,19 +43,16 @@
 						<tr>
 							<th>Id</th>
 							<th>Nom</th>
-							<th>Actions</th>
+
 						</tr>
 					</thead>
 					<tbody class='tableauxR'>
 						{% for sous_categorie in sous_categories %}
 
-							<tr>
+							<tr class="trr" href="{{ path('app_sous_categorie_show', {'id': sous_categorie.id}) }}">
 								<td>{{ sous_categorie.id }}</td>
 								<td>{{ sous_categorie.nom }}</td>
-								<td>
-									<a href="{{ path('app_sous_categorie_show', {'id': sous_categorie.id}) }}" class="btn btn-primary">Voir</a>
-									<a href="{{ path('app_sous_categorie_edit', {'id': sous_categorie.id}) }}" class="btn btn-primary">Modifier</a>
-								</td>
+
 							</tr>
 						{% else %}
 							<tr>
@@ -54,5 +65,13 @@
 			</div>
 		</div>
 	</div>
-{% endblock %}
+	<script>
 
+		$(document).ready(function () {
+$('table tr').click(function () {
+window.location = $(this).attr('href');
+return false;
+});
+});
+	</script>
+{% endblock %}

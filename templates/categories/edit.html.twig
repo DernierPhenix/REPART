@@ -1,31 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Édition Catégories
+{% block title %}Modification Catégories
 {% endblock %}
-{% block style %}
-	<style>
-		h1 {
-			text-align: center;
-			color: blue;
-		}
-		.btn {
-			border-radius:45px;
-            width:15%;
-			margin-left: 40%;
-		}
-	</style>
-
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
 {% endblock %}
 
 
 {% block contenu %}
 	<div class="container">
+		<br/>
 		<h1>Modification Categorie</h1>
-		<a class='btn btn-primary' href="{{ path('app_categories_index', {'id': category.id}) }}">Retour Liste</a><br>
-		<tbody class="d-flex justify-content-center ">
-			{{ include('categories/_form.html.twig', {'button_label': 'Modifier'}) }}
-			<br>
-			{{ include('categories/_delete_form.html.twig') }}
-		</tbody>
+		<br/>
+		<a class='btn btn-primary' href="{{ path('app_categories_index', {'id': category.id}) }}">Retour Liste</a>
+		<br/>
+		<br/>
+		<td>
+			<div class="text-center ">
+
+				{{ include('categories/_form.html.twig', {'button_label': 'Modifier'}) }}
+				<br>
+				{{ include('categories/_delete_form.html.twig') }}
+			</div>
+		</td>
 	</div>
+
 {% endblock %}

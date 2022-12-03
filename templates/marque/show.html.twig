@@ -1,26 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Marques{% endblock %}
+{% block title %}Marques
+{% endblock %}
 
 {% block contenu %}
-    <h1>Marques</h1>
+	<div class="container">
+		<br/>
+		<h1>Marque</h1>
+		<table class=" d-flex justify-content-center">
+			<a href="{{ path('app_marque_index') }}" class="btn btn-primary">Retour Liste</a>
+			<br/>
+			<br/>
+			<div class=" d-flex justify-content-center">
+				<div class="card " style="width: 25rem;">
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
+							<h1>
+								{{ marque.nom }}
+							</h1>
+						</center>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<small class="text-muted">Id</small>
+						<h6>{{ marque.id }}</h6>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
+							<a href="{{ path('app_marque_edit', {'id': marque.id}) }}" class="btn btn-primary">Modifier</a>
+							&nbsp
+							{{ include('marque/_delete_form.html.twig') }}
+						</center>
+					</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ marque.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ marque.nom }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_marque_index') }}" class="btn btn-primary">Retour Liste</a>
-
-    <a href="{{ path('app_marque_edit', {'id': marque.id}) }}" class="btn btn-primary">Modifier</a>
-
-    {{ include('marque/_delete_form.html.twig') }}
+				</div>
+			</div>
+		</table>
+	</div>
 {% endblock %}

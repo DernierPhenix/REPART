@@ -28,58 +28,60 @@
 	</div>
 {% endblock %}
 {% block contenu %}
-	<h1>Liste Tickets</h1>
+	<div class="container">
+		<br/>
+		<h1>Liste Tickets</h1>
+		<br/>
 
 
-	<table class="table table-secondary table-striped">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Statut</th>
-				<th>Description</th>
-				<th>État du Produit</th>
-				<th>Date de Création</th>
-				<th>Date de Modification</th>
-
-				<th>Nom du client</th>
-				<th>Produit</th>
-				<th>Sous-Catégories</th>
-				<th>Employé</th>
-				{# <th>Voir</th>
-				                <th>Action</th> #}
-			</tr>
-		</thead>
-		<tbody>
-			{% for ticket in tickets %}
-				<div>
-					<tr class="trr" href="{{ path('app_tickets_show', {'id': ticket.id}) }}">
-
-						<td>{{ ticket.id }}</td>
-						<td>{{ ticket.statut }}</td>
-						<td>{{ ticket.description }}</td>
-						<td>{{ ticket.etat }}</td>
-						<td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d') : '' }}</td>
-						<td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td>
-						<td>{{ ticket.clients.nom}}</td>
-						<td>{{ ticket.produits.modele}}</td>
-						<td>{{ ticket.produits.sousCategories.nom}}</td>
-						<td>{{ ticket.user.nom}}</td>
-					</tr>
-
-					{# <a  href="{{ path('app_tickets_show', {'id': ticket.id}) }}" class ="btn btn-primary">Voir</a> #}
-				</div>
-
-
-			{% else %}
+		<table class="table table-hover">
+			<a class="btn btn-primary" href="{{ path('app_tickets_new') }}">Créer</a>
+			<br/>
+			<thead>
 				<tr>
-					<td colspan="8">Pas de ticket trouvé</td>
+					<th>Id</th>
+					<th>Statut</th>
+					<th>Description</th>
+					<th>État du Produit</th>
+					<th>Date de Création</th>
+					<th>Date de Modification</th>
+					<th>Nom du client</th>
+					<th>Produit</th>
+					<th>Sous-Catégories</th>
+					<th>Employé</th>
+
 				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				{% for ticket in tickets %}
+					<div>
+						<tr class="trr" href="{{ path('app_tickets_show', {'id': ticket.id}) }}">
 
-	<a class="btn btn-primary" href="{{ path('app_tickets_new') }}">Créer un Nouveau Ticket</a>
+							<td>{{ ticket.id }}</td>
+							<td>{{ ticket.statut }}</td>
+							<td>{{ ticket.description }}</td>
+							<td>{{ ticket.etat }}</td>
+							<td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d') : '' }}</td>
+							<td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td>
+							<td>{{ ticket.clients.nom}}</td>
+							<td>{{ ticket.produits.modele}}</td>
+							<td>{{ ticket.produits.sousCategories.nom}}</td>
+							<td>{{ ticket.user.nom}}</td>
+						</tr>
 
+						{# <a  href="{{ path('app_tickets_show', {'id': ticket.id}) }}" class ="btn btn-primary">Voir</a> #}
+					</div>
+
+
+				{% else %}
+					<tr>
+						<td colspan="8">Pas de ticket trouvé</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
 	<script>
 
 		$(document).ready(function () {

@@ -15,11 +15,18 @@
 
 {% block contenu %}
 	<div class="container">
+		<br/>
 		<h1>Créer une nouvelle Sous-Catégorie</h1>
+		<br/>
 		<a href="{{ path('app_sous_categorie_index') }}" class="btn btn-primary">Retour liste</a>
-		<tbody class="d-flex justify-content-center ">
-			{{ include('sous_categorie/_form.html.twig') }}
-		</tbody>
-	</div>
+		<br/>
+		<br/>
+		<td>
+			<div class="text-center">
 
+				{{ include('sous_categorie/_form.html.twig') }}
+
+			</div>
+		</td>
+	</div>
 {% endblock %}

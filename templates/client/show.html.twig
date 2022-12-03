@@ -24,7 +24,7 @@
 {% block contenu %}
 	<div class="container">
 		<br/>
-
+        <h1>Client</h1>
 
 		<table class=" d-flex justify-content-center">
 			<a href="{{ path('app_client_index') }}" class="btn btn-primary">Retour liste</a>
@@ -34,9 +34,8 @@
 				<div class="card " style="width: 25rem;">
 					<div class="card-body">
 						<center class="m-t-30 d-flex justify-content-center">
-
 							<h1>
-								
+								{{client.prenom}}
 								{{client.nom}}
 							</h1>
 						</center>

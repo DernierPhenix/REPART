@@ -2,10 +2,6 @@
 
 {% block title %}Nouveau client
 {% endblock %}
-
-{% block style %}
-	<style></style>
-{% endblock %}
 {% block navbarTop %}
 	<div class="logOut d-flex justify-content-around">
 		{% if app.user %}
@@ -16,13 +12,22 @@
 		{% endif %}
 	</div>
 {% endblock %}
-
-
 {% block contenu %}
+	<div class="container">
+		<br/>
+		<h1>Créer un nouveau client</h1>
+		<br/>
+		<a class='btn btn-primary' id='btn-cat' href="{{ path('app_client_index') }}">Retour Liste</a>
+		<br/>
+		<br/>
+		<td>
+			<div class="text-center">
+				{{ include('client/_form.html.twig') }}
+			</div>
+		</td>
 
 
-	{{ include('client/_form.html.twig') }}
-
-
+	</div>
 
 {% endblock %}
+

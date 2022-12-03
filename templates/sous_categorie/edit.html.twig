@@ -1,17 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modification de Sous Categorie
+{% block title %}Modification Sous Categorie
+{% endblock %}
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
 {% endblock %}
 
 {% block contenu %}
 	<div class="container">
+		<br/>
 		<h1>Modification de Sous Categorie</h1>
+		<br/>
 
 		<a href="{{ path('app_sous_categorie_index') }}" class="btn btn-primary">Retour liste</a>
-		<tbody class="d-flex justify-content-center ">
-			{{ include('sous_categorie/_form.html.twig', {'button_label': 'Modifier'}) }}
-			<br>
-			{{ include('sous_categorie/_delete_form.html.twig') }}
-		</tbody>
+		<br/>
+		<br/>
+		<td>
+			<div class="text-center">
+
+				{{ include('sous_categorie/_form.html.twig', {'button_label': 'Modifier'}) }}
+				<br>
+				{{ include('sous_categorie/_delete_form.html.twig') }}
+			</div>
+		</td>
 	</div>
+
 {% endblock %}

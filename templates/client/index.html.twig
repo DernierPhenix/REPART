@@ -7,7 +7,7 @@
 	<style>
 		.trr {
 
-			transition: all .2s ease-in-out;
+			transition: all 0.2s ease-in-out;
 			cursor: pointer;
 
 		}
@@ -36,15 +36,15 @@
 		<h1>Liste des clients</h1>
 		<br/>
 		<div class="table">
+			<div class="d-flex justify-content-between">
+				<a href="{{ path('app_client_new') }}" class="btn btn-primary">Créer</a>
+				<input id='searchBar' type="text" placeholder="Recherche par id ou client" class="searchBar form-control w-25">
+			</div>
 
 			<div class="table-wrapper">
 
 
 				<table class="table table-hover">
-					<a href="{{ path('app_client_new') }}" class="btn btn-primary">Créer</a>
-					<div class="d-flex justify-content-end">
-						<input id='searchBar' type="text" placeholder="Recherche par id ou client" class="searchBar form-control w-25">
-					</div>
 					<thead>
 						<tr>
 							<th>Id</th>
@@ -56,13 +56,13 @@
 							<th>Telephone</th>
 							<th>Email</th>
 							<th>RaisonSociale</th>
-							<th>actions</th>
+
 						</tr>
 					</thead>
 					<tbody class='tableauxR'>
 						{% for client in clients %}
 
-							<tr>
+							<tr class="trr" href="{{ path('app_client_show', {'id': client.id}) }}">
 								<td>{{ client.id }}</td>
 								<td>{{ client.nom }}</td>
 								<td>{{ client.prenom }}</td>
@@ -72,10 +72,7 @@
 								<td>{{ client.telephone }}</td>
 								<td>{{ client.email }}</td>
 								<td>{{ client.raisonSociale }}</td>
-								<td>
-									<a href="{{ path('app_client_show', {'id': client.id}) }}" class="btn btn-primary">Voir</a>
-									<a href="{{ path('app_client_edit', {'id': client.id}) }}" class="btn btn-primary">Modifier</a>
-								</td>
+
 							</tr>
 						{% else %}
 							<tr>
@@ -119,18 +116,8 @@ console.log(response);
 let liste = "";
 
 $.each(response, function (index, value) { // J'ajoute chaque élément dans une liste
-if ( input.toLowerCase() == value.nom.toLowerCase() || input.toLowerCase() == value.nom.substr(-20, 3)  
-|| input.toLowerCase() == value.nom.substr(-20, 4) 
-|| input.toLowerCase() == value.nom.substr(-20, 5)
-|| input.toLowerCase() == value.nom.substr(-20, 6)  
-|| input.toLowerCase() == value.telephone.substr(-20, 3)
-|| input.toLowerCase() == value.telephone.substr(-20, 4)
-|| input.toLowerCase() == value.telephone.substr(-20, 5)
-|| input.toLowerCase() == value.telephone.substr(-20, 6)
-|| input.toLowerCase() == value.nom
-|| input.toLowerCase() == value.telephone)  {
-liste += '<tr class="trr"> ' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' + '<a class="btn btn-primary" href=https://localhost:8000/client/' + value.id + ">" + " VOIR "+ '</td>'+
- '</tr>'
+if (input.toLowerCase() == value.nom.toLowerCase() || input.toLowerCase() == value.nom.substr(-20, 3) || input.toLowerCase() == value.nom.substr(-20, 4) || input.toLowerCase() == value.nom.substr(-20, 5) || input.toLowerCase() == value.nom.substr(-20, 6) || input.toLowerCase() == value.telephone.substr(-20, 3) || input.toLowerCase() == value.telephone.substr(-20, 4) || input.toLowerCase() == value.telephone.substr(-20, 5) || input.toLowerCase() == value.telephone.substr(-20, 6) || input.toLowerCase() == value.nom || input.toLowerCase() == value.telephone) {
+liste += '<tr class="trr"> ' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' + '<a class="btn btn-primary" href=https://localhost:8000/client/' + value.id + ">" + " VOIR " + '</td>' + '</tr>'
 
 }
 });

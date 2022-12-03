@@ -1,16 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste Utilisateurs{% endblock %}
-
-{% block style %}
-    <style>
-        .btn{
-            margin: 0.1%;
-
-        }
-    </style>
+{% block title %}Liste Utilisateurs
 {% endblock %}
 
+{% block style %}
+	<style>
+		.trr {
+
+			transition: all 0.2s ease-in-out;
+			cursor: pointer;
+
+		}
+		.trr:hover {
+
+			transform: scale(1.02);
+		}
+	</style>
+{% endblock %}
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
+{% endblock %}
 {% block contenu %}
 
 
@@ -33,23 +49,20 @@
 							<th>Role</th>
 							<th>Nom</th>
 							<th>Prenom</th>
-							<th>actions</th>
+
 						</tr>
 					</thead>
 					<tbody class='tableauxR'>
 						{% for user in users %}
 
-							<tr>
+							<tr class="trr" href="{{ path('app_user_show', {'id': user.id}) }}">
 								<td>{{ user.id }}</td>
 								<td>{{ user.login }}</td>
 								<td>{{ user.roles[0] ? user.roles[0]|json_encode : '' }}</td>
 
 								<td>{{ user.nom }}</td>
 								<td>{{ user.prenom }}</td>
-								<td>
-									<a class="btn btn-primary" href="{{ path('app_user_show', {'id': user.id}) }}">Voir</a>
-									<a class="btn btn-primary" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
-								</td>
+
 							</tr>
 						{% else %}
 							<tr>
@@ -62,4 +75,13 @@
 			</div>
 		</div>
 	</div>
+	<script>
+
+		$(document).ready(function () {
+$('table tr').click(function () {
+window.location = $(this).attr('href');
+return false;
+});
+});
+	</script>
 {% endblock %}

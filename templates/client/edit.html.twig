@@ -3,9 +3,7 @@
 {% block title %}Modification Client
 {% endblock %}
 
-{% block style %}
-	<style></style>
-{% endblock %}
+
 {% block navbarTop %}
 	<div class="logOut d-flex justify-content-around">
 		{% if app.user %}
@@ -20,13 +18,18 @@
 
 {% block contenu %}
 	<div class="container">
+		<br/>
 		<h1>Modification Client</h1>
+		<br/>
 		<a href="{{ path('app_client_index') }}" class="btn btn-primary">Retour liste</a>
-		<tbody class="d-flex justify-content-center ">
-
-			{{ include('client/_form.html.twig', {'button_label': 'Modifier'}) }}
-			<br>
-			{{ include('client/_delete_form.html.twig') }}
-		</tbody>
+		<br/>
+		<br/>
+		<td>
+			<div class="text-center">
+				{{ include('client/_form.html.twig', {'button_label': 'Modifier'}) }}
+				<br>
+				{{ include('client/_delete_form.html.twig') }}
+			</div>
+		</td>
 	</div>
 {% endblock %}
