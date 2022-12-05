@@ -1,8 +1,23 @@
 {% extends 'base.html.twig' %}
 
+<<<<<<< HEAD
 {% block title %}Accueil
 {% endblock %}
 
 {% block contenu %}
 {# {{ include('tickets/index.html.twig') }} #}
 {% endblock %}
+=======
+{% block title %}Bienvenue {{ app.user.userIdentifier }} !
+{% endblock %}
+{# {% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
+{% endblock %} #}
+>>>>>>> ee555721e6b1257220d2573297cdbfd69095a128

@@ -1,39 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}User
+{% endblock %}
 
 {% block contenu %}
-    <h1>User</h1>
+	<div class="container">
+		<br/>
+		<h1>Employé</h1>
+		<table class=" d-flex justify-content-center">
+			<a href="{{ path('app_user_index') }}" class="btn btn-primary">Retour liste</a>
+			<br/>
+			<br/>
+			<div class=" d-flex justify-content-center">
+				<div class="card " style="width: 25rem;">
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Login</th>
-                <td>{{ user.login }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-          
-            <tr>
-                <th>Nom</th>
-                <td>{{ user.nom }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ user.prenom }}</td>
-            </tr>
-        </tbody>
-    </table>
+							<h1>
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+								{{ user.prenom }}
+								{{ user.nom }}
+							</h1>
+						</center>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<small class="text-muted">Id</small>
+						<h6>{{ user.id }}</h6>
+						<small class="text-muted">Login</small>
+						<h6>{{ user.login }}</h6>
+						<small class="text-muted">Prenom</small>
+						<h6>{{ user.prenom }}</h6>
+						<small class="text-muted">Nom</small>
+						<h6>{{ user.nom }}</h6>
+						<small class="text-muted">Role</small>
+						<h6>{{ user.roles ? user.roles|json_encode : '' }}</h6>
 
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
+							<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-primary">Modifier</a>
+							&nbsp
+							{{ include('user/_delete_form.html.twig') }}
 
-    {{ include('user/_delete_form.html.twig') }}
+						</center>
+					</div>
+
+				</div>
+			</div>
+		</table>
+	</div>
 {% endblock %}

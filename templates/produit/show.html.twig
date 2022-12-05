@@ -1,27 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit{% endblock %}
+{% block title %}Produit
+{% endblock %}
+
 
 {% block contenu %}
-    <h1>Produit</h1>
+	<div class="container">
+		<br/>
+		<h1>Produit</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ produit.id }}</td>
-            </tr>
-            <tr>
-                <th>Marque</th>
-                <td>{{ produit.marque }}</td>
-            </tr>
-            
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_produit_index') }}">back to list</a>
+		<table class=" d-flex justify-content-center">
+			<a href="{{ path('app_produit_index') }}" class="btn btn-primary">Retour liste</a>
+			<br/>
+			<br/>
+			<div class=" d-flex justify-content-center">
+				<div class="card " style="width: 25rem;">
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
+							<h1>
+								{{ produit.modele }}
+							</h1>
+						</center>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<small class="text-muted">Id</small>
+						<h6>{{ produit.id }}</h6>
+						<small class="text-muted">Marque</small>
+						<h6>{{ produit.marque.nom }}</h6>
+						<small class="text-muted">Categorie</small>
+						<h6>{{ produit.sousCategories.categories.nom }}</h6>
+						<small class="text-muted">Sous categorie</small>
+						<h6>{{ produit.sousCategories.nom }}</h6>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
+							<a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-primary">Modifier</a>
+							&nbsp
+							{{ include('produit/_delete_form.html.twig') }}
 
-    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
+						</center>
+					</div>
 
-    {{ include('produit/_delete_form.html.twig') }}
+				</div>
+			</div>
+		</table>
+	</div>
+
+
 {% endblock %}

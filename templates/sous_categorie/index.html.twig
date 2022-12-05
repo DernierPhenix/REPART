@@ -1,38 +1,77 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SousCategorie index{% endblock %}
+{% block title %}Liste des Sous Categories
+{% endblock %}
+{% block style %}
+	<style>
+		.trr {
 
-{% block contenu %}
-    <h1>SousCategorie index</h1>
+			transition: all 0.2s ease-in-out;
+			cursor: pointer;
 
-    <table class="table table-secondary table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Categories</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for sous_categorie in sous_categories %}
-            <tr>
-                <td>{{ sous_categorie.id }}</td>
-                <td>{{ sous_categorie.nom }}</td>
-                <td>{{ sous_categorie.categories.nom }}</td>
-                <td>
-                    <a href="{{ path('app_sous_categorie_show', {'id': sous_categorie.id}) }}">show</a>
-                    <a href="{{ path('app_sous_categorie_edit', {'id': sous_categorie.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+		}
+		.trr:hover {
 
-    <a href="{{ path('app_sous_categorie_new') }}">Create new</a>
+			transform: scale(1.02);
+		}
+	</style>
+{% endblock %}
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
 {% endblock %}
 
+{% block contenu %}
+	<div class="container">
+		<br/>
+		<h1>Liste des sous categorie</h1>
+		<br/>
+		<div class="table">
+
+			<div class="table-wrapper">
+
+
+				<table class="table table-hover">
+					<a href="{{ path('app_sous_categorie_new') }}" class="btn btn-primary">Créer</a>
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nom</th>
+
+						</tr>
+					</thead>
+					<tbody class='tableauxR'>
+						{% for sous_categorie in sous_categories %}
+
+							<tr class="trr" href="{{ path('app_sous_categorie_show', {'id': sous_categorie.id}) }}">
+								<td>{{ sous_categorie.id }}</td>
+								<td>{{ sous_categorie.nom }}</td>
+
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="10">no records found</td>
+							</tr>
+						</tbody>
+					{% endfor %}
+				</table>
+
+			</div>
+		</div>
+	</div>
+	<script>
+
+		$(document).ready(function () {
+$('table tr').click(function () {
+window.location = $(this).attr('href');
+return false;
+});
+});
+	</script>
+{% endblock %}

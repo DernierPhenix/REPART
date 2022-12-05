@@ -1,56 +1,94 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tickets index{% endblock %}
-
-{% block contenu %}
-    <h1>Tickets index</h1>
-
-    <table class="table table-secondary table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                
-                <th>Statut</th>
-                <th>Description</th>
-                <th>L'etat</th>
-                <th>Date de creation</th>
-                <th>Date Modif</th>
-                <th>Rapport</th>
-                <th>Nom du client</th>
-                <th>Produit</th>
-                <th>Sous - categories</th>
-                <th>Employé</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for ticket in tickets %}
-            <tr>
-                <td>{{ ticket.id }}</td>
-                
-                <td>{{ ticket.statut }}</td>
-                <td>{{ ticket.description }}</td>
-                <td>{{ ticket.etat }}</td>
-                <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d') : '' }}</td>
-                <td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td>
-                <td>{{ ticket.rapport }}</td>
-                <td>{{ ticket.clients.nom}}</td>
-                <td>{{ ticket.modele}}</td>
-                <td>{{ ticket.produits.sousCategories.nom}}</td>
-                <td>{{ ticket.user.nom}}</td>
-                <td>
-                    <a href="{{ path('app_tickets_show', {'id': ticket.id}) }}">show</a>
-                    <a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_tickets_new') }}">Create new</a>
+{% block title %}Liste Tickets
 {% endblock %}
 
+{% block style %}
+	<style>
+		.trr {
+
+			transition: all 0.2s ease-in-out;
+			cursor: pointer;
+
+		}
+		.trr:hover {
+
+			transform: scale(1.02);
+		}
+	</style>
+{% endblock %}
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
+{% endblock %}
+{% block contenu %}
+	<div class="container">
+		<br/>
+		<h1>Liste Tickets</h1>
+		<br/>
+
+
+		<table class="table table-hover">
+			<a class="btn btn-primary" href="{{ path('app_tickets_new') }}">Créer</a>
+			<br/>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Statut</th>
+					<th>Description</th>
+					<th>État du Produit</th>
+					<th>Date de Création</th>
+					<th>Date de Modification</th>
+					<th>Nom du client</th>
+					<th>Produit</th>
+					<th>Sous-Catégories</th>
+					<th>Employé</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				{% for ticket in tickets %}
+					<div>
+						<tr class="trr" href="{{ path('app_tickets_show', {'id': ticket.id}) }}">
+
+							<td>{{ ticket.id }}</td>
+							<td>{{ ticket.statut }}</td>
+							<td>{{ ticket.description }}</td>
+							<td>{{ ticket.etat }}</td>
+							<td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d') : '' }}</td>
+							<td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td>
+							<td>{{ ticket.clients.nom}}</td>
+							<td>{{ ticket.produits.modele}}</td>
+							<td>{{ ticket.produits.sousCategories.nom}}</td>
+							<td>{{ ticket.user.nom}}</td>
+						</tr>
+
+						{# <a  href="{{ path('app_tickets_show', {'id': ticket.id}) }}" class ="btn btn-primary">Voir</a> #}
+					</div>
+
+
+				{% else %}
+					<tr>
+						<td colspan="8">Pas de ticket trouvé</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	</div>
+	<script>
+
+		$(document).ready(function () {
+$('table tr').click(function () {
+window.location = $(this).attr('href');
+return false;
+});
+});
+	</script>
+{% endblock %}

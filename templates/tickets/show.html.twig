@@ -1,46 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tickets{% endblock %}
+{% block title %}Ticket
+{% endblock %}
 
 {% block contenu %}
-    <h1>Tickets</h1>
+	<div class="container">
+		<br/>
+		<h1>Ticket</h1>
+		<table class=" d-flex justify-content-center">
+			<a href="{{ path('app_tickets_index') }}" class="btn btn-primary">Retour liste</a>
+			<br/>
+			<br/>
+			<div class=" d-flex justify-content-center">
+				<div class="card " style="width: 25rem;">
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ ticket.id }}</td>
-            </tr>
-            <tr>
-                <th>Etat</th>
-                <td>{{ ticket.etat }}</td>
-            </tr>
-            <tr>
-                <th>Statut</th>
-                <td>{{ ticket.statut }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ ticket.description }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Rapport</th>
-                <td>{{ ticket.rapport }}</td>
-            </tr>
-        </tbody>
-    </table>
+							<h1>
+								Ticket no:
+								{{ ticket.id }}
+							</h1>
+						</center>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<small class="text-muted">Statut</small>
+						<h6>{{ ticket.statut }}</h6>
+						<small class="text-muted">Crée le</small>
+						<h6>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d H:i:s') : '' }}</h6>
+						<small class="text-muted">Modifiée le</small>
+						<h6>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d H:i:s') : '' }}</h6>
+						<small class="text-muted">Client</small>
+						<h6>{{ ticket.clients.nom}}</h6>
+						<small class="text-muted">Employé chargé</small>
+						<h6>{{ ticket.user.nom }}</h6>
+						<small class="text-muted">Etat</small>
+						<h6>{{ ticket.etat}}</h6>
+						<small class="text-muted">Description</small>
+						<h6>{{ ticket.description }}</h6>
+						<small class="text-muted">Rapport</small>
+						<h6>{{ ticket.rapport }}</h6>
 
-    <a href="{{ path('app_tickets_index') }}">back to list</a>
+					</div>
+					<div><hr></div>
+					<div class="card-body">
+						<center class="m-t-30 d-flex justify-content-center">
+							<a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}" class="btn btn-primary">Modifier</a>
+							&nbsp
+							{{ include('tickets/_delete_form.html.twig') }}
 
-    <a href="{{ path('app_tickets_edit', {'id': ticket.id}) }}">edit</a>
+						</center>
+					</div>
 
-    {{ include('tickets/_delete_form.html.twig') }}
+				</div>
+			</div>
+		</table>
+	</div>
 {% endblock %}

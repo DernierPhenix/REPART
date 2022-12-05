@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CATÉGORIES
+{% block title %}Liste des catégories
 {% endblock %}
 
 {% block style %}
 	<style>
+<<<<<<< HEAD
     h5{
         
         text-align:center;
@@ -31,16 +32,68 @@
     background: #007bff;
     }
     </style>
+=======
+		.image {
+			height: 40%;
+			width: 40%;
+		}
+		.option {
+			height: 100%;
+			width: 100%;
+		}
+		#btn-cat {
+			display: inline-block;
+			text-align: center;
+			vertical-align: middle;
+			padding: 6px 15px;
+			border: 0 solid #3c14ca;
+			border-radius: 30px;
+			background: #007bff;
+		}
+		.trr {
+
+			transition: all 0.2s ease-in-out;
+			cursor: pointer;
+
+		}
+		.trr:hover {
+
+			transform: scale(1.02);
+		}
+	</style>
+{% endblock %}
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
+>>>>>>> ee555721e6b1257220d2573297cdbfd69095a128
 {% endblock %}
 
 
+<<<<<<< HEAD
 {% block contenu %}
 <br>
 	<h1>CATÉGORIES</h1><br>
+=======
+	<div class="container">
+		<br/>
+		<h1>Liste des catégories</h1>
+		<br/>
+		<div class="table">
+			<div class="d-flex justify-content-between">
+				<a href="{{ path('app_categories_new') }}" class="btn btn-primary">Créer</a>
+				<input id='searchBar' type="text" placeholder="Recherche par id ou client" class="searchBar form-control w-25">
+			</div>
+			<div class="table-wrapper">
+>>>>>>> ee555721e6b1257220d2573297cdbfd69095a128
 
-<div class='row'>
-{% for category in categories %}
 
+<<<<<<< HEAD
 <div class="col-12 col-md-6 col-lg-4 col-xl-3 ">
 <div class="card border-dark mb-3 mx-auto " id="options">
 
@@ -56,15 +109,58 @@
 
 </a>
  <a class='btn btn-primary' href="{{ path('app_categories_show', {'id': category.id}) }}">Voir</a>
+=======
+				<table class="table table-hover">
 
- 
-     </div>  
-    </div>
+>>>>>>> ee555721e6b1257220d2573297cdbfd69095a128
 
-  {% endfor %}
-    </div>
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th></th>
+							<th>Nom</th>
 
-   
-	<a class='btn btn-primary' id='btn-cat'href="{{ path('app_categories_new') }}">NOUVEL CATÉGORIES</a>
-					
- {% endblock %} 
+						</tr>
+					</thead>
+					<tbody class='tableauxR'>
+						{% for category in categories %}
+
+							<tr class="trr" href="{{ path('app_categories_show', {'id': category.id}) }}">
+								<td>
+									<div class="card-body">
+										<h5 class="card-title">{{category.id}}</h5>
+									</div>
+								</td>
+								<td>
+									<div class='card-header text-center'>
+										<img src="/uploads/images/{{category.image}}" class='image' style="width:20px;" alt="Card image cap">
+									</div>
+								</td>
+								<td>
+									<div class="card-body">
+										<h5 class="card-title">{{category.nom}}</h5>
+									</div>
+								</td>
+
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="10">no records found</td>
+							</tr>
+						</tbody>
+					{% endfor %}
+				</table>
+
+			</div>
+		</div>
+	</div>
+	<script>
+
+		$(document).ready(function () {
+$('table tr').click(function () {
+window.location = $(this).attr('href');
+return false;
+});
+});
+	</script>
+{% endblock %}

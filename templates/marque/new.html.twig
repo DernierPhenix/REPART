@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle marque
+{% endblock %}
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
+{% endblock %}
+{% block contenu %}
+	<div class="container">
+		<br/>
+		<h1>Créer Une Nouvelle Marque</h1>
+		<br/>
+		<a class="btn btn-primary "href="{{ path('app_marque_index') }}">Retour Liste</a>
+		<br/>
+		<br/>
+		<td>
+			<div class="text-center">
+				{{ include('marque/_form.html.twig') }}
+			</div>
+		</td>
+
+
+	</div>
+
+{% endblock %}

@@ -2,13 +2,16 @@
 
 namespace App\Controller;
 
+
+use DateTime;
 use App\Entity\Tickets;
-use App\Form\TicketsType;
+use App\Form\TicketsTypeCreate;
+use App\Form\TicketsTypeUpdate;
 use App\Repository\TicketsRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/tickets')]
 class TicketsController extends AbstractController
@@ -24,11 +27,16 @@ class TicketsController extends AbstractController
     #[Route('/new', name: 'app_tickets_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TicketsRepository $ticketsRepository): Response
     {
+        $date = new DateTime;
         $ticket = new Tickets();
-        $form = $this->createForm(TicketsType::class, $ticket);
+        
+        $form = $this->createForm(TicketsTypeCreate::class, $ticket);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ticket->setUser($this->getUser());
+            $ticket->setStatut('NOUVEAU');
+            $ticket->setCreatedAt($date);
             $ticketsRepository->save($ticket, true);
 
             return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);
@@ -51,10 +59,13 @@ class TicketsController extends AbstractController
     #[Route('/{id}/edit', name: 'app_tickets_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Tickets $ticket, TicketsRepository $ticketsRepository): Response
     {
-        $form = $this->createForm(TicketsType::class, $ticket);
+        $date = new DateTime();
+
+        $form = $this->createForm(TicketsTypeUpdate::class, $ticket);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $ticket->setUpdatedAt($date);
             $ticketsRepository->save($ticket, true);
 
             return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);

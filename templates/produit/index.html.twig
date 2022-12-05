@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+<<<<<<< HEAD
 {% block title %}Catégories
 {% endblock %}
 
@@ -7,41 +8,86 @@
 	<style></style>
 {% endblock %}
 	
+=======
+{% block title %}Liste des produits
+{% endblock %}
+{% block style %}
+	<style>
+		.trr {
 
+			transition: all 0.2s ease-in-out;
+			cursor: pointer;
+
+		}
+		.trr:hover {
+>>>>>>> ee555721e6b1257220d2573297cdbfd69095a128
+
+			transform: scale(1.02);
+		}
+	</style>
+{% endblock %}
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
+{% endblock %}
 {% block contenu %}
-    <h1>Produit index</h1>
 
-    <table class="table table-secondary table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Marque</th>
-                
-                <th>Categories</th>
-                <th>Sous-Categories</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for produit in produits %}
-            <tr>
-                <td>{{ produit.id }}</td>
-                <td>{{ produit.marque }}</td>
-                
-                <td>{{ produit.sousCategories.categories.nom }}</td>
-                <td>{{ produit.sousCategories.nom }}</td>
-                <td>
-                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="container">
+		<br/>
+		<h1>Liste des produits</h1>
+		<br/>
+		<div class="table">
+			<a href="{{ path('app_produit_new') }}" class="btn btn-primary">Créer</a>
+			<br/>
+			<div class="table-wrapper">
 
-    <a href="{{ path('app_produit_new') }}">Create new</a>
+
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Marque</th>
+							<th>Modele</th>
+							<th>Categories</th>
+							<th>Sous-Categories</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						{% for produit in produits %}
+							<div>
+								<tr class="trr" href="{{ path('app_produit_show', {'id': produit.id}) }}">
+									<td>{{ produit.id }}</td>
+                                    <td>{{ produit.marque.nom }}</td>
+									<td>{{ produit.modele }}</td>
+									<td>{{ produit.sousCategories.categories.nom }}</td>
+									<td>{{ produit.sousCategories.nom }}</td>
+								</tr>
+							</div>
+						{% else %}
+							<tr>
+								<td colspan="4">Pas de Produits Trouvés</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+	<script>
+
+		$(document).ready(function () {
+$('table tr').click(function () {
+window.location = $(this).attr('href');
+return false;
+});
+});
+	</script>
 {% endblock %}

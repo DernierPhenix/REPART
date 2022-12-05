@@ -1,11 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Tickets{% endblock %}
-
+{% block title %}Nouveau ticket
+{% endblock %}
+{% block navbarTop %}
+	<div class="logOut d-flex justify-content-around">
+		{% if app.user %}
+			bienvenue sur votre espace
+			{{ app.user.userIdentifier }}
+			!
+			<a href="{{ path('app_logout') }}" class="btn btn-light ">Deconnexion</a>
+		{% endif %}
+	</div>
+{% endblock %}
 {% block contenu %}
-    <h1>Create new Tickets</h1>
+	<div class="container">
+		<br/>
+		<h1>Nouveau ticket</h1>
+		<br/>
+		<a href="{{ path('app_tickets_index') }}" class="btn btn-primary">Retour liste</a>
+		<br/>
+		<br/>
+		<td>
+			<div class="text-center">
 
-    {{ include('tickets/_form.html.twig') }}
+				{{ include('tickets/_form.html.twig') }}
+			</div>
+		</td>
 
-    <a href="{{ path('app_tickets_index') }}">back to list</a>
+
+	</div>
+
+
+</div>
 {% endblock %}

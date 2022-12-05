@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ProduitRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
@@ -13,18 +15,25 @@ class Produit
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['show_product'])]
     private ?int $id = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $marque = null;
-
 
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?SousCategorie $sousCategories = null;
+    
 
     #[ORM\OneToMany(mappedBy: 'produits', targetEntity: Tickets::class)]
     private Collection $tickets;
+    
+
+    #[ORM\Column(length: 255)]
+    #[Groups(['show_product'])]
+    private ?string $modele = null;
+
+    #[ORM\ManyToOne(inversedBy: 'marques')]
+    private ?Marque $marque = null;
+    
 
     public function __construct()
     {
@@ -34,18 +43,6 @@ class Produit
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getMarque(): ?string
-    {
-        return $this->marque;
-    }
-
-    public function setMarque(string $marque): self
-    {
-        $this->marque = $marque;
-
-        return $this;
     }
 
     public function getModele(): ?string
@@ -101,4 +98,17 @@ class Produit
 
         return $this;
     }
+
+    public function getMarque(): ?Marque
+    {
+        return $this->marque;
+    }
+
+    public function setMarque(?Marque $marque): self
+    {
+        $this->marque = $marque;
+
+        return $this;
+    }
+
 }
