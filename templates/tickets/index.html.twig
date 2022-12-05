@@ -43,6 +43,7 @@
 					<th>Statut</th>
 					<th>Description</th>
 					<th>État du Produit</th>
+                
 					<th>Date de Création</th>
 					<th>Date de Modification</th>
 					<th>Nom du client</th>
@@ -63,10 +64,10 @@
 							<td>{{ ticket.etat }}</td>
 							<td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d') : '' }}</td>
 							<td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td>
-							<td>{{ ticket.clients.nom}}</td>
-							<td>{{ ticket.produits.modele}}</td>
-							<td>{{ ticket.produits.sousCategories.nom}}</td>
-							<td>{{ ticket.user.nom}}</td>
+							<td>{{ ticket.clients.nom|default("")}}</td>
+							<td>{{ ticket.produits.modele|default("")}}</td>
+							<td>{{ ticket.produits.sousCategories.nom|default("")}}</td>
+							<td>{{ ticket.user.nom|default("")}}</td>
 						</tr>
 
 						{# <a  href="{{ path('app_tickets_show', {'id': ticket.id}) }}" class ="btn btn-primary">Voir</a> #}

@@ -13,6 +13,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 
@@ -31,7 +32,19 @@ class TicketsTypeUpdate extends AbstractType
                 ]
             ])
             
-           
+            ->add('statut', ChoiceType::class, [
+                'placeholder' => 'Veuillez selectionner le statut',
+                'required' => true,
+                'multiple' => false,
+                'expanded' => false,
+                'choices'  => [
+
+                    
+                    'EN COURS' => 'EN COURS',
+                    'RESOLU' => 'RESOLU',
+                    'CLOS' => 'CLOS',
+                ],
+            ])
             
 
             ->add('categories', EntityType::class, [

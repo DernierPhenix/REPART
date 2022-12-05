@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use ORM\JoinColumn;
+
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\MarqueRepository;
 use Doctrine\Common\Collections\Collection;
@@ -20,7 +20,6 @@ class Marque
     private ?string $nom = null;
 
     #[ORM\OneToMany(mappedBy: 'marque', targetEntity: Produit::class)]
-    #[ORM\JoinColumn(nullable: true)]
     private Collection $marques;
 
     public function __construct()

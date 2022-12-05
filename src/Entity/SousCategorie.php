@@ -28,6 +28,7 @@ class SousCategorie
     
 
     #[ORM\ManyToOne(inversedBy: 'sousCategories')]
+    #[ORM\JoinColumn(onDelete:"SET NULL")]
     #[Groups(['show_product'])]
     private ?Categories $categories = null;
     

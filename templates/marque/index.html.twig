@@ -62,11 +62,5 @@
 	</div>
 	<script>
 
-		$(document).ready(function () {
-$('table tr').click(function () {
-window.location = $(this).attr('href');
-return false;
-});
-});
-	</script>
+    <a href="{{ path('app_marque_new') }}">Créer une Nouvelle Marque</a>
 {% endblock %}

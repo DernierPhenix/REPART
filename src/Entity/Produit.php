@@ -20,6 +20,7 @@ class Produit
 
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
+    #[ORM\JoinColumn(onDelete:"SET NULL")]
     private ?SousCategorie $sousCategories = null;
     
 
@@ -32,6 +33,7 @@ class Produit
     private ?string $modele = null;
 
     #[ORM\ManyToOne(inversedBy: 'marques')]
+    #[ORM\JoinColumn(onDelete:"SET NULL")]
     private ?Marque $marque = null;
     
 

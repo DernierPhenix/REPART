@@ -27,57 +27,40 @@
 	</div>
 {% endblock %}
 {% block contenu %}
+    <h1>Produit index</h1>
 
-	<div class="container">
-		<br/>
-		<h1>Liste des produits</h1>
-		<br/>
-		<div class="table">
-			<a href="{{ path('app_produit_new') }}" class="btn btn-primary">Créer</a>
-			<br/>
-			<div class="table-wrapper">
+    <table class="table table-secondary table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Marque</th>
+                <th>Modele</th>
+                <th>Categories</th>
+                <th>Sous-Categories</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.marque.nom|default("") }}</td>
+                <td>{{ produit.modele }}</td>
+                
+                <td>{{ produit.sousCategories.categories.nom|default("") }}</td>
+                <td>{{ produit.sousCategories.nom|default("") }}</td>
+                <td>
+                    <a class ="btn btn-primary" href="{{ path('app_produit_show', {'id': produit.id}) }}">Voir</a>
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Pas de Produits Trouvés</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Marque</th>
-							<th>Modele</th>
-							<th>Categories</th>
-							<th>Sous-Categories</th>
-							
-						</tr>
-					</thead>
-					<tbody>
-						{% for produit in produits %}
-							<div>
-								<tr class="trr" href="{{ path('app_produit_show', {'id': produit.id}) }}">
-									<td>{{ produit.id }}</td>
-                                    <td>{{ produit.marque.nom }}</td>
-									<td>{{ produit.modele }}</td>
-									<td>{{ produit.sousCategories.categories.nom }}</td>
-									<td>{{ produit.sousCategories.nom }}</td>
-								</tr>
-							</div>
-						{% else %}
-							<tr>
-								<td colspan="4">Pas de Produits Trouvés</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-
-			</div>
-		</div>
-	</div>
-	<script>
-
-		$(document).ready(function () {
-$('table tr').click(function () {
-window.location = $(this).attr('href');
-return false;
-});
-});
-	</script>
+    <a href="{{ path('app_produit_new') }}"class ="btn btn-primary">Créer une Nouveau Produit</a>
 {% endblock %}

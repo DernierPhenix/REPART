@@ -28,49 +28,40 @@
 	</div>
 {% endblock %}
 {% block contenu %}
+    <h1>Liste des Utilisateurs</h1>
 
-
-	<div class="container">
-		<br/>
-		<h1>Liste des Employés</h1>
-		<br/>
-		<div class="table">
-
-			<div class="table-wrapper">
-
-
-				<table class="table table-hover">
-					<a href="{{ path('app_user_new') }}" class="btn btn-primary">Créer</a>
-					<br/>
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Login</th>
-							<th>Role</th>
-							<th>Nom</th>
-							<th>Prenom</th>
-
-						</tr>
-					</thead>
-					<tbody class='tableauxR'>
-						{% for user in users %}
-
-							<tr class="trr" href="{{ path('app_user_show', {'id': user.id}) }}">
-								<td>{{ user.id }}</td>
-								<td>{{ user.login }}</td>
-								<td>{{ user.roles[0] ? user.roles[0]|json_encode : '' }}</td>
-
-								<td>{{ user.nom }}</td>
-								<td>{{ user.prenom }}</td>
-
-							</tr>
-						{% else %}
-							<tr>
-								<td colspan="10">Aucune donnée trouvée</td>
-							</tr>
-						</tbody>
-					{% endfor %}
-				</table>
+    <table class="table table-secondary table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Login</th>
+                <th>Rôles</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.login }}</td>
+                <td>{{ user.roles[0] ? user.roles[0]|json_encode : '' }}</td>
+                
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}" class ="btn btn-primary">Voir</a>
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Pas d'Utilisateur Trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
 			</div>
 		</div>
