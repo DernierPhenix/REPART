@@ -24,6 +24,22 @@ class ProduitController extends AbstractController
             'produits' => $produitRepository->findAll(),
         ]);
     }
+    #[Route('/alls/{page?1}/{nbre?8}', name: 'app_produit_index_alls', methods: ['GET'])]
+    public function indexAlls(ProduitRepository $produitRepository, $page, $nbre): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $produits = $produitRepository->findBy([], [], $nbre, ($page -1) * $nbre );
+        $nbreProduit = $produitRepository->count([]);
+        $nbrePage = ceil($nbreProduit / $nbre) ;
+        
+        return $this->render('produit/index.html.twig', [
+            'produits' => $produits,
+            'isPaginated'=> true,
+            'nbrePage' => $nbrePage,
+            'page' => $page,
+            'nbre' => $nbre
+        ]);
+    }
 
     #[Route('/new', name: 'app_produit_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ProduitRepository $produitRepository): Response

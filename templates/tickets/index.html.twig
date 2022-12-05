@@ -33,6 +33,7 @@
                
                 <th>Nom du client</th>
                 <th>Produit</th>
+                <th>Catégories</th>
                 <th>Sous-Catégories</th>
                 <th>Employé</th>
                 {# <th>Voir</th>
@@ -52,6 +53,7 @@
                         <td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td>
                         <td>{{ ticket.clients.nom|default("")}}</td>
                         <td>{{ ticket.produits.modele|default("")}}</td>
+                        <td>{{ ticket.produits.sousCategories.categories.nom|default("")}}</td>
                         <td>{{ ticket.produits.sousCategories.nom|default("")}}</td>
                         <td>{{ ticket.user.nom|default("")}}</td>
                 </tr>

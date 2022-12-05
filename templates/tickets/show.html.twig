@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <th>Categorie</th>
-                <td>{{ ticket.produits.sousCategories.categories.nom }}</td>
+                <td>{{ ticket.produits.sousCategories.categories.nom|default("") }}</td>
             </tr>
             <tr>
                 <th>Date de création</th>
@@ -41,7 +41,7 @@
             </tr>
              <tr>
                 <th>Employé</th>
-                <td>{{ ticket.user.nom }}</td>
+                <td>{{ ticket.user.nom|default("") }}</td>
             </tr>
         </tbody>
     </table>
