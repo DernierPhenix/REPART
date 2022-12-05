@@ -5,7 +5,9 @@ namespace App\Form;
 use App\Entity\Client;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class ClientType extends AbstractType
 {
@@ -18,7 +20,14 @@ class ClientType extends AbstractType
             ->add('cp')
             ->add('ville')
             ->add('telephone')
-            ->add('email')
+            ->add('email', EmailType::class,[
+                'constraints'=>[
+                    new NotBlank([
+                        'message'=>'',
+                    ])
+                ]
+
+            ])
             ->add('raisonSociale')
         ;
     }
