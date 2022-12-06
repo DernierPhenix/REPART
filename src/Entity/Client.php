@@ -11,7 +11,6 @@ use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 #[UniqueEntity('telephone',
 message: 'Ce numéro de Téléphone est déjà enregistré'
@@ -46,7 +45,7 @@ class Client
 
     #[Groups(['show_product'])]
     #[ORM\Column(length: 255)]
-
+    
     private ?string $telephone = null;
 
     #[Groups(['show_product'])]

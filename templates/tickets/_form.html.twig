@@ -50,6 +50,8 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#tickets_type_create_marque').select2();
 });
+
+// fonction qui a la selection d'une categorie retourne les sous categories qui ont ete affiliees a celle ci a leur creation
 $(document).ready(function () {
 $("#tickets_type_create_categories").click(function (e) {
 e.preventDefault();
@@ -62,7 +64,8 @@ url: "https://127.0.0.1:8000/ajax/SousCategorie",
 type: 'GET',
 success: function (response) {
 
-$.each(response, function (index, value) { // J'ajoute chaque élément dans une liste avec un foreach
+let liste = "";
+$.each(response, function (index, value) { 
 if (value.categories.id == input) {
     liste += '<option value="' + value.id +'"> '+ value.nom +'</option>';
 

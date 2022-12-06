@@ -21,6 +21,8 @@ class Produit
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
     #[ORM\JoinColumn(onDelete:"SET NULL")]
+    /*Ici avec l'annotation JoinColumn je precise que si une colonne ayant une relation ManyToOne
+    je peux la supprimer sans produire une suppression en cascade*/
     private ?SousCategorie $sousCategories = null;
     
 

@@ -31,6 +31,7 @@
                 <th>Date de Création</th>
                 <th>Date de Modification</th>
                 <th>Produit</th>
+                <th>Catégories</th>
                 <th>Sous-Catégories</th>
                 <th>Nom du client</th>
                 <th>Employé</th>
@@ -51,6 +52,7 @@
                         <td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td>
                         <td>{{ ticket.clients.nom|default("")}}</td>
                         <td>{{ ticket.produits.modele|default("")}}</td>
+                        <td>{{ ticket.produits.sousCategories.categories.nom|default("")}}</td>
                         <td>{{ ticket.produits.sousCategories.nom|default("")}}</td>
                         <td>{{ ticket.user.nom|default("")}}</td>
                 </tr>

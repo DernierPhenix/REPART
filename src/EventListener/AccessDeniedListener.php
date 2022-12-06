@@ -10,6 +10,8 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AccessDeniedListener implements EventSubscriberInterface
 {
+    /*Ici on met en place un ecouteurs d'evenements et on renvoie une reponse 403
+    si un utilisateur essaie de naviguer via l'URL et n'en a pas les droits */
     public static function getSubscribedEvents(): array
     {
         return [

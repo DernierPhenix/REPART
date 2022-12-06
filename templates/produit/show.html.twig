@@ -14,7 +14,7 @@
 			</tr>
 			<tr>
 				<th>Marque</th>
-				<td>{{ produit.marque.nom }}</td>
+				<td>{{ produit.marque.nom|default("") }}</td>
 			</tr>
 			<tr>
 				<th>modele</th>
@@ -22,11 +22,11 @@
 			</tr>
 			<tr>
 				<th>Categories</th>
-				<td>{{ produit.sousCategories.categories.nom }}</td>
+				<td>{{ produit.sousCategories.categories.nom|default("") }}</td>
 			</tr>
 			<tr>
 				<th>Sous-Categories</th>
-				<td>{{ produit.sousCategories.nom }}</td>
+				<td>{{ produit.sousCategories.nom|default("") }}</td>
 			</tr>
 
 		</tbody>

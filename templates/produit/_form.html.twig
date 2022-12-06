@@ -1,12 +1,13 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+    <button class=" btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
 {{ form_end(form) }}
 
 {% block javascripts %}
 
 <script>
-// In your Javascript (external .js resource or <script> tag)
+// Ici j'initialise ma class select2 pour l'utiliser dans mon formulaire ProduitType et pour pouvoir faire 
+//une barre de recherche d' autocompletion depuis mon entity marque 
 $(document).ready(function() {
     $('.select2').select2();
 });

@@ -26,19 +26,7 @@
 		label {
 			letter-spacing: 1px;
 		}
-		{# input[type="text"],
-		input[type="password"] {
-			margin: 7px 0;
-			border: 1px solid transparent;
-			background: white;
-			height: 36px;
-			width: 100%;
-			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-			border-radius: 9px;
-			font-size: 1.1rem;
-			padding-left: 10px;
-			transition: 0.2s;
-		} #}
+
 		.submit {
 			border: none;
 			background: linear-gradient(#007bff, white);
@@ -91,19 +79,18 @@
 		input[type="radio"].statut:checked + label::after {
 			background-color: #00B7E8;
 		}
-		h5{
-			color:black;
-			
+		h5 {
+			color: black;
+
 		}
-		a:link{
-			text-decoration:none;
+		a:link {
+			text-decoration: none;
 		}
 		/*Fin de style boutton radio */
 	</style>
 {% endblock %}
 
-<h3 class="client">Nouveau Client</h3>
-
+<h3 class="client">Enregister un nouveau Client</h3>
 
 
 <div class="client">
@@ -153,7 +140,7 @@
 	document.getElementById('statut-a').addEventListener('click', event => {
 if (event.target.checked) {
 document.getElementById('client_raisonSociale').disabled = true;
-} 
+}
 });
 document.getElementById('statut-b').addEventListener('click', event => {
 if (event.target.checked) {
@@ -165,9 +152,12 @@ document.getElementById('client_raisonSociale').disabled = false;
 <script>
 	$("#client_cp").autocomplete({
 source: function (request, response) {
+	// Ici j'utilise la fonction ajax de la librairie Jquery pour recuperer les infos de l'API du gouvernement 
 $.ajax({
+	// limit on peut controler le nombre d’elements retournes
 url: "https://api-adresse.data.gouv.fr/search/?q=8+bd+du+port&limit=6" + $("input[name='cp']").val(),
 data: {
+	// paramètre q pour faire une recherche plein texte
 q: request.term
 },
 dataType: "json",

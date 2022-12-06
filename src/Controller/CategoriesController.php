@@ -13,15 +13,18 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
+/* L'annotation IsGranted restreint l'accès aux contrôleurs */
 #[
     Route('/categories'),
     IsGranted('ROLE_USER')
 ]
+
 class CategoriesController extends AbstractController
 {
     #[Route('/', name: 'app_categories_index', methods: ['GET'])]
     public function index(CategoriesRepository $categoriesRepository): Response
     {
+        /*Ici l'acces est autorisé que si un utilisateur est authentifié */
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('categories/index.html.twig', [
             'categories' => $categoriesRepository->findAll(),
@@ -87,6 +90,7 @@ class CategoriesController extends AbstractController
         ]
     public function edit(Request $request, Categories $category, CategoriesRepository $categoriesRepository): Response
     {
+        /*Ici fonction uniquement accessible si un utilisateur est authentifié en tant que ADMIN */
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(CategoriesType::class, $category);
         $form->handleRequest($request);
@@ -109,6 +113,7 @@ class CategoriesController extends AbstractController
     ]
     public function delete(Request $request, Categories $category, CategoriesRepository $categoriesRepository): Response
     {
+        /*Ici fonction uniquement accessible si un utilisateur est authentifié en tant que ADMIN */
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         if ($this->isCsrfTokenValid(
             'delete' . $category->getId(),
