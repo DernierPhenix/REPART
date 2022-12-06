@@ -44,13 +44,14 @@ class Client
 
     #[Groups(['show_product'])]
     #[ORM\Column(length: 255)]
-    #[Regex("/^([\w\.\-]+)@([\w\-]+)((\.(\w){2,4})+)$/", //Mise en place de la contrainte pour l'Email - Ne pas oublier d'importer la classe Regex
-     message: 'Votre email est incorrect'
-    )]
+    
     private ?string $telephone = null;
 
     #[Groups(['show_product'])]
     #[ORM\Column(length: 255)]
+    #[Regex("/^([\w\.\-]+)@([\w\-]+)((\.(\w){2,4})+)$/", //Mise en place de la contrainte pour l'Email - Ne pas oublier d'importer la classe Regex
+     message: 'Votre email est incorrect'
+    )] 
     private ?string $email = null;
 
     #[Groups(['show_product'])]

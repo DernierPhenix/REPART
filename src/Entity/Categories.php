@@ -15,6 +15,7 @@ class Categories
     #[ORM\GeneratedValue]
     #[ORM\Column]
     #[Groups(['show_product'])]
+    /*Ici j'utilise l'annotation Groups pour afficher les attributs dont j'ai besoin dans mon callAjax*/
     private ?int $id = null;
 
     #[Groups(['show_product'])]

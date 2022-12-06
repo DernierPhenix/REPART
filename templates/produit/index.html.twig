@@ -4,56 +4,39 @@
 {% endblock %}
 
 {% block contenu %}
-    <h1>Produit index</h1>
+	<h1>Liste des Produits</h1>
 
-    <table class="table table-secondary table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Marque</th>
-                <th>Modele</th>
-                <th>Categories</th>
-                <th>Sous-Categories</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for produit in produits %}
-            <tr>
-                <td>{{ produit.id }}</td>
-                <td>{{ produit.marque.nom|default("") }}</td>
-                <td>{{ produit.modele }}</td>
-                
-                <td>{{ produit.sousCategories.categories.nom|default("") }}</td>
-                <td>{{ produit.sousCategories.nom|default("") }}</td>
-                <td>
-                    <a class ="btn btn-primary" href="{{ path('app_produit_show', {'id': produit.id}) }}">Voir</a>
-                    
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">Pas de Produits Trouvés</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    {% if isPaginated %}
-    
-    <nav aria-label="Page navigation example">
-  <ul class="pagination">
-  {% if page != 1 %}
-    <li class="page-item"><a class="page-link" href="{{ path('app_produit_index_alls', {page: page - 1, nbre: nbre}) }}">Retour</a></li>
-    {% endif %}
-    {% for i in range(1, nbrePage) %}
-        <li class="page-item"><a class="page-link" href="{{ path('app_produit_index_alls', {page: i, nbre: nbre}) }}">{{ i }}</a></li>
-    {% endfor %}
-    <li class="page-item"><a class="page-link" href="{{ path('app_produit_index_alls', {page: page + 1, nbre: nbre}) }}">Suivant</a></li>
-  </ul>
-</nav>
-        
-   
-    
-{% endif %}
-    <a href="{{ path('app_produit_new') }}"class ="btn btn-primary">Créer une Nouveau Produit</a>
+	<table class="table table-secondary table-striped">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Marque</th>
+				<th>Modele</th>
+				<th>Categories</th>
+				<th>Sous-Categories</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for produit in produits %}
+				<tr>
+					<td>{{ produit.id }}</td>
+					<td>{{ produit.marque.nom|default("") }}</td>
+					<td>{{ produit.modele }}</td>
+
+					<td>{{ produit.sousCategories.categories.nom|default("") }}</td>
+					<td>{{ produit.sousCategories.nom|default("") }}</td>
+					<td>
+						<a class="btn btn-primary" href="{{ path('app_produit_show', {'id': produit.id}) }}">Voir</a>
+
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">Pas de Produits Trouvés</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<a href="{{ path('app_produit_new') }}" class="btn btn-primary">Créer une Nouveau Produit</a>
 {% endblock %}

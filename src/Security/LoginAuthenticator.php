@@ -35,6 +35,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             new UserBadge($login),
             new PasswordCredentials($request->request->get('password', '')),
             [
+                /*Jeton qui recupere les elements d'identification de l'utilisateur et des elements propres de sa machine*/
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
             ]
         );
