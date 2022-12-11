@@ -27,7 +27,7 @@
                 <th>Statut</th>
                 <th>Description</th>
                 <th>État du Produit</th>
-                
+                <th>Rapport</th>
                 <th>Date de Création</th>
                 <th>Date de Modification</th>
                
@@ -49,6 +49,7 @@
                         <td>{{ ticket.statut }}</td>
                         <td>{{ ticket.description }}</td>
                         <td>{{ ticket.etat }}</td>
+                        <td>{{ ticket.rapport|default("") }}</td>
                         <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d') : '' }}</td>
                         <td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td>
                         <td>{{ ticket.clients.nom|default("")}}</td>

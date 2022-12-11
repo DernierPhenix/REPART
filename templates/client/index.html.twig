@@ -112,11 +112,12 @@ if ( input.toLowerCase() == value.nom.toLowerCase() || input.toLowerCase() == va
 || input.toLowerCase() == value.telephone.substr(-20, 6)
 || input.toLowerCase() == value.nom
 || input.toLowerCase() == value.telephone)  {
-liste += '<tr class="trr"> ' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' + '<a class="btn btn-primary btn-sm" href=https://localhost:8000/client/' + value.id + ">" + " VOIR "+ '</td>'+
+liste += '<tr class="trr"> ' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' + '<a class="btn btn-primary btn-sm" href=https://127.0.0.1:8000/client/' + value.id + ">" + " VOIR "+ '</td>'+
  '</tr>'
 
-}else if (input == ""){
-	liste += '<tr class="trr"> ' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' + '<a class="btn btn-primary btn-sm" href=https://localhost:8000/client/' + value.id + ">" + " VOIR "+ '</td>'+
+}
+else if (input == ""){
+	liste += '<tr class="trr"> ' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' + '<a class="btn btn-primary btn-sm" href=https://127.0.0.1:8000/client/' + value.id + ">" + " VOIR "+ '</td>'+
  '</tr>'
 }
 });

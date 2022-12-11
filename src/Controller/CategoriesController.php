@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 /* L'annotation IsGranted restreint l'accès aux contrôleurs */
+
 #[
     Route('/categories'),
     IsGranted('ROLE_USER')
@@ -85,13 +86,36 @@ class CategoriesController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_categories_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Categories $category, CategoriesRepository $categoriesRepository): Response
+    public function edit(Request $request, Categories $category, CategoriesRepository $categoriesRepository, SluggerInterface $slugger): Response
     {
         /*Ici fonction uniquement accessible si un utilisateur est authentifié en tant que ADMIN */
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(CategoriesType::class, $category);
         $form->handleRequest($request);
+        $image = $form->get('image')->getData();
 
+        // création du nom d'un nouveau fichier 
+        if ($image) {
+            $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            // ceci est nécessaire pour inclure en toute sécurité le nom du fichier dans l'URL
+            $safeFilename = $slugger->slug($originalFilename);
+            // recupere le nouveau nom du fichier  lui concatene avec un numéro unique 
+            $newFilename = $safeFilename . '-' . uniqid() . '.' . $image->guessExtension();
+
+            // Déplacez le fichier dans le répertoire où sont stockées les brochures 
+            try {
+                $image->move(
+                    $this->getParameter('categories_directory'),
+                    $newFilename
+                );
+            } catch (FileException $e) {
+                // ... gére l'exception si quelque chose se produit pendant le téléchargement du fichier
+            }
+
+            // met à jour la propriété 'categorieFilename' pour stocker le nom du fichier 
+            // à la place de son contenu
+            $category->setImage($newFilename);
+        }
         if ($form->isSubmitted() && $form->isValid()) {
             $categoriesRepository->save($category, true);
 
