@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste clients
+{% endblock %}
+
+{% block style %}
+	<style>
+		.trr {
+
+			transition: all .2s ease-in-out;
+			cursor: pointer;
+
+		}
+		.trr:hover {
+
+			transform: scale(1.02);
+		}
+		
+	</style>
+{% endblock %}
+
+
+
+
+{% block contenu %}
+	<h1>Liste des Clients</h1>
+
+	<table class="table table-secondary table-striped">
+		<input id='searchBar' type="text" placeholder="Recherche par id ou client" class="searchBar form-control">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Adresse</th>
+				<th>Code Postal</th>
+				<th>Ville</th>
+				<th>Téléphone</th>
+				<th>Email</th>
+				<th>Raison Sociale</th>
+				
+			</tr>
+		</thead>
+		<tbody class='tableauxR'>
+			{% for client in clients %}
+				<div>
+
+					<tr class="trr" href="{{ path('app_client_show', {'id': client.id}) }}">
+					
+
+						<td>{{ client.id }}</td>
+						<td>{{ client.nom }}</td>
+						<td>{{ client.prenom }}</td>
+						<td>{{ client.adresse }}</td>
+						<td>{{ client.cp }}</td>
+						<td>{{ client.ville }}</td>
+						<td>{{ client.telephone }}</td>
+						<td>{{ client.email }}</td>
+						<td>{{ client.raisonSociale }}</td>
+						
+
+					</tr>
+
+				</div>
+			{% else %}
+				<tr>
+					<td colspan="10">Pas de client trouvé</td>
+				</tr>
+			</tbody>
+		{% endfor %}
+
+	</table>
+
+	<a href="{{ path('app_client_new') }}" class="btn btn-primary">Créer un nouveau Client</a>
+	<tbody class="resultat row"></tbody>
+	<script>
+
+// fonction pour rendre la ligne complete cliquable en fonction du href assigne a l'ID du client (voir la ligne 47)
+		$(document).ready(function () {
+$('table tr').click(function () {
+window.location = $(this).attr('href');
+return false;
+});
+});
+
+// fonction qui recupere ce qu'on insere dans la searchBar et la compare plus tard dans la fonction
+$(document).ready(function () {
+$("#searchBar").keyup(function (e) {
+e.preventDefault();
+e.stopPropagation();
+
+let input = $("#searchBar").val();
+
+// ici j'appelle mon controller ou je stock mes donnees provenant de ma table client 
+$.ajax({
+url: "https://127.0.0.1:8000/ajax/listeClients",
+type: 'GET',
+
+success: function (response) {
+console.log(response);
+// la je declare une variable vide pour pouvoir la remplir apres la condition
+let liste = "";
+// je boucle pour remplir ma variable liste d'apres ma condition
+$.each(response, function (index, value) { // J'ajoute chaque élément dans une liste
+if ( input == value.nom.toLowerCase() || input == value.nom.substr(-20, 3)  
+|| input == value.nom.substr(-20, 4) 
+|| input == value.nom.substr(-20, 5)
+|| input == value.nom.substr(-20, 6)  
+|| input == value.telephone.substr(-20, 3)
+|| input == value.telephone.substr(-20, 4)
+|| input == value.telephone.substr(-20, 5)
+|| input == value.telephone.substr(-20, 6)
+|| input == value.nom.toUpperCase()
+|| input == value.telephone)  {
+liste += '<tr class="trr"> ' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' + '<a class="btn btn-primary btn-sm" href=https://127.0.0.1:8000/client/' + value.id + ">" + " VOIR "+ '</td>'+
+ '</tr>'
+
+}
+else if (input == ""){
+	liste += '<tr class="trr"> ' + '<td>' + value.id + '</td>' + '<td>' + value.nom + '</td>' + '<td>' + value.prenom + '</td>' + '<td>' + value.adresse + '</td>' + '<td>' + value.cp + '</td>' + '<td>' + value.ville + '</td>' + '<td>' + value.telephone + '</td>' + '<td>' + value.email + '</td>' + '<td>' + value.raisonSociale + '</td>' + '<td>' + '<a class="btn btn-primary btn-sm" href=https://127.0.0.1:8000/client/' + value.id + ">" + " VOIR "+ '</td>'+
+ '</tr>'
+}
+});
+// et enfin j'inject mon resultat en html dans mon tableau
+$('.tableauxR').html(liste);
+
+},
+
+error: function (response) {
+console.log(error)
+}
+});
+});
+});
+	</script>
+{% endblock %}
