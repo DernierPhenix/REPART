@@ -53,7 +53,10 @@ class MarqueController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_marque_edit', methods: ['GET', 'POST'])]
+    #[
+        Route('/{id}/edit', name: 'app_marque_edit', methods: ['GET', 'POST']),
+        IsGranted('ROLE_ADMIN')
+        ]
     public function edit(Request $request, Marque $marque, MarqueRepository $marqueRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -72,7 +75,10 @@ class MarqueController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_marque_delete', methods: ['POST'])]
+    #[
+        Route('/{id}', name: 'app_marque_delete', methods: ['POST']),
+        IsGranted('ROLE_ADMIN')
+    ]
     public function delete(Request $request, Marque $marque, MarqueRepository $marqueRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');

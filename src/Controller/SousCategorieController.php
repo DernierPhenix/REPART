@@ -53,7 +53,10 @@ class SousCategorieController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_sous_categorie_edit', methods: ['GET', 'POST'])]
+    #[
+        Route('/{id}/edit', name: 'app_sous_categorie_edit', methods: ['GET', 'POST']),
+        IsGranted('ROLE_ADMIN')
+        ]
     public function edit(Request $request, SousCategorie $sousCategorie, SousCategorieRepository $sousCategorieRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -72,7 +75,10 @@ class SousCategorieController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_sous_categorie_delete', methods: ['POST'])]
+    #[
+        Route('/{id}', name: 'app_sous_categorie_delete', methods: ['POST']),
+        IsGranted('ROLE_ADMIN')
+        ]
     public function delete(Request $request, SousCategorie $sousCategorie, SousCategorieRepository $sousCategorieRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');

@@ -52,7 +52,9 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_produit_edit', methods: ['GET', 'POST'])]
+    #[
+        Route('/{id}/edit', name: 'app_produit_edit', methods: ['GET', 'POST']),
+        IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -71,7 +73,10 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_produit_delete', methods: ['POST'])]
+    #[
+        Route('/{id}', name: 'app_produit_delete', methods: ['POST']),
+        IsGranted('ROLE_ADMIN')
+        ]
     public function delete(Request $request, Produit $produit, ProduitRepository $produitRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');

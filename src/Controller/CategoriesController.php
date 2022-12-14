@@ -128,7 +128,10 @@ class CategoriesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_categories_delete', methods: ['POST'])]
+    #[
+        Route('/{id}', name: 'app_categories_delete', methods: ['POST']),
+        IsGranted('ROLE_ADMIN')
+    ]
     public function delete(Request $request, Categories $category, CategoriesRepository $categoriesRepository): Response
     {
         /*Ici fonction uniquement accessible si un utilisateur est authentifié en tant que ADMIN */

@@ -1,20 +1,54 @@
+{% block style %}
+<style>
+.pseudo-container {
+			width: 50%;
+			min-width: 40%;
+			max-width: 80%;
+			background: #F5F5F5;
+			display: grid;
+			grid-template-rows: repeat(4, 104px);
+			padding: 11px 7px 165px;
+			border-radius: 16px;
+			box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+			position: relative;
+			left: 24%;
+
+		}
+
+    .btn{
+        margin: 0.2%;
+
+    }
+</style>
+{% endblock %}
+
+<div class="pseudo-container">
+
 {{ form_start(form) }}
-{{ form_widget(form) }}
-<button class="btn btn-primary">{{ button_label|default('Enregister') }}</button>
+    {{ form_widget(form) }} 
+    <button class="btn btn-primary">{{ button_label|default('Enregister') }}</button><br>
+
+    <a class="btn btn-primary" href="{{ path('app_tickets_index') }}">Retour liste</a>
 {{ form_end(form) }}
+
+</div>
 
 {% block javascripts %}
 
-{# script jquery pour creer une barre de recherche dynamique depuis l'entité #}
-	<script>
-		$(document).ready(function () {
-$('#tickets_type_create_clients').select2();
+<script>
+// CallAjax qui Permet d'afficher une barre d'autocompletion dans la page créer un ticket pour la liste des clients enregistrés
+$(document).ready(function() {
+    $('#tickets_type_create_clients').select2();
 });
-$(document).ready(function () {
-$('#tickets_type_create_produits').select2();
+
+// CallAjax qui Permet d'afficher une barre d'autocompletion dans la page créer un ticket pour la liste des produits enregistrés
+$(document).ready(function() {
+    $('#tickets_type_create_produits').select2();
 });
-$(document).ready(function () {
-$('#tickets_type_create_marque').select2();
+
+// CallAjax qui Permet d'afficher une barre d'autocompletion dans la page créer un ticket pour la liste des marques enregistrées
+$(document).ready(function() {
+    $('#tickets_type_create_marque').select2();
 });
 
 // fonction qui a la selection d'une categorie retourne les sous categories qui ont ete affiliees a celle ci a leur creation
@@ -23,6 +57,8 @@ $("#tickets_type_create_categories").click(function (e) {
 e.preventDefault();
 e.stopPropagation();
 let input = $("#tickets_type_create_categories").val();
+
+// CallAjax qui permet d'afficher les sous-catégories liées à une catégorie
 $.ajax({
 url: "https://127.0.0.1:8000/ajax/SousCategorie",
 type: 'GET',
@@ -31,8 +67,8 @@ success: function (response) {
 let liste = "";
 $.each(response, function (index, value) { 
 if (value.categories.id == input) {
-liste += '<option value="' + value.id +'"> '+ value.nom +'</option>';
-console.log(liste);
+    liste += '<option value="' + value.id +'"> '+ value.nom +'</option>';
+
 }
 });
 $('#tickets_type_create_sousCategorie').html(liste);
@@ -43,7 +79,8 @@ console.log(error)
 });
 });
 });
-	</script>
+
+</script>
 
 
 {% endblock %}
