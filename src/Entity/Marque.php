@@ -19,7 +19,7 @@ class Marque
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\OneToMany(mappedBy: 'marque', targetEntity: Produit::class , orphanRemoval:true)]
+    #[ORM\OneToMany(mappedBy: 'marque', targetEntity: Produit::class)]
     private Collection $marques;
 
     public function __construct()

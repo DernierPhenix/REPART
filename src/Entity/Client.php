@@ -6,9 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ClientRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints\Regex;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
+#[UniqueEntity('telephone',
+message: 'Ce numéro de Téléphone est déjà enregistré'
+)]
 class Client
 {
     #[ORM\Id]
@@ -39,10 +44,14 @@ class Client
 
     #[Groups(['show_product'])]
     #[ORM\Column(length: 255)]
+    
     private ?string $telephone = null;
 
     #[Groups(['show_product'])]
     #[ORM\Column(length: 255)]
+    #[Regex("/^([\w\.\-]+)@([\w\-]+)((\.(\w){2,4})+)$/", //Mise en place de la contrainte pour l'Email - Ne pas oublier d'importer la classe Regex
+     message: 'Votre email est incorrect'
+    )] 
     private ?string $email = null;
 
     #[Groups(['show_product'])]

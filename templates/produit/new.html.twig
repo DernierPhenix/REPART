@@ -1,9 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Créer un Nouveau Produit{% endblock %}
+{% block style %}
+<style>
+    .btn{
+    margin: 0.1%;
 
+    }
+</style>
+{% endblock %}
 {% block contenu %}
-    <h1>Créer un Nouveau Produit</h1>
+    <h3>Créer un Nouveau Produit</h3>
 
     {{ include('produit/_form.html.twig') }}
 

@@ -27,11 +27,13 @@
                 <th>Statut</th>
                 <th>Description</th>
                 <th>État du Produit</th>
+                <th>Rapport</th>
                 <th>Date de Création</th>
                 <th>Date de Modification</th>
                
                 <th>Nom du client</th>
                 <th>Produit</th>
+                <th>Catégories</th>
                 <th>Sous-Catégories</th>
                 <th>Employé</th>
                 {# <th>Voir</th>
@@ -47,12 +49,14 @@
                         <td>{{ ticket.statut }}</td>
                         <td>{{ ticket.description }}</td>
                         <td>{{ ticket.etat }}</td>
+                        <td>{{ ticket.rapport|default("") }}</td>
                         <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d') : '' }}</td>
                         <td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td>
-                        <td>{{ ticket.clients.nom}}</td>
-                        <td>{{ ticket.produits.modele}}</td>
-                        <td>{{ ticket.produits.sousCategories.nom}}</td>
-                        <td>{{ ticket.user.nom}}</td>
+                        <td>{{ ticket.clients.nom|default("")}}</td>
+                        <td>{{ ticket.produits.modele|default("")}}</td>
+                        <td>{{ ticket.produits.sousCategories.categories.nom|default("")}}</td>
+                        <td>{{ ticket.produits.sousCategories.nom|default("")}}</td>
+                        <td>{{ ticket.user.nom|default("")}}</td>
                 </tr>
 
                     {# <a  href="{{ path('app_tickets_show', {'id': ticket.id}) }}" class ="btn btn-primary">Voir</a> #}

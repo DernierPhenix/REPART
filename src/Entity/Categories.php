@@ -15,6 +15,7 @@ class Categories
     #[ORM\GeneratedValue]
     #[ORM\Column]
     #[Groups(['show_product'])]
+    /*Ici j'utilise l'annotation Groups pour afficher les attributs dont j'ai besoin dans mon callAjax*/
     private ?int $id = null;
 
     #[Groups(['show_product'])]
@@ -26,7 +27,7 @@ class Categories
     #[ORM\Column(length: 255, nullable:true)]
     private ?string $image = null;
 
-    #[ORM\OneToMany(mappedBy: 'categories', targetEntity: SousCategorie::class, orphanRemoval:true)]
+    #[ORM\OneToMany(mappedBy: 'categories', targetEntity: SousCategorie::class)]
     private Collection $sousCategories;
 
     public function __construct()

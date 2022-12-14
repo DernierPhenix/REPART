@@ -5,6 +5,18 @@
 
 {% block style %}
 	<style>
+    h5{
+
+        text-align:center;
+    }
+    h1{
+        color:#007bff;
+        text-align:center;
+    }
+    .img-fluid{
+        height:150px;
+        width:200px"
+    }
     .image{
         height:40%;
         width:40%;
@@ -33,10 +45,10 @@
 {% for category in categories %}
 
 <div class="col-12 col-md-6 col-lg-4 col-xl-3 ">
-<div class="card border-dark mb-3 mx-auto " id="options">
+<div class="card border-dark mb-3 mx-auto " >
  
     <div class='card-header text-center'>
-    <img src="/uploads/images/{{category.image}}" class='image' alt="Card image cap">
+    <img src="/uploads/images/{{category.image}}" class='img-fluid' alt="Card image cap">
     </div>
 
     <div class="card-body">

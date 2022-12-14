@@ -4,40 +4,39 @@
 {% endblock %}
 
 {% block contenu %}
-    <h1>Produit index</h1>
+	<h1>Liste des Produits</h1>
 
-    <table class="table table-secondary table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Marque</th>
-                <th>Modele</th>
-                <th>Categories</th>
-                <th>Sous-Categories</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for produit in produits %}
-            <tr>
-                <td>{{ produit.id }}</td>
-                <td>{{ produit.marque.nom }}</td>
-                <td>{{ produit.modele }}</td>
-                
-                <td>{{ produit.sousCategories.categories.nom }}</td>
-                <td>{{ produit.sousCategories.nom }}</td>
-                <td>
-                    <a class ="btn btn-primary" href="{{ path('app_produit_show', {'id': produit.id}) }}">Voir</a>
-                    
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">Pas de Produits Trouvés</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table table-secondary table-striped">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Marque</th>
+				<th>Modele</th>
+				<th>Categories</th>
+				<th>Sous-Categories</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for produit in produits %}
+				<tr>
+					<td>{{ produit.id }}</td>
+					<td>{{ produit.marque.nom|default("") }}</td>
+					<td>{{ produit.modele }}</td>
 
-    <a href="{{ path('app_produit_new') }}"class ="btn btn-primary">Créer une Nouveau Produit</a>
+					<td>{{ produit.sousCategories.categories.nom|default("") }}</td>
+					<td>{{ produit.sousCategories.nom|default("") }}</td>
+					<td>
+						<a class="btn btn-primary" href="{{ path('app_produit_show', {'id': produit.id}) }}">Voir</a>
+
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">Pas de Produits Trouvés</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<a href="{{ path('app_produit_new') }}" class="btn btn-primary">Créer une Nouveau Produit</a>
 {% endblock %}

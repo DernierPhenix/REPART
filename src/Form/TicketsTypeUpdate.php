@@ -13,6 +13,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 
@@ -24,47 +25,28 @@ class TicketsTypeUpdate extends AbstractType
             ->add('clients', EntityType::class, [
                 'class' => Client::class,
                 'label' => 'Client',
-                
+
                 'choice_label' => 'nom',
                 'attr' => [
                     'class' => 'select2'
                 ]
             ])
-            
-           
-            
 
-            ->add('categories', EntityType::class, [
-                'class' => Categories::class,
-                // 
-                'choice_label' => 'nom',
-                'label' => 'Categorie',
-                'attr' => [
-                    'class' => 'select2'
+            ->add('statut', ChoiceType::class, [
+                'placeholder' => 'Veuillez selectionner le statut',
+                'required' => true,
+                'multiple' => false,
+                'expanded' => false,
+                'choices'  => [
+
+
+                    'EN COURS' => 'EN COURS',
+                    'RESOLU' => 'RESOLU',
+                    'CLOS' => 'CLOS',
                 ],
-                'mapped' => false
             ])
-            ->add('sousCategorie', EntityType::class, [
-                'class' => SousCategorie::class,
-                
-                'choice_label' => 'nom',
-                'attr' => [
-                    'class' => 'select2'
-                ],
-                'mapped' => false
-            ])
-            ->add('marque', EntityType::class, [
-                'class' => Marque::class,
-                
-                'label' => 'Marque',
-                'mapped' => false,
-                'choice_label' => 'nom',
-                'attr' => [
-                    'class' => 'select2'
-                ],
-               
-            ])
-            
+
+
             ->add('produits', EntityType::class, [
                 'class' => Produit::class,
                 'placeholder' => 'Veuillez selectionner le modele',
@@ -73,21 +55,19 @@ class TicketsTypeUpdate extends AbstractType
                 'attr' => [
                     'class' => 'select2'
                 ],
-                
+
             ])
-            ->add('etat',TextareaType::class,[
+            ->add('etat', TextareaType::class, [
                 'label' => 'Etat du produit'
             ])
-            ->add('description',TextareaType::class,[
+            ->add('description', TextareaType::class, [
                 'label' => 'Description de la panne'
             ])
-            ->add('rapport',TextareaType::class,[
+            ->add('rapport', TextareaType::class, [
                 'label' => 'Rapport de l\'intervention'
             ]);
-            
-        
     }
-   
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {
