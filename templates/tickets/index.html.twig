@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block contenu %}
-    <h1>Liste Tickets</h1>
+    <h1>Nouveaux Tickets</h1>
 
     <table class="table table-secondary table-striped">
         <thead>
@@ -41,6 +41,7 @@
         </thead>
         <tbody>
         {% for ticket in tickets %}
+            {% if ticket.statut == 'NOUVEAU' %}
             <div>
                 <tr class="trr" href="{{ path('app_tickets_show', {'id': ticket.id}) }}">
                         
@@ -60,9 +61,8 @@
 
                     {# <a  href="{{ path('app_tickets_show', {'id': ticket.id}) }}" class ="btn btn-primary">Voir</a> #}
             </div>
-                
+            {% endif %}   
                     
-
         {% else %}
             <tr>
                 <td colspan="8">Pas de ticket trouvé</td>
@@ -72,6 +72,9 @@
     </table>
 
     <a  href="{{ path('app_tickets_new') }}" class="btn btn-primary">Créer un Nouveau Ticket</a>
+    <a  href="{{ path('app_update_new') }}" class="btn btn-warning">En Cours</a>
+    <a  href="" class="btn btn-success">Résolus</a>
+    <a  href="" class="btn btn-danger">Clos</a>
 
     <script>
 

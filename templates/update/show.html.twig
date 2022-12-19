@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tickets{% endblock %}
+
+{% block contenu %}
+    <h1>Tickets</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ update.id }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ update.statut }}</td>
+            </tr>
+            <tr>
+                <th>Date de Modification</th>
+                <td>{{ update.updatedAt ? update.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Rapport</th>
+                <td>{{ update.rapport }}</td>
+            </tr>
+            <tr>
+                <th>ID Ticket</th>
+                <td>{{ update.ticket_id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_tickets_index') }}" class="btn btn-primary">Retour Liste</a>
+
+{% endblock %}

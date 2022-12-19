@@ -28,7 +28,8 @@ class TicketsTypeUpdate extends AbstractType
 
                 'choice_label' => 'nom',
                 'attr' => [
-                    'class' => 'select2'
+                    'class' => 'select2',
+                    'disabled' => 'disabled'
                 ]
             ])
 
@@ -53,15 +54,21 @@ class TicketsTypeUpdate extends AbstractType
                 'label' => 'Modele',
                 'choice_label' => 'modele',
                 'attr' => [
-                    'class' => 'select2'
-                ],
-
+                    'class' => 'select2',
+                    'disabled' => true
+                ]
             ])
             ->add('etat', TextareaType::class, [
-                'label' => 'Etat du produit'
+                'label' => 'Etat du produit',
+                // 'attr' => [
+                //     'disabled' => true
+                // ]
             ])
             ->add('description', TextareaType::class, [
-                'label' => 'Description de la panne'
+                'label' => 'Description de la panne',
+                // 'attr' => [
+                //     'disabled' => true
+                // ]
             ])
             ->add('rapport', TextareaType::class, [
                 'label' => 'Rapport de l\'intervention'

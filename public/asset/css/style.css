@@ -72,6 +72,10 @@ body {
   padding-left: 8px;
 }
 
+/* #sidebarToggle{
+  display: none;
+} */
+
 /* FIN */
 
  /* CLasse LOGOUT */
@@ -85,6 +89,37 @@ body {
 }
 /* fin */
 
+@media (max-width: 991px){
+  .menuCentre,
+  .navbarTop,
+  .btn {
+      font-size: 70%;
+  }
+}
 
+@media (max-width: 768px){
+  .menuCentre,
+  .navbarTop,
+  .btn {
+      font-size: 65%;
+  }
 
+  /* #sidebarToggle{
+    display: inline-block;
+    margin-right: 1rem;
+    color: white;
+  } 
 
+  .navbarGauche{
+    position: absolute;
+    top: 99%; left: 0; right: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  } */
+
+}
+
+@media (max-width: 450px){
+  .menuCentre {
+      font-size: 40%;
+  }
+}

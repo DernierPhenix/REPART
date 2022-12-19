@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\TicketsRepository;
@@ -28,7 +30,7 @@ class Tickets
     #[Groups(['show_product'])]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
+    #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable:true)]
     #[Groups(['show_product'])]
     private ?\DateTimeInterface $createdAt = null;
 
@@ -54,6 +56,14 @@ class Tickets
     #[ORM\JoinColumn(onDelete:"SET NULL")]
     #[Groups(['show_product'])]
     private ?User $user = null;
+
+    #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Update::class)]
+    private Collection $updates;
+
+    public function __construct()
+    {
+        $this->updates = new ArrayCollection();
+    }
 
     
 
@@ -166,6 +176,36 @@ class Tickets
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Update>
+     */
+    public function getUpdates(): Collection
+    {
+        return $this->updates;
+    }
+
+    public function addUpdate(Update $update): self
+    {
+        if (!$this->updates->contains($update)) {
+            $this->updates->add($update);
+            $update->setTicket($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUpdate(Update $update): self
+    {
+        if ($this->updates->removeElement($update)) {
+            // set the owning side to null (unless already changed)
+            if ($update->getTicket() === $this) {
+                $update->setTicket(null);
+            }
+        }
 
         return $this;
     }

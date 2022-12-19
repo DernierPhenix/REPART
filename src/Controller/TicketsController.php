@@ -8,6 +8,7 @@ use App\Entity\Tickets;
 use App\Form\TicketsTypeCreate;
 use App\Form\TicketsTypeUpdate;
 use App\Repository\TicketsRepository;
+use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,7 +29,7 @@ class TicketsController extends AbstractController
     #[Route('/new', name: 'app_tickets_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TicketsRepository $ticketsRepository): Response
     {
-        $date = new DateTime;
+        $date = new DateTimeImmutable();
         $ticket = new Tickets();
         
         $form = $this->createForm(TicketsTypeCreate::class, $ticket);
