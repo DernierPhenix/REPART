@@ -6,7 +6,6 @@ use App\Repository\UpdateRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UpdateRepository::class)]
-#[ORM\Table(name: '`update`')]
 class Update
 {
     #[ORM\Id]
@@ -78,4 +77,5 @@ class Update
 
         return $this;
     }
+
 }

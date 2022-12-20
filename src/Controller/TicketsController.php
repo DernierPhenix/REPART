@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
-
 use DateTime;
+use App\Entity\Update;
+use DateTimeImmutable;
 use App\Entity\Tickets;
 use App\Form\TicketsTypeCreate;
 use App\Form\TicketsTypeUpdate;
+use App\Repository\UpdateRepository;
 use App\Repository\TicketsRepository;
-use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -67,7 +68,7 @@ class TicketsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $ticket->setUpdatedAt($date);
+            // $ticket->setUpdatedAt($date);
             $ticketsRepository->save($ticket, true);
 
             return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);

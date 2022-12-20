@@ -23,9 +23,9 @@
     <table class="table table-secondary table-striped">
         <thead>
             <tr>
-                <th>Id</th>               
+                <th>Id</th>
+                <th>Statut</th>               
                 <th>Rapport</th>
-                {# <th>Date de Création</th> #}
                 <th>Date de Modification</th>
                 <th>ID Ticket</th>
                 {# <th>Voir</th>
@@ -38,6 +38,7 @@
                 <div>
                     <tr class="trr" href="{{ path('app_tickets_show', {'id': update.id}) }}">
                         <td>{{ update.id }}</td>
+                        <td>{{ update.statut }}</td>
                         <td>{{ update.rapport|default("") }}</td>
                         <td>{{ update.updatedAt ? update.updatedAt|date('Y-m-d') : '' }}</td>
                         <td>{{ update.ticket.id|default("") }}</td>

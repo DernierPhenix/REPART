@@ -18,7 +18,7 @@ class Tickets
     #[Groups(['show_product'])]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable:true)]
     #[Groups(['show_product'])]
     private ?string $etat = null;
 
@@ -26,7 +26,7 @@ class Tickets
     #[Groups(['show_product'])]
     private ?string $statut = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable:true)]
     #[Groups(['show_product'])]
     private ?string $description = null;
 
@@ -34,9 +34,9 @@ class Tickets
     #[Groups(['show_product'])]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
-    #[Groups(['show_product'])]
-    private ?\DateTimeInterface $updatedAt = null;
+    // #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
+    // #[Groups(['show_product'])]
+    // private ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\Column(type: Types::TEXT, nullable:true)]
     #[Groups(['show_product'])]
@@ -64,8 +64,6 @@ class Tickets
     {
         $this->updates = new ArrayCollection();
     }
-
-    
 
     public function getId(): ?int
     {
@@ -120,17 +118,17 @@ class Tickets
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
+    // public function getUpdatedAt(): ?\DateTimeInterface
+    // {
+    //     return $this->updatedAt;
+    // }
 
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
+    // public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    // {
+    //     $this->updatedAt = $updatedAt;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getRapport(): ?string
     {

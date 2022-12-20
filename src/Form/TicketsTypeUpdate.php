@@ -7,6 +7,7 @@ use App\Entity\Client;
 use App\Entity\Marque;
 use App\Entity\Produit;
 use App\Entity\Tickets;
+use App\Entity\Update;
 use App\Entity\Categories;
 use App\Entity\SousCategorie;
 use Symfony\Component\Form\AbstractType;
@@ -25,11 +26,10 @@ class TicketsTypeUpdate extends AbstractType
             ->add('clients', EntityType::class, [
                 'class' => Client::class,
                 'label' => 'Client',
-
                 'choice_label' => 'nom',
                 'attr' => [
                     'class' => 'select2',
-                    'disabled' => 'disabled'
+                    'disabled' => true
                 ]
             ])
 
@@ -39,8 +39,6 @@ class TicketsTypeUpdate extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
                 'choices'  => [
-
-
                     'EN COURS' => 'EN COURS',
                     'RESOLU' => 'RESOLU',
                     'CLOS' => 'CLOS',
@@ -63,7 +61,7 @@ class TicketsTypeUpdate extends AbstractType
                 // 'attr' => [
                 //     'disabled' => true
                 // ]
-            ])
+                ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description de la panne',
                 // 'attr' => [

@@ -27,13 +27,13 @@
                 <th>Statut</th>
                 <th>Description</th>
                 <th>État du Produit</th>
-                <th>Rapport</th>
+                {# <th>Rapport</th> #}
                 <th>Date de Création</th>
-                <th>Date de Modification</th>
-                <th>Produit</th>
+                {# <th>Date de Modification</th> #}
+                <th>Client</th>
                 <th>Catégories</th>
                 <th>Sous-Catégories</th>
-                <th>Nom du client</th>
+                <th>Produit</th>
                 <th>Employé</th>
                 {# <th>Voir</th>
                 <th>Action</th> #}
@@ -49,9 +49,9 @@
                         <td>{{ ticket.statut }}</td>
                         <td>{{ ticket.description }}</td>
                         <td>{{ ticket.etat }}</td>
-                        <td>{{ ticket.rapport|default("") }}</td>
+                        {# <td>{{ ticket.rapport|default("") }}</td> #}
                         <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d') : '' }}</td>
-                        <td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td>
+                        {# <td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td> #}
                         <td>{{ ticket.clients.nom|default("")}}</td>
                         <td>{{ ticket.produits.modele|default("")}}</td>
                         <td>{{ ticket.produits.sousCategories.categories.nom|default("")}}</td>

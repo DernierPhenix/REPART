@@ -3,13 +3,14 @@
 namespace App\Controller;
 
 use DateTime;
-use DateTimeImmutable;
 use App\Entity\Update;
+use DateTimeImmutable;
+use App\Form\UpdateFormType;
 use App\Form\TicketsTypeCreate;
 use App\Form\TicketsTypeUpdate;
-use App\Form\UpdateFormType;
 use App\Repository\UpdateRepository;
 use App\Repository\TicketsRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,7 +24,7 @@ class UpdateController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('update/index.html.twig', [
-            'tickets' => $updateRepository->findAll(),
+            'update' => $updateRepository->findAll(),
         ]);
     }
 
@@ -37,7 +38,10 @@ class UpdateController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $update->getStatut();
             $update->setUpdatedAt($date);
+            $update->getRapport();
+            $update->getTicket();
             $updateRepository->save($update, true);
 
             return $this->redirectToRoute('app_update_index', [], Response::HTTP_SEE_OTHER);
