@@ -34,9 +34,9 @@ class Tickets
     #[Groups(['show_product'])]
     private ?\DateTimeInterface $createdAt = null;
 
-    // #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
-    // #[Groups(['show_product'])]
-    // private ?\DateTimeInterface $updatedAt = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable:true)]
+    #[Groups(['show_product'])]
+    private ?\DateTimeInterface $updatedAt = null;
 
     #[ORM\Column(type: Types::TEXT, nullable:true)]
     #[Groups(['show_product'])]
@@ -57,13 +57,13 @@ class Tickets
     #[Groups(['show_product'])]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Update::class)]
-    private Collection $updates;
+    // #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Updates::class)]
+    // private Collection $updates;
 
-    public function __construct()
-    {
-        $this->updates = new ArrayCollection();
-    }
+    // public function __construct()
+    // {
+    //     $this->updates = new ArrayCollection();
+    // }
 
     public function getId(): ?int
     {
@@ -118,17 +118,17 @@ class Tickets
         return $this;
     }
 
-    // public function getUpdatedAt(): ?\DateTimeInterface
-    // {
-    //     return $this->updatedAt;
-    // }
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
 
-    // public function setUpdatedAt(\DateTimeInterface $updatedAt): self
-    // {
-    //     $this->updatedAt = $updatedAt;
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
-    //     return $this;
-    // }
+        return $this;
+    }
 
     public function getRapport(): ?string
     {
@@ -178,35 +178,35 @@ class Tickets
         return $this;
     }
 
-    /**
-     * @return Collection<int, Update>
-     */
-    public function getUpdates(): Collection
-    {
-        return $this->updates;
-    }
+    // /**
+    //  * @return Collection<int, Updates>
+    //  */
+    // public function getUpdates(): Collection
+    // {
+    //     return $this->updates;
+    // }
 
-    public function addUpdate(Update $update): self
-    {
-        if (!$this->updates->contains($update)) {
-            $this->updates->add($update);
-            $update->setTicket($this);
-        }
+    // public function addUpdate(Updates $update): self
+    // {
+    //     if (!$this->updates->contains($update)) {
+    //         $this->updates->add($update);
+    //         $update->setTicket($this);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeUpdate(Update $update): self
-    {
-        if ($this->updates->removeElement($update)) {
-            // set the owning side to null (unless already changed)
-            if ($update->getTicket() === $this) {
-                $update->setTicket(null);
-            }
-        }
+    // public function removeUpdate(Updates $update): self
+    // {
+    //     if ($this->updates->removeElement($update)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($update->getTicket() === $this) {
+    //             $update->setTicket(null);
+    //         }
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
 }
 

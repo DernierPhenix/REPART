@@ -7,7 +7,7 @@
 
     {{ include('tickets/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('app_tickets_index') }}" class="btn btn-primary" >Retour liste</a>
+    <a href="{{ path('tickets.list.all') }}" class="btn btn-primary" >Retour liste</a>
 
     {{ include('tickets/_delete_form.html.twig') }}
 {% endblock %}

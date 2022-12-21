@@ -29,7 +29,7 @@ class TicketsTypeUpdate extends AbstractType
                 'choice_label' => 'nom',
                 'attr' => [
                     'class' => 'select2',
-                    'disabled' => true
+                    // 'disabled' => true
                 ]
             ])
 
@@ -53,7 +53,7 @@ class TicketsTypeUpdate extends AbstractType
                 'choice_label' => 'modele',
                 'attr' => [
                     'class' => 'select2',
-                    'disabled' => true
+                    // 'disabled' => true
                 ]
             ])
             ->add('etat', TextareaType::class, [

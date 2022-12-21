@@ -10,6 +10,7 @@ use App\Form\TicketsTypeCreate;
 use App\Form\TicketsTypeUpdate;
 use App\Repository\UpdateRepository;
 use App\Repository\TicketsRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,7 +20,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TicketsController extends AbstractController
 {
     #[Route('/', name: 'app_tickets_index', methods: ['GET'])]
-    public function index(TicketsRepository $ticketsRepository): Response
+    public function index(TicketsRepository $ticketsRepository, ): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         return $this->render('tickets/index.html.twig', [
@@ -42,12 +43,38 @@ class TicketsController extends AbstractController
             $ticket->setCreatedAt($date);
             $ticketsRepository->save($ticket, true);
 
-            return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('tickets.list.all', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('tickets/new.html.twig', [
             'ticket' => $ticket,
             'form' => $form,
+        ]);
+    }
+
+    //'{page?1}' : affiche la première page, par défaut ayant le numéro 1
+    //'{nbre?5}' : nombre maximum de tickets visibles sur une page
+    #[Route('/all/{page?1}/{nbre?5}', name: 'tickets.list.all')]
+    public function indexAll(ManagerRegistry $doctrine, $page, $nbre): Response
+    {
+        //on va chercher la classe 'tickets'
+        $repository = $doctrine->getRepository(Tickets::class);
+        //répertorier le nombre de tickets
+        $nbTicket = $repository->count([]);
+        //on calcule le nombre de page en divisant le nombre de ticket total par le nombre de tickets max par page
+        //'ceil' : Arrondi à l'entier suppérieur
+        $nbPage = ceil($nbTicket / $nbre);
+        //'findBy': on va trouver un objet selon certains critères
+        $ticket = $repository->findBy([], [], $nbre, ($page - 1) * $nbre);
+        return $this->render('tickets/index.html.twig', [
+            //le ticket
+            'tickets' => $ticket,
+            //pagination paramétrée sur 'true'
+            'isPaginated' => true,
+            //le nombre de pages
+            'nbPages' => $nbPage,
+            'page' => $page,
+            'nbre' => $nbre
         ]);
     }
 
@@ -68,7 +95,7 @@ class TicketsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $ticket->setUpdatedAt($date);
+            $ticket->setUpdatedAt($date);
             $ticketsRepository->save($ticket, true);
 
             return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);

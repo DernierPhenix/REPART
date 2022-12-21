@@ -29,9 +29,7 @@
 
 			<div class="logOut d-flex justify-content-around">
 				{% if app.user %}
-				<strong id="stro">Bienvenue sur votre espace : {{ app.user.userIdentifier }} </strong>	
-					
-
+					<strong id="stro">Bienvenue sur votre espace : {{ app.user.userIdentifier }} </strong>
 					<a href="{{ path('app_logout') }}" class="btn btn-light ">Déconnexion</a>
 				{% endif %}
 			</div>
@@ -45,7 +43,7 @@
 
 						
 						<div class="liste">
-							<a class="btn btn-primary" id="btnT" href="{{ path('app_tickets_index') }}" role="button">TICKETS</a>
+							<a class="btn btn-primary" id="btnT" href="{{ path('tickets.list.all') }}" role="button">TICKETS</a>
 
 							<a class="btn btn-primary" id="btnT" href="{{ path('app_client_index') }}" role="button">CLIENTS</a>
 

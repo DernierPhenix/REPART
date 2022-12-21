@@ -18,7 +18,8 @@
 {% endblock %}
 
 {% block contenu %}
-    <h1>Nouveaux Tickets</h1>
+
+    <h1 class="mb-3">Liste des tickets</h1>
 
     <table class="table table-secondary table-striped">
         <thead>
@@ -27,13 +28,13 @@
                 <th>Statut</th>
                 <th>Description</th>
                 <th>État du Produit</th>
-                {# <th>Rapport</th> #}
+                <th>Rapport</th>
                 <th>Date de Création</th>
-                {# <th>Date de Modification</th> #}
-                <th>Client</th>
+                <th>Date de Modification</th>
+                <th>Produit</th>
                 <th>Catégories</th>
                 <th>Sous-Catégories</th>
-                <th>Produit</th>
+                <th>Nom du client</th>
                 <th>Employé</th>
                 {# <th>Voir</th>
                 <th>Action</th> #}
@@ -41,50 +42,80 @@
         </thead>
         <tbody>
         {% for ticket in tickets %}
-            {% if ticket.statut == 'NOUVEAU' %}
             <div>
                 <tr class="trr" href="{{ path('app_tickets_show', {'id': ticket.id}) }}">
-                        
-                        <td>{{ ticket.id }}</td>
-                        <td>{{ ticket.statut }}</td>
-                        <td>{{ ticket.description }}</td>
-                        <td>{{ ticket.etat }}</td>
-                        {# <td>{{ ticket.rapport|default("") }}</td> #}
-                        <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d') : '' }}</td>
-                        {# <td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td> #}
-                        <td>{{ ticket.clients.nom|default("")}}</td>
-                        <td>{{ ticket.produits.modele|default("")}}</td>
-                        <td>{{ ticket.produits.sousCategories.categories.nom|default("")}}</td>
-                        <td>{{ ticket.produits.sousCategories.nom|default("")}}</td>
-                        <td>{{ ticket.user.nom|default("")}}</td>
+                    <td>{{ ticket.id }}</td>
+                    <td>{{ ticket.statut }}</td>
+                    <td>{{ ticket.description }}</td>
+                    <td>{{ ticket.etat }}</td>
+                    <td>{{ ticket.rapport|default("") }}</td>
+                    <td>{{ ticket.createdAt ? ticket.createdAt|date('Y-m-d') : '' }}</td>
+                    <td>{{ ticket.updatedAt ? ticket.updatedAt|date('Y-m-d') : '' }}</td>
+                    <td>{{ ticket.produits.modele|default("")}}</td>
+                    <td>{{ ticket.produits.sousCategories.categories.nom|default("")}}</td>
+                    <td>{{ ticket.produits.sousCategories.nom|default("")}}</td>
+                    <td>{{ ticket.clients.nom|default("")}}</td>
+                    <td>{{ ticket.user.nom|default("")}}</td>
                 </tr>
-
                     {# <a  href="{{ path('app_tickets_show', {'id': ticket.id}) }}" class ="btn btn-primary">Voir</a> #}
             </div>
-            {% endif %}   
-                    
-        {% else %}
-            <tr>
-                <td colspan="8">Pas de ticket trouvé</td>
-            </tr>
         {% endfor %}
         </tbody>
     </table>
 
+    {# paramétrage de la pagination sur les tickets #}
+    {% if isPaginated is defined and isPaginated %}
+
+    <div class="row mt-3">
+        <nav aria-label="col Page navigation example">
+            <ul class="pagination">
+            {# Affichage du bouton 'précédent' si la page en cours n'est pas la 1ère page #}
+                {% if page != 1 %}
+                    <li class="page-item">
+                        <a
+                            class="page-link"
+                            href="{{ path('tickets.list.all', {page: page - 1, nbre: nbre}) }}"
+                        >
+                            Précédent
+                        </a>
+                    </li>
+                {% endif %}
+                {# 'range' : création d'une séquence de nombres #}
+                {% for i in range(1, nbPages) %}
+                    <li class="page-item">
+                        <a class="page-link"
+                        {# chaque page renvoie sur une liste de tickets #}
+                            href="{{ path('tickets.list.all', {page: i, nbre: nbre}) }}"
+                        >{{ i }}
+                        </a>
+                    </li>
+                {% endfor %}
+            {# même chose sur le bouton 'précédent' si on est sur la dernière page #}
+                {% if page != nbPages %}
+                    <li class="page-item">
+                        <a
+                            class="page-link"
+                            href="{{ path('tickets.list.all', {page: page + 1, nbre: nbre}) }}"
+                        >
+                            Suivant
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+
+    {% endif %}
+
     <a  href="{{ path('app_tickets_new') }}" class="btn btn-primary">Créer un Nouveau Ticket</a>
-    <a  href="{{ path('app_update_new') }}" class="btn btn-warning">En Cours</a>
-    <a  href="" class="btn btn-success">Résolus</a>
-    <a  href="" class="btn btn-danger">Clos</a>
 
     <script>
-
-            $(document).ready(function () {
-    $('table tr').click(function () {
-    window.location = $(this).attr('href');
-    return false;
-    });
-    });
-
+        $(document).ready(function () {
+            $('table tr').click(function () {
+            window.location = $(this).attr('href');
+            return false;
+            });
+        });
     </script>
 {% endblock %}
 
