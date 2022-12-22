@@ -64,15 +64,21 @@ class TicketsController extends AbstractController
         //on calcule le nombre de page en divisant le nombre de ticket total par le nombre de tickets max par page
         //'ceil' : Arrondi à l'entier suppérieur
         $nbPage = ceil($nbTicket / $nbre);
-        //'findBy': on va trouver un objet selon certains critères
+        //'findBy': on va trouver un objet selon certains paramètres
+        // le premier paramètre est un tableau de critères
+        // le second permet de trier les éléments
+        // le troisième est le nombre d'éléments que l'on veut récupérer
+        // le quatrième est le numéro de page -1,
+        // mutliplié par le nombre d'élément que l'on veut chercher
         $ticket = $repository->findBy([], [], $nbre, ($page - 1) * $nbre);
         return $this->render('tickets/index.html.twig', [
-            //le ticket
+            //les tickets
             'tickets' => $ticket,
             //pagination paramétrée sur 'true'
             'isPaginated' => true,
             //le nombre de pages
             'nbPages' => $nbPage,
+            //la page actuelle
             'page' => $page,
             'nbre' => $nbre
         ]);
@@ -98,7 +104,7 @@ class TicketsController extends AbstractController
             $ticket->setUpdatedAt($date);
             $ticketsRepository->save($ticket, true);
 
-            return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('tickets.list.all', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('tickets/edit.html.twig', [
@@ -114,6 +120,7 @@ class TicketsController extends AbstractController
             $ticketsRepository->remove($ticket, true);
         }
 
-        return $this->redirectToRoute('app_tickets_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('tickets.list.all', [], Response::HTTP_SEE_OTHER);
     }
+    
 }

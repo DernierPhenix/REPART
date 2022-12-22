@@ -57,14 +57,6 @@ class Tickets
     #[Groups(['show_product'])]
     private ?User $user = null;
 
-    // #[ORM\OneToMany(mappedBy: 'ticket', targetEntity: Updates::class)]
-    // private Collection $updates;
-
-    // public function __construct()
-    // {
-    //     $this->updates = new ArrayCollection();
-    // }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -178,39 +170,4 @@ class Tickets
         return $this;
     }
 
-    // /**
-    //  * @return Collection<int, Updates>
-    //  */
-    // public function getUpdates(): Collection
-    // {
-    //     return $this->updates;
-    // }
-
-    // public function addUpdate(Updates $update): self
-    // {
-    //     if (!$this->updates->contains($update)) {
-    //         $this->updates->add($update);
-    //         $update->setTicket($this);
-    //     }
-
-    //     return $this;
-    // }
-
-    // public function removeUpdate(Updates $update): self
-    // {
-    //     if ($this->updates->removeElement($update)) {
-    //         // set the owning side to null (unless already changed)
-    //         if ($update->getTicket() === $this) {
-    //             $update->setTicket(null);
-    //         }
-    //     }
-
-    //     return $this;
-    // }
-
 }
-
-
-
-    
-    

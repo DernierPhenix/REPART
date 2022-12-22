@@ -68,7 +68,7 @@
 
     <div class="row mt-3">
         <nav aria-label="col Page navigation example">
-            <ul class="pagination">
+            <ul class="pagination pagination-md">
             {# Affichage du bouton 'précédent' si la page en cours n'est pas la 1ère page #}
                 {% if page != 1 %}
                     <li class="page-item">
@@ -81,6 +81,7 @@
                     </li>
                 {% endif %}
                 {# 'range' : création d'une séquence de nombres #}
+                {# on créé le nombre de pages en partant de 1 jusqu'au nombre max de page #}
                 {% for i in range(1, nbPages) %}
                     <li class="page-item">
                         <a class="page-link"
@@ -90,7 +91,7 @@
                         </a>
                     </li>
                 {% endfor %}
-            {# même chose sur le bouton 'précédent' si on est sur la dernière page #}
+                {# même chose sur le bouton 'précédent' si on est sur la dernière page #}
                 {% if page != nbPages %}
                     <li class="page-item">
                         <a

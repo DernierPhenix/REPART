@@ -91,16 +91,18 @@ body {
 
 @media (max-width: 991px){
   .menuCentre,
-  .navbarTop,
-  .btn {
+  .navbarTop{
       font-size: 70%;
   }
+
+  .btn {
+    font-size: 100%;
+}
 }
 
 @media (max-width: 768px){
   .menuCentre,
-  .navbarTop,
-  .btn {
+  .navbarTop{
       font-size: 65%;
   }
 
